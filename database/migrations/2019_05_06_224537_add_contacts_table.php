@@ -20,9 +20,9 @@ class AddContactsTable extends Migration
             $table->string('email')->unique();
             $table->string('telefono');
             $table->enum('ocupacion',['ADMINISTRATOR','COLLABORATOR','PROJECT MANAGER','SOFTWARE MANAGER','DIRECTOR','HUMAN RESOURCES','SALES']);
-            $table->integer('companyContacts_id')->unsigned();
+            $table->integer('company_id')->unsigned();
 
-            $table->foreign('companyContacts_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });
     }

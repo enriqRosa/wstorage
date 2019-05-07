@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'LoginController@index');
+// Route::get('/',function(){
+//     $companies=App\Company::findOrFail(1);
+//     return $companies->contacts;
+// });
 
 //RUTA PARA VISTA SUPERUSER.BLADE.PHP
 Route::get('spusr','LoginController@superuser');
