@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -42,7 +47,9 @@ class CompanyController extends Controller
      */
     public function showCompanies(Company $company)
     {
-        return view('plantillas.company_list');
+        $company=Company::orderBy('id')->paginate();
+        #return view('list_addres',compact('address'));
+        return view('plantillas.company_list',compact('company'));
     }
     /**
      * Update the specified resource in storage.

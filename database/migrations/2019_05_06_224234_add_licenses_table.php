@@ -25,6 +25,7 @@ class AddLicensesTable extends Migration
             $table->integer('licencia_total');
             $table->integer('tamano_restante');
             $table->integer('licencia_restante');
+            $table->String('serial');
             $table->timestamps();
         });
     }

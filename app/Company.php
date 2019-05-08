@@ -13,7 +13,7 @@ class Company extends Model
     //relación 1:1
     public function license()
     {
-        return $this->belongsTo('App\License','licence_id');
+        return $this->belongsTo('App\License');
     }
 
     //relación 1:N
