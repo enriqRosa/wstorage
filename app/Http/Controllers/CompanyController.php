@@ -48,7 +48,6 @@ class CompanyController extends Controller
     public function showCompanies(Company $company)
     {
         $company=Company::orderBy('id')->paginate();
-        #return view('list_addres',compact('address'));
         return view('plantillas.company_list',compact('company'));
     }
     /**

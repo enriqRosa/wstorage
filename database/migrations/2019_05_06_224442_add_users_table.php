@@ -20,6 +20,7 @@ class AddUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('telefono');
             $table->enum('tipo_usuario',['SUPER','ADMIN','USER']);
+            $table->string('avatar');
             $table->string('password');
             $table->rememberToken();
             $table->integer('company_id')->unsigned();

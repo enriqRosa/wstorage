@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Storage;
 use App\License;
 use App\Company;
-use App\Contact;
+use App\Contacts;
 use App\User;
 
 class LoginController extends Controller
@@ -66,7 +66,7 @@ class LoginController extends Controller
         $company->telefono = $request->telefono_compania;
         $company->direccion = $request->direccion;
         $company->logo = $request->file('logotipo')->store('public');
-        $contact = new Contact;
+        $contact = new Contacts;
         $contact->nombre = $request->nombre_contacto;
         $contact->apellidos = $request->apellidos_contacto;
         $contact->email = $request->email_contacto;

@@ -19,8 +19,9 @@
             <div class="col-sm-8 col-sm-offset-2">
                 <div class="wizard-container">
                     <div class="card wizard-card" data-color="orange" id="wizardProfile">
-                        <form action="{{ route('addCompanyPost') }}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
+                        <form action="<?php echo e(route('addCompanyPost')); ?>" method="post" enctype="multipart/form-data">
+                            <?php echo e(csrf_field()); ?>
+
                             <div class="wizard-header">
                                <h3>
                                    <b>WARRIORS LAB'S</b> REGISTER YOUR COMPANY <br>
