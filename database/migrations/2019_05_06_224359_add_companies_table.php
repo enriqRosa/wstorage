@@ -18,11 +18,9 @@ class AddCompaniesTable extends Migration
             $table->string('nombre');
             $table->string('alias')->unique();
             $table->string('rfc',13)->unique();
-            $table->string('telefono');
             $table->string('direccion');
             $table->string('logo');
             $table->integer('license_id')->unsigned();
-
             $table->foreign('license_id')->references('id')->on('licenses')->onDelete('cascade');
             $table->timestamps();
         });

@@ -52,7 +52,7 @@ class UsersController extends Controller
      * @param  \App\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function showUsers(Users $users)
+    public function showUsers()
     {
         return view('plantillas.users');
     }
