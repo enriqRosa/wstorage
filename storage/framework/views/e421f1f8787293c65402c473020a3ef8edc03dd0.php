@@ -43,7 +43,7 @@
                                         <div class="col-sm-4 col-sm-offset-1">
                                             <div class="picture-container">
                                                 <div class="picture">
-                                                    <img src="images/avatar.png" class="picture-src" id="wizardPicturePreview">
+                                                    <img src="" class="picture-src" id="wizardPicturePreview">
                                                     <input type="file" name="logotipo" id="wizard-picture" required>
                                                 </div>
                                                 <h6>Choose Picture</h6>
@@ -66,12 +66,6 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-5">
-                                            <div class="form-group">
-                                                <label>Phone <small>(required)</small></label>
-                                                <input name="telefono_compania" type="text" class="form-control" placeholder="Example: +52 5678985423">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 <label>Address <small>(required)</small></label>
                                                 <input name="direccion" type="text" class="form-control" placeholder="Example: Pedro Santacilia num 24">
@@ -135,22 +129,16 @@
                                                 <input type="text" name="nombre_administrador" class="form-control" placeholder="Example: Sergio">
                                               </div>
                                         </div>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-5 col-sm-offset-1">
                                              <div class="form-group">
                                                 <label>Lastname</label>
                                                 <input type="text" name="apellidos_administrador" class="form-control" placeholder="Example: Aguirre">
                                               </div>
                                         </div>
-                                        <div class="col-sm-5 col-sm-offset-1">
+                                        <div class="col-sm-10 col-sm-offset-1">
                                              <div class="form-group">
                                                 <label>Email</label><br>
                                                 <input type="email" name="email_administrador" class="form-control" placeholder="Example: soporte@warriorslabs.com">
-                                              </div>
-                                        </div>
-                                        <div class="col-sm-5">
-                                             <div class="form-group">
-                                                <label>Telefono</label>
-                                                <input type="text" name="telefono_administrador" class="form-control" placeholder="Example: +52 5678985423">
                                               </div>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-1">

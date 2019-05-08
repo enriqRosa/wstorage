@@ -19,7 +19,7 @@ class AddUsersTable extends Migration
             $table->string('apellidos');
             $table->string('email')->unique();
             $table->enum('tipo_usuario',['SUPER','ADMIN','USER']);
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->integer('company_id')->unsigned();

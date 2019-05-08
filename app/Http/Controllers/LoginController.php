@@ -63,7 +63,6 @@ class LoginController extends Controller
         $company->nombre = $request->nombre_compania;
         $company->alias = $request->alias;
         $company->rfc = $request->rfc;
-        $company->telefono = $request->telefono_compania;
         $company->direccion = $request->direccion;
         $company->logo = $request->file('logotipo')->store('public');
         $contact = new Contacts;
@@ -76,7 +75,6 @@ class LoginController extends Controller
         $user->nombre = $request->nombre_administrador;
         $user->apellidos = $request->apellidos_administrador;
         $user->email = $request->email_administrador;
-        $user->telefono = $request->telefono_administrador;
         $user->tipo_usuario = "ADMIN";
         $user->password = bcrypt($request->contrasenia);
         # Guardar #

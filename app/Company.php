@@ -8,7 +8,7 @@ class Company extends Model
 {
     protected $table = "companies";
     //campos que se puede traer de la tabla
-    protected $fillable = ['nombre','alias','rfc','telefono','direccion','logo','licence_id'];
+    protected $fillable = ['nombre','alias','rfc','direccion','logo','licence_id'];
 
     //relación 1:1
     public function license()
