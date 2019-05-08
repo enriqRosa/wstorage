@@ -26,14 +26,11 @@ $(document).ready(function(){
     // Code for the Validator
     var $validator = $('.wizard-card form').validate({
 		  rules: {
-            logotipo_compania: {
-              required: true
-            },
 		    nombre_compania: {
 		      required: true,
 		      minlength: 3
 		    },
-		    alias_compania: {
+		    alias: {
 		      required: true,
 		      minlength: 3
 		    },
@@ -41,10 +38,6 @@ $(document).ready(function(){
 		      required: true,
 		      minlength: 3,
 		    },
-            telefono_compania: {
-              required: true,
-              minlength: 3,
-            },
             direccion: {
               required: true,
               minlength: 3,

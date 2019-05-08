@@ -7,10 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarriorsStorage</title>
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/nprogress.css" rel="stylesheet">
-        <link href="css/custom.min.css" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -18,7 +18,7 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="#" class="site_title"><img src="images/caja.storage.png" width="50px"><span>WarriorsStorage</span></a>
+                            <a href="#" class="site_title"><img src="{{ asset('images/caja.storage.png') }}" width="50px"><span>WarriorsStorage</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
