@@ -20,6 +20,12 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+    # FINCION PARA REDIRECCIONAR EL LOGIN DE LARAVEL A LA PANTALLA DEL LOGIN DEL SISTEMA #
+    public function showLoginForm()
+    {
+        return redirect('/');
+    }
+
     /**
      * Where to redirect users after login.
      *

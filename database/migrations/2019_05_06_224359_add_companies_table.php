@@ -21,9 +21,9 @@ class AddCompaniesTable extends Migration
             $table->string('telefono');
             $table->string('direccion');
             $table->string('logo');
-            $table->integer('licence_id')->unsigned();
+            $table->integer('license_id')->unsigned();
 
-            $table->foreign('licence_id')->references('id')->on('licenses')->onDelete('cascade');
+            $table->foreign('license_id')->references('id')->on('licenses')->onDelete('cascade');
             $table->timestamps();
         });
     }

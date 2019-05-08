@@ -64,7 +64,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <a href="{{url('/spusr')}}"><button type="submit" class="btn btn-danger">Cancel</button></a>
+                        <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Cancel</button></a>
                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                       </div>
                     </div>

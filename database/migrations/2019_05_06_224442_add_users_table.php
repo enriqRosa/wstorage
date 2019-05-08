@@ -20,9 +20,10 @@ class AddUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('telefono');
             $table->enum('tipo_usuario',['SUPER','ADMIN','USER']);
-            $table->string('pass');
+            $table->string('avatar');
+            $table->string('password');
+            $table->rememberToken();
             $table->integer('company_id')->unsigned();
-
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->timestamps();
         });

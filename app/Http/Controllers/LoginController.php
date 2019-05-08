@@ -4,86 +4,91 @@ namespace App\Http\Controllers;
 
 use App\Login;
 use Illuminate\Http\Request;
+use Storage;
+use App\License;
+use App\Company;
+use App\Contacts;
+use App\User;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    # LA SIGUIENTE FUNCION SOLO MUESTRA LAS SIGUIENTES FUCNIONES SIEMPRE Y CUANDO EL USUARIO NO HAYA INICIADO SESSION #
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
     #FUNCIÓN PARA LA VISTA PRINCIPAL LOGIN EN LA CARPETA PLANTILLAS->VISTA INDEX
     public function index(){
         return view('plantillas.index');
     }
+
+    # FUNCION PARA MOSTRAR EL WIZARD (EMPRESA, CONTACTO, ADMINISTRADOR, LICENCIA) #
+    public function addCompany(){
+        return view('add_company');
+    }
+
+    # FUNCION PARA GUARDAR EL WIZARD (EMPRESA, CONTACTO, ADMINISTRADOR, LICENCIA) #
+    public function addCompanyPost(Request $request){
+        $license = new License;
+        $license->modelo = $request->modelo;
+        $license->tipo = $request->tipo;
+        $license->tiempo =$request->tiempo;
+        $license->status = 1;
+        # Obtener el dia, mes y año desde PHP #
+        $fecha_actual = date("dm-Y");
+        $license->fecha_inicio = date("Y-m-d H:i:s");;
+        # Fecha vencimiento #
+        $tiempo_licencia = $request->tiempo; 
+        if($tiempo_licencia == "15 days")
+            $fecha_vencimiento=date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")."+ 15 days"));
+        else
+            $fecha_vencimiento=date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")."+ $tiempo_licencia"));
+        $license->fecha_fin = $fecha_vencimiento;
+        $license->tamano_total = $request->tamanio;
+        $license->licencia_total = $request->usuarios;
+        $license->tamano_restante = $request->tamanio;
+        $license->licencia_restante = $request->usuarios;
+        # Generar los caracteres aletoriamente #
+        $caracteres = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $longitud_caracteres = strlen($caracteres);
+        $valor_random = '';
+        for ($i = 0; $i < $length = 4; $i++) {
+            $valor_random .= $caracteres[rand(0, $longitud_caracteres - 1)];
+        }
+        # Serial #
+        $serial= "WDST-$fecha_actual-$valor_random";
+        $license->serial = $serial;
+        $company = new Company;
+        $company->nombre = $request->nombre_compania;
+        $company->alias = $request->alias;
+        $company->rfc = $request->rfc;
+        $company->telefono = $request->telefono_compania;
+        $company->direccion = $request->direccion;
+        $company->logo = $request->file('logotipo')->store('public');
+        $contact = new Contacts;
+        $contact->nombre = $request->nombre_contacto;
+        $contact->apellidos = $request->apellidos_contacto;
+        $contact->email = $request->email_contacto;
+        $contact->telefono = $request->telefono_contacto;
+        $contact->ocupacion = $request->puesto;
+        $user = new User;
+        $user->nombre = $request->nombre_administrador;
+        $user->apellidos = $request->apellidos_administrador;
+        $user->email = $request->email_administrador;
+        $user->telefono = $request->telefono_administrador;
+        $user->tipo_usuario = "ADMIN";
+        $user->password = bcrypt($request->contrasenia);
+        # Guardar #
+        $license->save();
+        $license->company()->save($company);
+        $company->contacts()->save($contact);
+        $company->users()->save($user);
+        return redirect()->route('index');
+    }
+
     #FUNCIÓN PARA DASHBOARD SUPERUASUARIO
     public function superuser(){
         return view('plantillas.superuser');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Login $login)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Login $login)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Login $login)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Login $login)
-    {
-        //
     }
 }

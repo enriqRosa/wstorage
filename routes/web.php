@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Web Routes WStorage
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -11,7 +11,23 @@
 |
 */
 
-Route::get('/', 'LoginController@index');
+# RUTA LOGIN DEL SISTA # 
+Route::get('/', 'LoginController@index')->name('index');
+Route::post('login', 'Auth\LoginController@login');
+
+# RUTA LOGOUT DEL SISTEMA #
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+# WIZARD REGISTRAR EMPRESA, LICENCIA, CONTACTO Y ADMINISTRADOR
+Route::get('add-company-first', 'LoginController@addCompany')->name('addCompany');
+Route::post('add-company-first', 'LoginController@addCompanyPost')->name('addCompanyPost');
+
+# RUTA CREADA POR LARAVEL PARA EL FUNCIONAMIENTO DE LOGIN NOTA: NO BORRAR #
+Auth::routes();
+
+# APARTIR DE ESTA RUTA EL USUARIO YA TIENE INICIADA UNA SESSION #
+# RUTA ESTABLECIDA POR LARAVEL NOTA NO BORRAR A MENOS QUE SE MODIFIQUE  #
+Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/',function(){
 //     $companies=App\Company::findOrFail(1);
 //     return $companies->contacts;
@@ -34,7 +50,7 @@ Route::get('add-user','UsersController@createUser');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user','UsersController@updateUser');
 //RUTA PARA VER TODOS LOS USUARIOS
-Route::get('users','UsersController@showUsers');
+Route::get('users/{id}','UsersController@showUsers')->name('users');
 //RUTA PARA VISTA AGREGAR USUARIO CATALOGO
 Route::get('user-catalog','UsersController@addUserCatalog');
 
@@ -57,6 +73,3 @@ Route::get('edit-contact','ContactsController@updateContact');
 /****************************DICCIONARIO*******************************/
 //RUTA PARA AGREGAR UNA EXTENSIÓN
 Route::get('dictionary','DictionaryController@createDictionary');
-
-
-
