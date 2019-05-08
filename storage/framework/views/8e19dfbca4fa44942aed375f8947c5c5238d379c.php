@@ -11,12 +11,12 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <form class="form-horizontal form-label-left" novalidate>
+                    <form class="form-horizontal form-label-left" novalidate method="POST">
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" name="" type="text">
+                          <input id="nombre_usuario" class="form-control col-md-7 col-xs-12" name="" type="text">
                         </div>
                       </div>
                       <div class="item form-group">
@@ -65,7 +65,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <a href="<?php echo e(url('/users')); ?>"><button type="submit" class="btn btn-danger">Cancel</button></a>
+                        <a href="<?php echo e(url('/users')); ?>"><button class="btn btn-danger">Cancel</button></a>
                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                       </div>
                     </div>

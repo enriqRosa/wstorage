@@ -1,33 +1,29 @@
 @extends ('temps.header')
 @section ('content')
-                            <div class="right_col" role="main">
-                            <div class="">
-                                <div class="row">
-                                    
-                                    <div class="x_content">
-                                            <div class="x_title">
-                                                <h2>Companies</h2>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="title_left">
-                                                <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>  
-                                                <a href="{{url('/add-company')}}"><button type="submit" class="btn btn-success">Add company</button></a>
-                                            </div>
-                                           
-                                                
-                            <div class="row">
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="row">
+                    <div class="x_content">
+                        <div class="x_title">
+                            <h2>Companies</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="title_left">
+                            <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>  
+                        </div>                      
+                        <div class="row">
                             @foreach($company as $companies)
-                                <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                                    <div class="x_panel fixed_height_390">
-                                        <div class="x_title">
-                                            <h2> {{ $companies->nombre  }}</h2>
-                                            <div class="clearfix"></div>
+                            <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                                <div class="x_panel fixed_height_390">
+                                    <div class="x_title">
+                                        <h2> {{ $companies->nombre  }}</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div style="text-align: center; margin-bottom: 17px">
+                                            <img src="{{ Storage::url($companies->logo) }}" height="100px">
                                         </div>
-                                        <div class="x_content">
-                                            <div style="text-align: center; margin-bottom: 17px">
-                                                <img src="{{ Storage::url($companies->logo) }}" height="100px">
-                                            </div>
-                                            <div class="divider"></div>
+                                        <div class="divider"></div>
                                             <ul class="legend list-unstyled">
                                                 <li>
                                                     <p>
@@ -62,15 +58,11 @@
                                             </ul>
                                         </div>
                                     </div>
-                            
                                 </div>                                                      
                                 @endforeach
                             </div>
-                        
-                   
-            </div>    
-            
+                    </div>    
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
 @stop
