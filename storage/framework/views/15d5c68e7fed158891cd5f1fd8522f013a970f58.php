@@ -1,5 +1,4 @@
-@extends ('temps.header')
-@section ('content')
+<?php $__env->startSection('content'); ?>
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -64,7 +63,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">
-                        <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Cancel</button></a>
+                        <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Cancel</button></a>
                         <button id="send" type="submit" class="btn btn-success">Submit</button>
                       </div>
                     </div>
@@ -75,4 +74,5 @@
           </div>
         </div>
         <!-- /page content -->
-        @stop
+        <?php $__env->stopSection(); ?>
+<?php echo $__env->make('temps.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -50,7 +50,7 @@ Route::get('add-user','UsersController@createUser');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user','UsersController@updateUser');
 //RUTA PARA VER TODOS LOS USUARIOS
-Route::get('users','UsersController@showUsers');
+Route::get('users/{id}','UsersController@showUsers')->name('users');
 //RUTA PARA VISTA AGREGAR USUARIO CATALOGO
 Route::get('user-catalog','UsersController@addUserCatalog');
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Contacts extends Model
 {
     protected $table = "contacts";
     //campos que se puede traer de la tabla

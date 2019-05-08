@@ -19,7 +19,7 @@ class ContactsController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     *@param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
     public function createContact()

@@ -19,12 +19,12 @@ class Company extends Model
     //relación 1:N
     public function contacts()
     {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany('App\Contacts');
     }
 
     //relación 1:N
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany('App\Users');
     }
 }
