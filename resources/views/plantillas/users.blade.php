@@ -12,8 +12,6 @@
                         </div>
                         <div class="title_left">
                             <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a> 
-                            
-                          
                         </div> 
                         <div class="x_content">
                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -32,12 +30,10 @@
                                             <tbody>
                                             @foreach($user as $users)
                                                 <tr>
-                                                    <td>{{$users->nombre_company}}</td>
                                                     <td>{{$users->nombre}}</td>
                                                     <td>{{$users->apellidos}}</td>
                                                     <td>{{$users->email}}</td>
                                                     <td>{{$users->tamano}}</td>
-                                                    
                                                     <td>
                                                         <a href="{{url('/edit-user')}}" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
@@ -52,7 +48,6 @@
                             </div>
                         </div>
                     </div>
-                
                 </div>
             </div>
         </div>

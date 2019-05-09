@@ -11,8 +11,6 @@
                         </div>
                         <div class="title_left">
                             <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a> 
-                            
-                          
                         </div> 
                         <div class="x_content">
                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -31,12 +29,10 @@
                                             <tbody>
                                             <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $users): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td><?php echo e($users->nombre_company); ?></td>
                                                     <td><?php echo e($users->nombre); ?></td>
                                                     <td><?php echo e($users->apellidos); ?></td>
                                                     <td><?php echo e($users->email); ?></td>
                                                     <td><?php echo e($users->tamano); ?></td>
-                                                    
                                                     <td>
                                                         <a href="<?php echo e(url('/edit-user')); ?>" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
@@ -51,7 +47,6 @@
                             </div>
                         </div>
                     </div>
-                
                 </div>
             </div>
         </div>

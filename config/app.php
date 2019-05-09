@@ -181,7 +181,7 @@ return [
          * Providers Personales
          */
         Collective\Html\HtmlServiceProvider::class,
-
+        Cviebrock\EloquentSluggable\ServiceProvider::class,     
     ],
 
     /*

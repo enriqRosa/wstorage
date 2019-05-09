@@ -8162,3 +8162,91 @@ DETAIL:  Ya existe la llave (email)=(hola@yahoo.com). at /var/www/html/wstorage/
 #55 /var/www/html/wstorage/server.php(21): require_once('/var/www/html/w...')
 #56 {main}
 "} 
+[2019-05-09 17:16:29] local.ERROR: Class 'Cviebrock\EloquentSluggable\SluggableServiceProvider' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'Cviebrock\\EloquentSluggable\\SluggableServiceProvider' not found at /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:208)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(144): Illuminate\\Foundation\\ProviderRepository->createProvider('Cviebrock\\\\Eloqu...')
+#1 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#2 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(561): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#4 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(213): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#5 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(296): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#6 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(119): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
+[2019-05-09 17:39:41] local.ERROR: Trait 'Cviebrock\EloquentSluggable\SluggableTrait' not found {"userId":1,"email":"osiel@gmail.com","exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalErrorException(code: 1): Trait 'Cviebrock\\EloquentSluggable\\SluggableTrait' not found at /var/www/html/wstorage/app/User.php:13)
+[stacktrace]
+#0 {main}
+"} 
+[2019-05-09 17:41:52] local.ERROR: There are no commands defined in the "sluggable" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): There are no commands defined in the \"sluggable\" namespace. at /var/www/html/wstorage/vendor/symfony/console/Application.php:571)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/symfony/console/Application.php(611): Symfony\\Component\\Console\\Application->findNamespace('sluggable')
+#1 /var/www/html/wstorage/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('sluggable:table')
+#2 /var/www/html/wstorage/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2019-05-09 17:44:27] local.ERROR: Command "vendor" is not defined.
+
+Did you mean this?
+    vendor:publish {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"vendor\" is not defined.
+
+Did you mean this?
+    vendor:publish at /var/www/html/wstorage/vendor/symfony/console/Application.php:625)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('vendor')
+#1 /var/www/html/wstorage/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-05-09 17:44:35] local.ERROR: Command "vendor" is not defined.
+
+Did you mean this?
+    vendor:publish {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"vendor\" is not defined.
+
+Did you mean this?
+    vendor:publish at /var/www/html/wstorage/vendor/symfony/console/Application.php:625)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('vendor')
+#1 /var/www/html/wstorage/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2019-05-09 17:46:06] local.ERROR: There are no commands defined in the "sluggable" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): There are no commands defined in the \"sluggable\" namespace. at /var/www/html/wstorage/vendor/symfony/console/Application.php:571)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/symfony/console/Application.php(611): Symfony\\Component\\Console\\Application->findNamespace('sluggable')
+#1 /var/www/html/wstorage/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('sluggable:table')
+#2 /var/www/html/wstorage/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2019-05-09 17:49:50] local.ERROR: There are no commands defined in the "sluggable" namespace. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): There are no commands defined in the \"sluggable\" namespace. at /var/www/html/wstorage/vendor/symfony/console/Application.php:571)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/symfony/console/Application.php(611): Symfony\\Component\\Console\\Application->findNamespace('sluggable')
+#1 /var/www/html/wstorage/vendor/symfony/console/Application.php(236): Symfony\\Component\\Console\\Application->find('sluggable:table')
+#2 /var/www/html/wstorage/vendor/symfony/console/Application.php(148): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Console/Application.php(88): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(121): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 {main}
+"} 
+[2019-05-09 18:06:13] local.ERROR: Class 'Cviebrock\EloquentSluggable\SluggableServiceProvider' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'Cviebrock\\EloquentSluggable\\SluggableServiceProvider' not found at /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:208)
+[stacktrace]
+#0 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(144): Illuminate\\Foundation\\ProviderRepository->createProvider('Cviebrock\\\\Eloqu...')
+#1 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(61): Illuminate\\Foundation\\ProviderRepository->compileManifest(Array)
+#2 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(561): Illuminate\\Foundation\\ProviderRepository->load(Array)
+#3 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\\Foundation\\Application->registerConfiguredProviders()
+#4 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(213): Illuminate\\Foundation\\Bootstrap\\RegisterProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#5 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(296): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#6 /var/www/html/wstorage/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(119): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#7 /var/www/html/wstorage/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
