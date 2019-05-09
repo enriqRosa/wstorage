@@ -1,11 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Users;
 use App\User;
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -69,7 +69,11 @@ class UsersController extends Controller
      */
     public function showUsers()
     {
-        $user = User::with("company")->get();
+        $user= DB::select("SELECT c.nombre as nombre_company, u.nombre, u.apellidos, u.email, s.tamano
+        from companies as c, users as u, storages as s
+        where c.id=u.company_id and u.id=s.user_id"
+        );
+        //$user = User::with("company")->get();
         return view('plantillas.users',compact('user'));
     }
 

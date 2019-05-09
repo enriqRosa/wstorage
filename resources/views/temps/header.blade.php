@@ -37,6 +37,7 @@
                                 <ul class="nav side-menu">
                                     <li><a href="{{url('/spusr')}}"><i class="fa fa-home"></i> Home </a></li>
                                     <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i> Companies</a></li>
+                                    <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="{{url('/license-status')}}"><i class="fa fa-file"></i> License</a></li>      
                                     <li><a href="{{url('/dictionary')}}"><i class="fa fa-book"></i> Dictionary</a></li>     
                                 </ul>

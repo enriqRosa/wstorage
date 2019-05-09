@@ -36,6 +36,6 @@ class User extends Authenticatable
     //relación de 1:N
     public function storages()
     {
-        return $this->belongsTo('App\Storage');
+        return $this->hasOne('App\Storage');
     }
 }

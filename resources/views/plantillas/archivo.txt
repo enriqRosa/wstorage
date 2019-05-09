@@ -1,0 +1,6 @@
+<!--  <a href="{{ route('createUser',$users->company_id) }}"><button type="submit" class="btn btn-success">Add user</button></a>--->
+
+
+select c.nombre, u.nombre, u.apellidos, u.email, s.tamano
+from companies as c, users as u, storages as s
+where c.id=u.company_id and u.id=s.user_id;

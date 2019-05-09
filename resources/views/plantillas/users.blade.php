@@ -5,15 +5,15 @@
             <div class="clearfix"></div><!--SALTO DE LÍNEA-->
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                @foreach($user as $users)
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>"Company" Users</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="title_left">
-                            <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>  
-                            <a href="{{ route('createUser',$users->company_id) }}"><button type="submit" class="btn btn-success">Add user</button></a>
+                            <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a> 
+                            
+                          
                         </div> 
                         <div class="x_content">
                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -25,39 +25,26 @@
                                                     <th>Name</th>
                                                     <th>Last name</th>
                                                     <th>Email</th>
-                                                    <th>Phone</th>
                                                     <th>Space</th>
-                                                    <th>User role</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach($user as $users)
                                                 <tr>
+                                                    <td>{{$users->nombre_company}}</td>
                                                     <td>{{$users->nombre}}</td>
-                                                    <td>Sales Assistant</td>
-                                                    <td>New York</td>
-                                                    <td>46</td>
-                                                    <td>2011/12/06</td>
-                                                    <td>$145,600</td>
+                                                    <td>{{$users->apellidos}}</td>
+                                                    <td>{{$users->email}}</td>
+                                                    <td>{{$users->tamano}}</td>
+                                                    
                                                     <td>
                                                         <a href="{{url('/edit-user')}}" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                                         <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                                         <a href="#" class="btn btn-info btn-xs"><i class="fa fa-plus-square"></i> Assign space </a>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Hermione Butler</td>
-                                                    <td>Regional Director</td>
-                                                    <td>London</td>
-                                                    <td>47</td>
-                                                    <td>2011/03/21</td>
-                                                    <td>$356,250</td>
-                                                    <td>
-                                                      <a href="{{url('/companies')}}" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                      <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                      <a href="#" class="btn btn-info btn-xs"><i class="fa fa-plus-square"></i> Assign space </a>
-                                                    </td>
-                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>			
                                     </div>
@@ -65,7 +52,7 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                
                 </div>
             </div>
         </div>
