@@ -4,6 +4,7 @@
             <div class="clearfix"></div><!--SALTO DE LÍNEA-->
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
+                <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $users): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>"Company" Users</h2>
@@ -11,7 +12,7 @@
                         </div>
                         <div class="title_left">
                             <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a>  
-                            <a href="<?php echo e(url('/add-user')); ?>"><button type="submit" class="btn btn-success">Add user</button></a>
+                            <a href="<?php echo e(route('createUser',$users->company_id)); ?>"><button type="submit" class="btn btn-success">Add user</button></a>
                         </div> 
                         <div class="x_content">
                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -31,7 +32,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td>Cara Stevens</td>
+                                                    <td><?php echo e($users->nombre); ?></td>
                                                     <td>Sales Assistant</td>
                                                     <td>New York</td>
                                                     <td>46</td>
@@ -63,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>

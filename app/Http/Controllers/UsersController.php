@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Users;
+use App\User;
+use App\Company;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -22,9 +24,22 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createUser()
+    public function createUser($company_id)
     {
-        return view('plantillas.add_user');
+        return view('plantillas.add_user',compact('company_id'));
+    }
+    //Agregar un nuevo usuario
+    public function createUserPost(Request $request)
+    {
+        $user = new User;
+        $user->nombre = $request->nombre_usuario;
+        $user->apellidos = $request->apellidos_usuario;
+        $user->email = $request->email_usuario;
+        $user->tipo_usuario = $request->rol_usuario;
+        $user->password = bcrypt($request->pass_usuario);
+        $user->company_id = $request->company_id;
+        $user->save();
+        return redirect('companies');
     }
 
     /**
@@ -54,7 +69,8 @@ class UsersController extends Controller
      */
     public function showUsers()
     {
-        return view('plantillas.users');
+        $user = User::with("company")->get();
+        return view('plantillas.users',compact('user'));
     }
 
     /**

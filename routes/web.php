@@ -46,7 +46,8 @@ Route::get('edit-company','CompanyController@updateCompany');
 
 /****************************USUARIOS**********************************/
 //RUTA PARA VISTA AGREGAR USUARIO
-Route::get('add-user','UsersController@createUser');
+Route::get('add-user/{company_id}','UsersController@createUser')->name('createUser');
+Route::post('add-user','UsersController@createUserPost')->name('createUserPost');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user','UsersController@updateUser');
 //RUTA PARA VER TODOS LOS USUARIOS
