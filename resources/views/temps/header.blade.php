@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarriorsStorage</title>
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet">
@@ -74,8 +75,10 @@
                         </nav>
                     </div>
                 </div>
+                
                 @yield('content')
                 <footer>
+                
                     <div class="product_social pull-right">
                         <ul class="list-inline">
                             <li><a href="https://www.facebook.com/WarriorsLabs"><i class="fa fa-facebook-square"></i></a></li>

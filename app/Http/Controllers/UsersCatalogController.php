@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\UserCatalog;
+use Laracast\Flash\Flash;
 use Illuminate\Http\Request;
 
 class UsersCatalogController extends Controller
@@ -23,7 +24,9 @@ class UsersCatalogController extends Controller
     {
         $user_catalog = new UserCatalog($request->all());
         $user_catalog->save();
+        
+       
         //retorna a la ruta ->user-catalog
-        return back();       
+        return back()->with('user_catalog' ,'Data inserted Successfully');       
     }
 }

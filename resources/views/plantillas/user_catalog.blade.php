@@ -5,6 +5,11 @@
           <div class="">
             <div class="clearfix"></div>
             <div class="row">
+            @if (session('user_catalog'))
+              <div class="alert alert-success">
+                {{ session('user_catalog') }}
+              </div>
+            @endif
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">

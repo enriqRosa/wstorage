@@ -40,7 +40,7 @@ class DictionaryController extends Controller
         //save() guarda el registro
         $dictionary = new Dictionary($request->all());
         $dictionary->save();
-        return back();
+        return back()->with('dictionary' ,'Data inserted Successfully');
     }
 
     /**
