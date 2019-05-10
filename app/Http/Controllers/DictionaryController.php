@@ -60,8 +60,11 @@ class DictionaryController extends Controller
      * @param  \App\Dictionary  $dictionary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dictionary $dictionary)
+    public function destroyDictionary($id)
     {
-        //
+        $dictionary = Dictionary::find($id);
+        $dictionary->delete();
+
+        return back()->with('dictionary_destroy' ,'Data deleted Successfully');
     }
 }

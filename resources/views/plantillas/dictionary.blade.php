@@ -10,6 +10,11 @@
                         {{ session('dictionary') }}
                       </div>
                     @endif
+                    @if (session('dictionary_destroy'))
+                      <div class="alert alert-success">
+                        {{ session('dictionary_destroy') }}
+                      </div>
+                    @endif
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="x_panel">
                           <div class="x_title">
@@ -49,7 +54,7 @@
                                   <tr>
                                     <td>{{ $extension->nombre }}</td>
                                     <td>
-                                      <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                      <a href="{{ route('dictionary-destroy', $extension->id) }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                     </td>
                                   </tr>
                                 @endforeach

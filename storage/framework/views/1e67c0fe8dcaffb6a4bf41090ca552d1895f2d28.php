@@ -5,11 +5,17 @@
             <div class="clearfix"></div>
             <div class="row">
             <?php if(session('user_catalog')): ?>
-  <div class="alert alert-success">
-    <?php echo e(session('user_catalog')); ?>
+              <div class="alert alert-success">
+                <?php echo e(session('user_catalog')); ?>
 
-  </div>
-<?php endif; ?>
+              </div>
+            <?php endif; ?>
+            <?php if(session('user_catalog_destroy')): ?>
+              <div class="alert alert-success">
+                <?php echo e(session('user_catalog_destroy')); ?>
+
+              </div>
+            <?php endif; ?>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -57,7 +63,7 @@
                           <?php $__currentLoopData = $user_catalog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catalog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                               <td><?php echo e($catalog->cantidad); ?></td>
-                              <td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                              <td><a href="<?php echo e(route('catalog-user-destroy', $catalog->id)); ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                             </tr>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </tbody>

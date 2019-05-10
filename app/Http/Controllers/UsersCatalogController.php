@@ -29,4 +29,12 @@ class UsersCatalogController extends Controller
         //retorna a la ruta ->user-catalog
         return back()->with('user_catalog' ,'Data inserted Successfully');       
     }
+    //Eliminar un campo del catalogo usuarios
+    public function destroyUserCatalog($id)
+    {
+        $user_catalog = UserCatalog::find($id);
+        $user_catalog->delete();
+
+        return back()->with('user_catalog_destroy' ,'Data deleted Successfully'); 
+    }
 }

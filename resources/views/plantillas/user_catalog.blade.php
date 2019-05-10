@@ -10,6 +10,11 @@
                 {{ session('user_catalog') }}
               </div>
             @endif
+            @if (session('user_catalog_destroy'))
+              <div class="alert alert-success">
+                {{ session('user_catalog_destroy') }}
+              </div>
+            @endif
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -52,7 +57,7 @@
                           @foreach($user_catalog as $catalog)
                             <tr>
                               <td>{{ $catalog->cantidad }}</td>
-                              <td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                              <td><a href="{{ route('catalog-user-destroy', $catalog->id) }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
                             </tr>
                           @endforeach
                       </tbody>
