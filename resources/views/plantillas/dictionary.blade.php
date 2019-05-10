@@ -16,7 +16,7 @@
                               <div class="item form-group">
                                 {!! Form::label('nombre','Extension*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  {!! Form::text('nombre',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']) !!}
+                                  {!! Form::text('nombre',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']) !!}
                                 </div>
                               </div> 
                               <div class="ln_solid"></div>
@@ -40,14 +40,17 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>.png</td>
-                                  <td>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                  </td>
-                                </tr>
-                                </tbody>
+                                @foreach($dictionary as $extension)
+                                  <tr>
+                                    <td>{{ $extension->nombre }}</td>
+                                    <td>
+                                      <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                    </td>
+                                  </tr>
+                                @endforeach
+                              </tbody>
                             </table>
+                            {!! $dictionary->render() !!}
                           </div>
                         </div>
                       </div>

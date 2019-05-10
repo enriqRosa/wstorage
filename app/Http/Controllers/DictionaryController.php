@@ -24,7 +24,8 @@ class DictionaryController extends Controller
      */
     public function Dictionary()
     {
-        return view('plantillas.dictionary');
+        $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
+        return view('plantillas.dictionary')->with('dictionary',$dictionary);
     }
 
     /**
@@ -39,7 +40,7 @@ class DictionaryController extends Controller
         //save() guarda el registro
         $dictionary = new Dictionary($request->all());
         $dictionary->save();
-        dd('goooooooooood x2');
+        return back();
     }
 
     /**

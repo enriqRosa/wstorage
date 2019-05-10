@@ -17,7 +17,7 @@
                                 <?php echo Form::label('nombre','Extension*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <?php echo Form::text('nombre',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']); ?>
+                                  <?php echo Form::text('nombre',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']); ?>
 
                                 </div>
                               </div> 
@@ -44,14 +44,18 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td>.png</td>
-                                  <td>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                  </td>
-                                </tr>
-                                </tbody>
+                                <?php $__currentLoopData = $dictionary; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extension): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                  <tr>
+                                    <td><?php echo e($extension->nombre); ?></td>
+                                    <td>
+                                      <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                    </td>
+                                  </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                              </tbody>
                             </table>
+                            <?php echo $dictionary->render(); ?>
+
                           </div>
                         </div>
                       </div>
