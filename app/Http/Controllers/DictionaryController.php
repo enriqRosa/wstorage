@@ -22,7 +22,7 @@ class DictionaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createDictionary()
+    public function Dictionary()
     {
         return view('plantillas.dictionary');
     }
@@ -33,9 +33,13 @@ class DictionaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeDictionary(Request $request)
     {
-        //
+        //$request->all llama a todos los campos del formulario para ser insertados
+        //save() guarda el registro
+        $dictionary = new Dictionary($request->all());
+        $dictionary->save();
+        dd('goooooooooood x2');
     }
 
     /**

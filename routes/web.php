@@ -76,4 +76,5 @@ Route::get('edit-contact','ContactsController@updateContact');
 
 /****************************DICCIONARIO*******************************/
 //RUTA PARA AGREGAR UNA EXTENSIÓN
-Route::get('dictionary','DictionaryController@createDictionary');
+Route::get('dictionary','DictionaryController@Dictionary');
+Route::post('add-dictionary','DictionaryController@storeDictionary')->name('storeDictionary');
