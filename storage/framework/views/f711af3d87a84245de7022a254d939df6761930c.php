@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarriorsStorage</title>
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/font-awesome.min.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/nprogress.css')); ?>" rel="stylesheet">
@@ -37,6 +38,7 @@
                                 <ul class="nav side-menu">
                                     <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>
                                     <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i> Companies</a></li>
+                                    <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="<?php echo e(url('/license-status')); ?>"><i class="fa fa-file"></i> License</a></li>      
                                     <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li>     
                                 </ul>
@@ -75,8 +77,10 @@
                         </nav>
                     </div>
                 </div>
+                
                 <?php echo $__env->yieldContent('content'); ?>
                 <footer>
+                
                     <div class="product_social pull-right">
                         <ul class="list-inline">
                             <li><a href="https://www.facebook.com/WarriorsLabs"><i class="fa fa-facebook-square"></i></a></li>

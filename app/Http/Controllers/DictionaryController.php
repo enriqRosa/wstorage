@@ -22,9 +22,10 @@ class DictionaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createDictionary()
+    public function Dictionary()
     {
-        return view('plantillas.dictionary');
+        $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
+        return view('plantillas.dictionary')->with('dictionary',$dictionary);
     }
 
     /**
@@ -33,9 +34,13 @@ class DictionaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeDictionary(Request $request)
     {
-        //
+        //$request->all llama a todos los campos del formulario para ser insertados
+        //save() guarda el registro
+        $dictionary = new Dictionary($request->all());
+        $dictionary->save();
+        return back()->with('dictionary' ,'Data inserted Successfully');
     }
 
     /**
@@ -55,8 +60,11 @@ class DictionaryController extends Controller
      * @param  \App\Dictionary  $dictionary
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dictionary $dictionary)
+    public function destroyDictionary($id)
     {
-        //
+        $dictionary = Dictionary::find($id);
+        $dictionary->delete();
+
+        return back()->with('dictionary_destroy' ,'Data deleted Successfully');
     }
 }

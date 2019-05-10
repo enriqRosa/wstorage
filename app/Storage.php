@@ -13,6 +13,6 @@ class Storage extends Model
     //relación 1:1
     public function user()
     {
-        return $this->hasOne('App\Users');
+        return $this->belongsTo('App\Users');
     }
 }

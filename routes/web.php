@@ -46,14 +46,22 @@ Route::get('edit-company','CompanyController@updateCompany');
 
 /****************************USUARIOS**********************************/
 //RUTA PARA VISTA AGREGAR USUARIO
-Route::get('add-user','UsersController@createUser');
+Route::get('add-user/{company_id}','UsersController@createUser')->name('createUser');
+Route::post('add-user','UsersController@createUserPost')->name('createUserPost');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user','UsersController@updateUser');
 //RUTA PARA VER TODOS LOS USUARIOS
 Route::get('users/{id}','UsersController@showUsers')->name('users');
-//RUTA PARA VISTA AGREGAR USUARIO CATALOGO
-Route::get('user-catalog','UsersController@addUserCatalog');
 
+/****************************CATALOGO DE USUARIOS**********************/
+//RUTA PARA VISTA AGREGAR USUARIO CATALOGO
+Route::get('user-catalog','UsersCatalogController@UserCatalog');
+Route::post('add-user-catalog','UsersCatalogController@storeUserCatalog')->name('storeUserCatalog');
+//RUTA PARA ELIMINAR
+Route::get('user-catalog/{id}/destroy',[
+    'uses' => 'UsersCatalogController@destroyUserCatalog',
+    'as'   => 'catalog-user-destroy'
+]);
 /****************************LICENCIA**********************************/
 //RUTA PARA VISTA AGREGAR LICENCIA
 Route::get('add-license','LicenseController@createLicense');
@@ -72,4 +80,10 @@ Route::get('edit-contact','ContactsController@updateContact');
 
 /****************************DICCIONARIO*******************************/
 //RUTA PARA AGREGAR UNA EXTENSIÓN
-Route::get('dictionary','DictionaryController@createDictionary');
+Route::get('dictionary','DictionaryController@Dictionary');
+Route::post('add-dictionary','DictionaryController@storeDictionary')->name('storeDictionary');
+//RUTA PARA ELIMINAR 
+Route::get('dictionary/{id}/destroy',[
+    'uses' => 'DictionaryController@destroyDictionary',
+    'as'   => 'dictionary-destroy'
+]);

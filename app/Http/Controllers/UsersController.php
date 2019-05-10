@@ -1,9 +1,11 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Users;
+use App\User;
+use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -22,30 +24,31 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createUser()
+    public function createUser($company_id)
     {
-        return view('plantillas.add_user');
+        return view('plantillas.add_user',compact('company_id'));
+    }
+    //Agregar un nuevo usuario
+    public function createUserPost(Request $request)
+    {
+        $user = new User;
+        $user->nombre = $request->nombre_usuario;
+        $user->apellidos = $request->apellidos_usuario;
+        $user->email = $request->email_usuario;
+        $user->tipo_usuario = $request->rol_usuario;
+        $user->password = bcrypt($request->pass_usuario);
+        $user->company_id = $request->company_id;
+        $user->save();
+        return redirect('companies');
     }
 
-    /**
-     * Agregar más usuarios al catalogo de usuarios
-     */
-    public function addUserCatalog()
-    {
-        return view('plantillas.user_catalog');
-    }
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
+    
     /**
      * Display the specified resource.
      *
@@ -54,7 +57,12 @@ class UsersController extends Controller
      */
     public function showUsers()
     {
-        return view('plantillas.users');
+        $user= DB::select("SELECT c.nombre as nombre_company, u.nombre, u.apellidos, u.email, s.tamano
+        from companies as c, users as u, storages as s
+        where c.id=u.company_id and u.id=s.user_id"
+        );
+        //$user = User::with("company")->get();
+        return view('plantillas.users',compact('user'));
     }
 
     /**

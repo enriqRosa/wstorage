@@ -5,6 +5,16 @@
           <div class="">
             <div class="clearfix"></div>
             <div class="row">
+            @if (session('user_catalog'))
+              <div class="alert alert-success">
+                {{ session('user_catalog') }}
+              </div>
+            @endif
+            @if (session('user_catalog_destroy'))
+              <div class="alert alert-success">
+                {{ session('user_catalog_destroy') }}
+              </div>
+            @endif
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -12,21 +22,20 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <form class="form-horizontal form-label-left" novalidate>
+                    {!! Form::open(['route' => 'storeUserCatalog', 'method' => 'POST', 'class' => 'form-horizontal form-label-left']) !!}
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Quantity*</span>
-                        </label>
+                        {!! Form::label('nombre','Quantity*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" name="" type="text">
+                          {!! Form::text('cantidad',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']) !!}
                         </div>
                       </div> 
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
-                          <button id="send" type="submit" class="btn btn-success">Add</button>
+                          {!! Form::submit('Add', ['class' => 'btn btn-success']) !!}
                         </div>
                       </div>
-                    </form>
+                    {!! Form::close() !!}
                   </div>
                 </div>
               </div>
@@ -45,20 +54,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>5</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>10</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
+                          @foreach($user_catalog as $catalog)
+                            <tr>
+                              <td>{{ $catalog->cantidad }}</td>
+                              <td><a href="{{ route('catalog-user-destroy', $catalog->id) }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                            </tr>
+                          @endforeach
                       </tbody>
                     </table>
+                    <!-- Activar la páginación -->
+                    {!! $user_catalog->render() !!}
                   </div>
                 </div>
               </div>

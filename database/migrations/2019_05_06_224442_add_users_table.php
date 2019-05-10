@@ -18,6 +18,7 @@ class AddUsersTable extends Migration
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('email')->unique();
+            $table->string('tamano');
             $table->enum('tipo_usuario',['SUPER','ADMIN','USER']);
             $table->string('avatar')->nullable();
             $table->string('password');
