@@ -52,8 +52,11 @@ Route::post('add-user','UsersController@createUserPost')->name('createUserPost')
 Route::get('edit-user','UsersController@updateUser');
 //RUTA PARA VER TODOS LOS USUARIOS
 Route::get('users/{id}','UsersController@showUsers')->name('users');
+
+/****************************CATALOGO DE USUARIOS**********************/
 //RUTA PARA VISTA AGREGAR USUARIO CATALOGO
-Route::get('user-catalog','UsersController@addUserCatalog');
+Route::get('user-catalog','UsersCatalogController@UserCatalog');
+Route::post('add-user-catalog','UsersCatalogController@storeUserCatalog')->name('storeUserCatalog');
 
 /****************************LICENCIA**********************************/
 //RUTA PARA VISTA AGREGAR LICENCIA

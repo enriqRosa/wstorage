@@ -42,25 +42,13 @@ class UsersController extends Controller
         return redirect('companies');
     }
 
-    /**
-     * Agregar más usuarios al catalogo de usuarios
-     */
-    public function addUserCatalog()
-    {
-        return view('plantillas.user_catalog');
-    }
-
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
+    
     /**
      * Display the specified resource.
      *
