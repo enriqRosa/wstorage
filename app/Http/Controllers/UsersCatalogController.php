@@ -12,7 +12,8 @@ class UsersCatalogController extends Controller
      */
     public function UserCatalog()
     {
-        return view('plantillas.user_catalog');
+        $user_catalog = UserCatalog::orderBy('cantidad','Asc')->paginate(5);
+        return view('plantillas.user_catalog')->with('user_catalog',$user_catalog);
     }
 
      /**
@@ -22,7 +23,7 @@ class UsersCatalogController extends Controller
     {
         $user_catalog = new UserCatalog($request->all());
         $user_catalog->save();
-        dd('gooooooooooood');
-        
+        //retorna a la ruta ->user-catalog
+        return back();       
     }
 }

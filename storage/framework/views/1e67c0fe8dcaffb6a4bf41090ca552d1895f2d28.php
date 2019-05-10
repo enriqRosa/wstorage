@@ -48,20 +48,17 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>5</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>10</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
+                          <?php $__currentLoopData = $user_catalog; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catalog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <tr>
+                              <td><?php echo e($catalog->cantidad); ?></td>
+                              <td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                            </tr>
+                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                       </tbody>
                     </table>
+                    <!-- Activar la páginación -->
+                    <?php echo $user_catalog->render(); ?>
+
                   </div>
                 </div>
               </div>

@@ -44,20 +44,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>5</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>10</td>
-                          <td>
-                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                          </td>
-                        </tr>
+                          @foreach($user_catalog as $catalog)
+                            <tr>
+                              <td>{{ $catalog->cantidad }}</td>
+                              <td><a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a></td>
+                            </tr>
+                          @endforeach
                       </tbody>
                     </table>
+                    <!-- Activar la páginación -->
+                    {!! $user_catalog->render() !!}
                   </div>
                 </div>
               </div>
