@@ -12,6 +12,7 @@
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
+        @yield('file_css')
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -37,6 +38,7 @@
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
                                     <li><a href="{{url('/spusr')}}"><i class="fa fa-home"></i> Home </a></li>
+                                    <li><a href="{{url('/archivos')}}"><i class="fa fa-folder"></i>My files</a></li>    
                                     <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="{{url('/license-status')}}"><i class="fa fa-file"></i> License</a></li>      
@@ -90,8 +92,9 @@
                 </footer>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/custom.min.js"></script>
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/custom.min.js') }}"></script>
+        @yield('file_js')
     </body>
 </html>

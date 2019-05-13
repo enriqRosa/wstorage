@@ -77,6 +77,7 @@ class LoginController extends Controller
         $user->email = $request->email_administrador;
         $user->tipo_usuario = "ADMIN";
         $user->password = bcrypt($request->contrasenia);
+        $user->tamano = $request->tamanio;
         # Guardar #
         $license->save();
         $license->company()->save($company);

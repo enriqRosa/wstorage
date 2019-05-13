@@ -87,3 +87,10 @@ Route::get('dictionary/{id}/destroy',[
     'uses' => 'DictionaryController@destroyDictionary',
     'as'   => 'dictionary-destroy'
 ]);
+
+/****************************ARCHIVOS*******************************/
+//RUTA PARA CARGAR ARCHIVOS
+//Route::get('archivos','FileController@showFiles');
+#Route::post('archivos','FileController@uploadFiles')->name('uploadFiles');
+Route::resource('archivos', 'FileController');
+//Route::post('archivos', 'FileController@cargar')->name('cargar');
