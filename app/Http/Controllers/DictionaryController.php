@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Dictionary;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class DictionaryController extends Controller
 {
@@ -34,7 +35,7 @@ class DictionaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeDictionary(Request $request)
+    public function storeDictionary(UserRequest $request)
     {
         //$request->all llama a todos los campos del formulario para ser insertados
         //save() guarda el registro

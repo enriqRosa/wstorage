@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\UserCatalog;
 use Laracast\Flash\Flash;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UsersCatalogController extends Controller
 {
@@ -20,7 +21,7 @@ class UsersCatalogController extends Controller
      /**
      * Agregar más usuarios al catalogo de usuarios
      */
-    public function storeUserCatalog(Request $request)
+    public function storeUserCatalog(UserRequest $request)
     {
         $user_catalog = new UserCatalog($request->all());
         $user_catalog->save();
