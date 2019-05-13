@@ -4,3 +4,12 @@
 select c.nombre, u.nombre, u.apellidos, u.email, s.tamano
 from companies as c, users as u, storages as s
 where c.id=u.company_id and u.id=s.user_id;
+
+
+
+create view company_license as
+(select companies.license_id, licenses.id as company_id,companies.nombre,licenses.serial, licenses.modelo, licenses.tipo, licenses.tiempo, 
+       licenses.status, licenses.fecha_inicio, licenses.fecha_fin,licenses.tamano_total,
+       licenses.licencia_total, licenses.tamano_restante, licenses.licencia_restante
+from licenses
+inner join companies using (id));

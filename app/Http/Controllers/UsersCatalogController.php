@@ -23,10 +23,10 @@ class UsersCatalogController extends Controller
      */
     public function storeUserCatalog(UserRequest $request)
     {
-        $user_catalog = new UserCatalog($request->all());
+        $user_catalog = new UserCatalog;
+        $user_catalog->cantidad = $request->quantity;
         $user_catalog->save();
-        
-       
+
         //retorna a la ruta ->user-catalog
         return back()->with('user_catalog' ,'Data inserted Successfully');       
     }

@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'cantidad' => 'numeric',
-            'nombre'   => 'alpha' 
+            'quantity' => 'numeric',
+            'extension'   => 'alpha' 
         ];
     }
 }

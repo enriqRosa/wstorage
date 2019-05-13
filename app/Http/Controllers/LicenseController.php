@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\License;
+use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LicenseController extends Controller
 {
@@ -46,7 +48,14 @@ class LicenseController extends Controller
      */
     public function showLicenses(License $license)
     {
-        return view('plantillas.status_license');
+        $company_license=DB::select("SELECT * from company_license");
+        return view('plantillas.status_license')->with('company_license',$company_license);
+    }
+
+    public function editLicense($license_id)
+    {
+        $license_edit=License::find($license_id);
+        return view('plantillas.edit_license')->with('license_edit',$license_edit);
     }
 
     /**
@@ -56,9 +65,10 @@ class LicenseController extends Controller
      * @param  \App\License  $license
      * @return \Illuminate\Http\Response
      */
-    public function updateLicense(Request $request, License $license)
+    public function updateLicense(Request $request)
     {
-        return view('plantillas.edit_license');
+        
+        
     }
 
     /**

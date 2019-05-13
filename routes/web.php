@@ -66,7 +66,11 @@ Route::get('user-catalog/{id}/destroy',[
 //RUTA PARA VISTA AGREGAR LICENCIA
 Route::get('add-license','LicenseController@createLicense');
 //RUTA PARA VISTA EDITAR LICENCIA
-Route::get('edit-license','LicenseController@updateLicense');
+Route::get('edit-license/{id}/edit',[
+    'uses' => 'LicenseController@editLicense',
+    'as'   =>  'edit-license'
+]);
+Route::put('update-license','LicenseController@updateLicense')->name('updateLicense');
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
 Route::get('license-status','LicenseController@showLicenses');
 

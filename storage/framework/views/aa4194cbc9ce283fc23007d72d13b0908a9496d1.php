@@ -11,12 +11,14 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <form class="form-horizontal form-label-left" novalidate>
+                    <?php echo Form::open(['route' => 'updateLicense','method' => 'PUT', 'form-horizontal form-label-left']); ?>
+
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name*</span>
-                        </label>
+                        <?php echo Form::label('name','Name*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']); ?>
+
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input value="WDStorage" id="name" class="form-control col-md-7 col-xs-12" name="" type="text" disabled>
+                          <?php echo Form::text('extension',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']); ?>
+
                         </div>
                       </div> 
                       <div class="form-group">
@@ -58,7 +60,8 @@
                           </select>
                         </div>  
                       </div> 
-                    </form>
+                    <?php echo Form::close(); ?>
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-md-offset-3">

@@ -42,7 +42,7 @@
                         <?php echo Form::label('nombre','Quantity*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <?php echo Form::text('cantidad',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']); ?>
+                          <?php echo Form::text('quantity',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']); ?>
 
                         </div>
                       </div> 
