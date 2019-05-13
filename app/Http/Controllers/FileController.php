@@ -3,14 +3,55 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Storage;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
-	# FUNCION PARA MOSTRAR LA INTERFAZ DE CARGAR ARCHIVOS #
-	public function index()
+    public function __construct()
     {
-    	/*if($_FILES){
+        $this->middleware('auth');
+    }
+
+    public function showFiles()
+    {
+        /*$listar = null;
+        $folder = null;
+        $directorio=opendir("wstorage/");
+        while ($elemento = readdir($directorio))
+        {
+            if ($elemento != '.' && $elemento != '..')
+            {
+                if (is_dir("wstorage/".$elemento))
+                {
+                    $listar .=$elemento;
+                }
+                else
+                {
+                    $folder .=$elemento;
+                }
+            }
+        }*/
+        return view('plantillas.list_files', compact('listar', 'folder'));
+    }
+
+    public function listar_archivos(){
+        if(is_dir("wstorage")){
+            if($dir = opendir($carpeta)){
+                while(($archivo = readdir($dir)) !== false){
+                    if($archivo != '.' && $archivo != '..' && $archivo != '.htaccess'){
+                        echo '<li><a target="_blank" href="'.$carpeta.'/'.$archivo.'">'.$archivo.'</a></li>';
+                    }
+                }
+                closedir($dir);
+            }
+        }
+    }
+
+	# FUNCION PARA MOSTRAR LA INTERFAZ DE CARGAR ARCHIVOS #
+	//public function index()
+    /*{
+    	if($_FILES){
         	$upload_directory = store('public');
         	$upload_file_copy = $upload_directory . basename($_FILES['file']['name']);
         	if(move_uploaded_file($_FILES['file']['tmp_name'], $upload_file_copy)){
@@ -20,8 +61,8 @@ class FileController extends Controller
         		echo "El archivo no fue subido";
         	}
         }*/
-        return view('plantillas.files');
-    }
+        //return view('plantillas.files');
+    //}*/
 
     public function store(Request $request)
     {
@@ -50,7 +91,7 @@ class FileController extends Controller
        	$disk = Storage::disk('local');
 		$disk->put($nombre, fopen($file, 'r+'));*/
     }
-
+/*
     public function cargar(Request $request)
     {
         if($_FILES){
@@ -63,5 +104,17 @@ class FileController extends Controller
         		echo "El archivo no fue subido";
         	}
         }
-    }
+        //die();
+        /*$file = $request->file('file');
+        $nombre = $file->getClientOriginalName();
+        $disk = Storage::disk('local');
+        $disk->put($nombre, fopen($file, 'r+'));*/
+        /*$file = $request->file('file');
+        $nombre = $file->getClientOriginalName();
+        if(Storage::disk('public')->put($nombre, \File::get($file)))
+            echo $res = "bien";
+        else
+            echo $res = "mal";*/
+        //Storage::putFile($request->file('file'), new File($request->file('file')));
+    //}
 }

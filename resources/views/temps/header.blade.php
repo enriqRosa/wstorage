@@ -8,7 +8,7 @@
         <title>WarriorsStorage</title>
         <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap.mi.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
         <link href="{{ asset('css/nprogress.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.min.css') }}" rel="stylesheet">
@@ -38,7 +38,7 @@
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
                                     <li><a href="{{url('/spusr')}}"><i class="fa fa-home"></i> Home </a></li>
-                                    <li><a href="{{url('/archivos')}}"><i class="fa fa-folder"></i>My files</a></li>    
+                                    <li><a href="{{url('/files')}}"><i class="fa fa-folder"></i>My files</a></li>    
                                     <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="{{url('/license-status')}}"><i class="fa fa-file"></i> License</a></li>      

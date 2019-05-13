@@ -90,6 +90,8 @@ Route::get('dictionary/{id}/destroy',[
 
 /****************************ARCHIVOS*******************************/
 //RUTA PARA CARGAR ARCHIVOS
+Route::get('files','FileController@showFiles')->name('showFiles');
+Route::get('files/{company_id}','FileController@showFilesFolder')->name('showFilesFolder');
 //Route::get('archivos','FileController@showFiles');
 #Route::post('archivos','FileController@uploadFiles')->name('uploadFiles');
 Route::resource('archivos', 'FileController');

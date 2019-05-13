@@ -9,14 +9,42 @@
             <div class="row">
                 <div class="x_content">
                     <div class="x_title">
-                        <h2>Upload your files here</h2>
+                        <h2>My files</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="title_left">
                         <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>  
                     </div>     
-                    <br>                
+                    <br>          
                     <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel" style="height:600px;">      
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                                <div class="pricing text-info">
+                                                    <div class="title">
+                                                        <h1>Storage information</h1>
+                                                    </div>
+                                                <div class="x_content">
+                                                  <div class="">
+                                                    <div class="pricing_features">
+                                                      <ul class="list-unstyled text-left">
+                                                        <li><strong>Total space: 5 GB</strong></li>
+                                                        <li><strong>Use space: 3 GB</strong></li>
+                                                        <li><strong>Free space: 2GB</strong></li>
+                                                      </ul>
+                                                    </div>
+                                                  </div>
+                                                  <div class="pricing_footer">
+                                                    <a href="#" class="btn btn-warning btn-block" role="button">New folder</a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                            <div class="col-md-9 col-sm-3 col-xs-12">
+                                                <div class="row">
                         <div class="form-container">
                            {!! Form::open(['route'=> 'archivos.store', 'method' => 'POST', 'files'=>'true', 'id' => 'FormUploadFile' , 'class' => 'dropzone']) !!}
                                 <div class="dz-message">
@@ -30,6 +58,14 @@
                                     <input type="file" name="file" multiple>
                                 </div>
                             {!! Form::close() !!}
+                        </div>
+                    </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>    
