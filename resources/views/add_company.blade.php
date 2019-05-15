@@ -196,11 +196,11 @@
                                             <div class="form-group">
                                                 <label>Space</label>
                                                 <select name="tamanio" class="form-control">
-                                                    <option value="2">2 TB</option>
-                                                    <option value="4">4 TB</option>
-                                                    <option value="6">6 TB</option>
-                                                    <option value="8">8 TB</option>
-                                                    <option value="10">10 TB</option>
+                                                    <option value="2000">2 TB</option>
+                                                    <option value="4000">4 TB</option>
+                                                    <option value="6000">6 TB</option>
+                                                    <option value="8000">8 TB</option>
+                                                    <option value="10000">10 TB</option>
                                                 </select>
                                             </div>
                                         </div>
