@@ -73,7 +73,7 @@ class LoginController extends Controller
         $contact->telefono = $request->telefono_contacto;
         $contact->ocupacion = $request->puesto;
         $user = new User;
-        $user->nombre = $request->nombre_administrador;
+        $user->name = $request->nombre_administrador;
         $user->apellidos = $request->apellidos_administrador;
         $user->email = $request->email_administrador;
         $user->tamano = "5";

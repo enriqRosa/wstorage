@@ -35,7 +35,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12" type="text" id="name" name="name" value="{{ old('name') }}" required>
-                                        <span class="message"> -The name does not have numbers.</span>
+                                        <span class="message"> -The name does not have numbers. Not use a space.</span>
                                     </div>
                                 </div>
                                 <div class="item form-group">

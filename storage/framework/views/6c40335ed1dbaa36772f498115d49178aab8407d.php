@@ -38,7 +38,7 @@
                                             <tbody>
                                                 <?php $__currentLoopData = $user; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $users): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
-                                                        <td><?php echo e($users->nombre); ?></td>
+                                                        <td><?php echo e($users->name); ?></td>
                                                         <td><?php echo e($users->apellidos); ?></td>
                                                         <td><?php echo e($users->email); ?></td>
                                                         <td><?php echo e($users->tamano); ?> GB</td>

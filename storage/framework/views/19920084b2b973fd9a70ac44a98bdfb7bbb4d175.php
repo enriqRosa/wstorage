@@ -13,7 +13,7 @@
                             <form class="form-horizontal form-label-left" novalidate action="<?php echo e(route('updateUserPost',$user->id)); ?>" method="post">
                                 <?php echo e(csrf_field()); ?>
 
-                                <input type="hidden" value="<?php echo e($user->id); ?>" name="user_id">
+                                <input type="hidden" value="<?php echo e($user->company_id); ?>" name="company_id">
                                 <div class="col-md-12">
                                     <div class="col-md-3">
                                     </div>
@@ -35,7 +35,7 @@
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12" type="text" id="name" name="name" value="<?php echo e($user->nombre); ?>" required>
-                                        <span class="message"> -The name does not have numbers.</span>
+                                        <span class="message"> -The name does not have numbers. Not use a space.</span>
                                     </div>
                                 </div>
                                 <div class="item form-group">
