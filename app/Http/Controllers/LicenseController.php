@@ -48,8 +48,8 @@ class LicenseController extends Controller
      */
     public function showLicenses(License $license)
     {
-        $company_license=DB::select("SELECT * from company_license");
-        return view('plantillas.status_license')->with('company_license',$company_license);
+        // $company_license=DB::select("SELECT * from company_license");
+        // return view('plantillas.status_license')->with('company_license',$company_license);
     }
 
     public function editLicense($license_id)

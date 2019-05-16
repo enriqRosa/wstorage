@@ -20,26 +20,6 @@
                         </div>
                       </div> 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Type<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control">
-                            <option>Demo</option>
-                            <option>Standard</option>
-                            <option>Premium</option>
-                          </select>
-                        </div>  
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Time Adquired<span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <select class="form-control">
-                            <option>1 month</option>
-                            <option>3 months</option>
-                            <option>12 months</option>
-                          </select>
-                        </div>  
-                      </div>
-                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Package users<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <select class="form-control">

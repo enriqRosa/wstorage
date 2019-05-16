@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarriorsStorage</title>
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="{{ asset('css/bootstrap.mi.css') }}" rel="stylesheet">
         <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
@@ -25,11 +25,11 @@
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="images/user.png" alt="..." class="img-circle profile_img">
+                                <img src="{{ asset('images/user.png') }}" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>Welcome,</span>
-                                <h2>{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}</h2>
+                                <h2>{{ Auth::user()->tipo_usuario }}</h2>
                             </div>
                         </div>
                         <br/>
@@ -77,7 +77,6 @@
                         </nav>
                     </div>
                 </div>
-                
                 @yield('content')
                 <footer>
                 
