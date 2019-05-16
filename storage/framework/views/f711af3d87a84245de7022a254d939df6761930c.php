@@ -6,12 +6,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>WarriorsStorage</title>
-        <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+        <link rel="icon" type="image/png" href="<?php echo e(asset('images/icons/favicon.ico')); ?>"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet">
+        <link href="<?php echo e(asset('css/bootstrap.mi.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/font-awesome.min.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/nprogress.css')); ?>" rel="stylesheet">
         <link href="<?php echo e(asset('css/custom.min.css')); ?>" rel="stylesheet">
+        <?php echo $__env->yieldContent('file_css'); ?>
     </head>
     <body class="nav-md">
         <div class="container body">
@@ -24,11 +25,11 @@
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
                             <div class="profile_pic">
-                                <img src="images/user.png" alt="..." class="img-circle profile_img">
+                                <img src="<?php echo e(asset('images/user.png')); ?>" alt="..." class="img-circle profile_img">
                             </div>
                             <div class="profile_info">
                                 <span>Welcome,</span>
-                                <h2><?php echo e(Auth::user()->nombre); ?> <?php echo e(Auth::user()->apellidos); ?></h2>
+                                <h2><?php echo e(Auth::user()->tipo_usuario); ?></h2>
                             </div>
                         </div>
                         <br/>
@@ -37,6 +38,7 @@
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
                                     <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>
+                                    <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
                                     <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="<?php echo e(url('/license-status')); ?>"><i class="fa fa-file"></i> License</a></li>      
@@ -77,7 +79,6 @@
                         </nav>
                     </div>
                 </div>
-                
                 <?php echo $__env->yieldContent('content'); ?>
                 <footer>
                 
@@ -92,8 +93,9 @@
                 </footer>
             </div>
         </div>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/custom.min.js"></script>
+        <script src="<?php echo e(asset('js/jquery.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/bootstrap.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/custom.min.js')); ?>"></script>
+        <?php echo $__env->yieldContent('file_js'); ?>
     </body>
 </html>

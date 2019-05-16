@@ -1,0 +1,25 @@
+.form-container{
+	width: 100%;
+	margin: 0 auto;
+}
+
+.form-container .dropzone{
+	border: 2px dashed #c3c3c3;
+	padding: 40px;
+}
+
+.form-container .icon i{
+	font-size: 4em;
+	text-align: center;
+	color: #696767;
+	background-color: #dfdddd;
+	height: 100px;
+	width: 100px;
+	margin-bottom: 20px;
+	border-radius: 50%;
+	padding: 25px 20px;
+}
+
+.form-container h2, .note{
+	color: #40405b;
+}

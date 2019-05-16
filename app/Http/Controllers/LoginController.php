@@ -9,6 +9,7 @@ use App\License;
 use App\Company;
 use App\Contacts;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -72,9 +73,10 @@ class LoginController extends Controller
         $contact->telefono = $request->telefono_contacto;
         $contact->ocupacion = $request->puesto;
         $user = new User;
-        $user->nombre = $request->nombre_administrador;
+        $user->name = $request->nombre_administrador;
         $user->apellidos = $request->apellidos_administrador;
         $user->email = $request->email_administrador;
+        $user->tamano = "5";
         $user->tipo_usuario = "ADMIN";
         $user->password = bcrypt($request->contrasenia);
         # Guardar #
@@ -82,6 +84,21 @@ class LoginController extends Controller
         $license->company()->save($company);
         $company->contacts()->save($contact);
         $company->users()->save($user);
+        # Resta de espacio #
+        $resta_espacio = $request->tamanio - 5;
+        # Resta de licencia #
+        $resta_licencia = $request->usuarios -1;
+        $obtener_id = DB::select("SELECT license_id 
+            FROM companies 
+            WHERE rfc ='$request->rfc'"
+        );
+        foreach ($obtener_id as $id_company) {
+            foreach ($id_company as $id) {
+                $actualizar_licencia = DB::select("UPDATE licenses SET tamano_restante = '$resta_espacio', licencia_restante = '$resta_licencia'
+                    WHERE id = '$id'"
+                );
+            }
+        }        
         return redirect()->route('index');
     }
 

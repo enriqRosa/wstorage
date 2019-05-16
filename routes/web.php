@@ -49,7 +49,8 @@ Route::get('edit-company','CompanyController@updateCompany');
 Route::get('add-user/{company_id}','UsersController@createUser')->name('createUser');
 Route::post('add-user','UsersController@createUserPost')->name('createUserPost');
 //RUTA PARA VISTA EDITAR USUARIO
-Route::get('edit-user','UsersController@updateUser');
+Route::get('edit-user/{id}','UsersController@updateUser')->name('updateUser');
+Route::post('edit-user/{id}','UsersController@updateUserPost')->name('updateUserPost');
 //RUTA PARA VER TODOS LOS USUARIOS
 Route::get('users/{id}','UsersController@showUsers')->name('users');
 
@@ -87,3 +88,12 @@ Route::get('dictionary/{id}/destroy',[
     'uses' => 'DictionaryController@destroyDictionary',
     'as'   => 'dictionary-destroy'
 ]);
+
+/****************************ARCHIVOS*******************************/
+//RUTA PARA CARGAR ARCHIVOS
+Route::get('files','FileController@showFiles')->name('showFiles');
+Route::get('files/{company_id}','FileController@showFilesFolder')->name('showFilesFolder');
+//Route::get('archivos','FileController@showFiles');
+#Route::post('archivos','FileController@uploadFiles')->name('uploadFiles');
+Route::resource('archivos', 'FileController');
+//Route::post('archivos', 'FileController@cargar')->name('cargar');
