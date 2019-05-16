@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -47,7 +48,15 @@ class CompanyController extends Controller
      */
     public function showCompanies(Company $company)
     {
-        $company=Company::orderBy('id')->paginate();
+        $rol= \Auth::user()->tipo_usuario;
+        if($rol === 'SUPER'){
+            $company=Company::orderBy('id')->paginate();
+        }
+        if($rol === 'ADMIN'){
+            $id_company= \Auth::user()->company_id;
+            $company = DB::select("SELECT c.* from users as u, companies as c where u.company_id = c.id
+                and u.company_id = '$id_company'");
+        }
         return view('plantillas.company_list',compact('company'));
     }
     /**
