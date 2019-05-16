@@ -71,7 +71,16 @@ Route::get('edit-license/{id}/edit',[
     'uses' => 'LicenseController@editLicense',
     'as'   =>  'edit-license'
 ]);
-Route::put('update-license','LicenseController@updateLicense')->name('updateLicense');
+//RUTA PARA ACTULIZAR LICENCIA
+Route::put('update-license/{id}/update',[
+    'uses' => 'LicenseController@updateLicense',
+    'as'   => 'updateLicense'
+]);
+//RUTA PARA ELIMINAR LICENCIA
+Route::get('license/{id}/destroy',[
+    'uses' => 'LicenseController@destroyLicense',
+    'as'   => 'license-destroy'
+]);
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
 Route::get('license-status','LicenseController@showLicenses');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\License;
 use App\Company;
+use App\UserCatalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,27 +49,25 @@ class LicenseController extends Controller
      */
     public function showLicenses(License $license)
     {
-        // $company_license=DB::select("SELECT * from company_license");
-        // return view('plantillas.status_license')->with('company_license',$company_license);
+        $company_license=DB::select("SELECT * from company_license");
+        return view('plantillas.status_license')->with('company_license',$company_license);
     }
 
     public function editLicense($license_id)
     {
         $license_edit=License::find($license_id);
-        return view('plantillas.edit_license')->with('license_edit',$license_edit);
+        $user_catalog=DB::select('SELECT * FROM users_catalog');
+        return view('plantillas.edit_license',compact('user_catalog','company_name'))->with('license_edit',$license_edit);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\License  $license
-     * @return \Illuminate\Http\Response
-     */
-    public function updateLicense(Request $request)
+    public function updateLicense(Request $request,$id)
     {
+        $license=License::find($id);
+        $license->tamano_total=$request->tamano_total;
+        $license->licencia_total=$request->licencia_total;
+        $license->save();
         
-        
+        return redirect('license-status')->with('license_update' ,'Data updated Successfully');   
     }
 
     /**
@@ -77,8 +76,11 @@ class LicenseController extends Controller
      * @param  \App\License  $license
      * @return \Illuminate\Http\Response
      */
-    public function destroy(License $license)
+    public function destroyLicense($license_id)
     {
-        //
+        $license = License::find($license_id);
+        $license->delete();
+
+        return back()->with('license_destroy' ,'Data deleted Successfully');
     }
 }

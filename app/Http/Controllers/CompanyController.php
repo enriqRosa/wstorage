@@ -55,7 +55,7 @@ class CompanyController extends Controller
         if($rol === 'ADMIN'){
             $id_company= \Auth::user()->company_id;
             $company = DB::select("SELECT c.* from users as u, companies as c where u.company_id = c.id
-                and u.company_id = '$id_company'");
+                and u.company_id = '$id_company' group by c.id");
         }
         return view('plantillas.company_list',compact('company'));
     }

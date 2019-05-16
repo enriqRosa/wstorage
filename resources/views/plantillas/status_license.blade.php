@@ -6,6 +6,16 @@
                       <div class="page-title"></div>
                         <div class="clearfix"></div><!--SALTO DE LÍNEA-->
                           <div class="row">
+                          @if (session('license_update'))
+                            <div class="alert alert-success">
+                              {{ session('license_update') }}
+                            </div>
+                          @endif
+                          @if (session('license_destroy'))
+                            <div class="alert alert-success">
+                              {{ session('license_destroy') }}
+                            </div>
+                          @endif
                             <div class="col-md-12 col-sm-12 col-xs-12">
                               <div class="x_panel">
                                 <div class="x_title">
@@ -44,13 +54,24 @@
                                           <td>{{ $view->status }}</td>
                                           <td>{{ $view->fecha_inicio }}</td>
                                           <td>{{ $view->fecha_fin }}</td>
-                                          <td><h4><span class="label label-success">{{ $view->tamano_total }}</span></h4></td>
+                                          @if ($view->tamano_total==2000)
+                                          <td><h4><span class="label label-success">2 TB</span></h4></td>
+                                          @endif
+                                          @if ($view->tamano_total==4000)
+                                          <td><h4><span class="label label-success">4 TB</span></h4></td>
+                                          @endif
+                                          @if ($view->tamano_total==6000)
+                                          <td><h4><span class="label label-success">6 TB</span></h4></td>
+                                          @endif
+                                          @if ($view->tamano_total==8000)
+                                          <td><h4><span class="label label-success">8 TB</span></h4></td>
+                                          @endif
                                           <td><h4><span class="label label-success">{{ $view->licencia_total }}</span></h4></td>
                                           <td><h4><span class="label label-danger">{{ $view->tamano_restante }}</h4></span></td>
                                           <td><h4><span class="label label-danger">{{ $view->licencia_restante }}</h4></span></td>
                                           <td>
                                             <a href="{{ route('edit-license',$view->license_id) }}" class="btn btn-dark btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                            <a href="{{ route('license-destroy', $view->license_id) }}" onclick="return confirm('Are you sure you want to delete this item?\nAll users and data will be deleted!')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                           </td>
                                         </tr>
                                         @endforeach
