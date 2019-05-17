@@ -44,6 +44,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      @if (\Auth::user()->tipo_usuario=='SUPER')
                                         @foreach($company_license as $view)
                                         <tr>
                                           <td>{{ $view->nombre }}</td>
@@ -55,16 +56,16 @@
                                           <td>{{ $view->fecha_inicio }}</td>
                                           <td>{{ $view->fecha_fin }}</td>
                                           @if ($view->tamano_total==2000)
-                                          <td><h4><span class="label label-success">2 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">2 TB</span></h4></td>
                                           @endif
                                           @if ($view->tamano_total==4000)
-                                          <td><h4><span class="label label-success">4 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">4 TB</span></h4></td>
                                           @endif
                                           @if ($view->tamano_total==6000)
-                                          <td><h4><span class="label label-success">6 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">6 TB</span></h4></td>
                                           @endif
                                           @if ($view->tamano_total==8000)
-                                          <td><h4><span class="label label-success">8 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">8 TB</span></h4></td>
                                           @endif
                                           <td><h4><span class="label label-success">{{ $view->licencia_total }}</span></h4></td>
                                           <td><h4><span class="label label-danger">{{ $view->tamano_restante }}</h4></span></td>
@@ -75,6 +76,34 @@
                                           </td>
                                         </tr>
                                         @endforeach
+                                      @endif
+                                      @if(\Auth::user()->tipo_usuario=='ADMIN')
+                                        @foreach($company_status as $status)
+                                        <td>{{ $status->nombre }}</td>
+                                        <td>{{ $status->serial }}</td>
+                                        <td>{{ $status->modelo }}</td>
+                                        <td>{{ $status->tipo }}</td>
+                                        <td>{{ $status->tiempo }}</td>
+                                        <td>{{ $status->status }}</td>
+                                        <td>{{ $status->fecha_inicio }}</td>
+                                        <td>{{ $status->fecha_fin }}</td>
+                                        @if ($status->tamano_total==2000)
+                                          <td><h4><span class="label label-success">2 TB</span></h4></td>
+                                        @endif
+                                        @if ($status->tamano_total==4000)
+                                          <td><h4><span class="label label-success">4 TB</span></h4></td>
+                                        @endif
+                                        @if ($status->tamano_total==6000)
+                                          <td><h4><span class="label label-success">6 TB</span></h4></td>
+                                        @endif
+                                        @if ($status->tamano_total==8000)
+                                          <td><h4><span class="label label-success">8 TB</span></h4></td>
+                                        @endif
+                                        <td>{{ $status->licencia_total }}</td>
+                                        <td>{{ $status->tamano_restante }}</td>
+                                        <td>{{ $status->licencia_restante }}</td>
+                                       @endforeach
+                                      @endif
                                       </tbody>
                                     </table>
                                   </div>

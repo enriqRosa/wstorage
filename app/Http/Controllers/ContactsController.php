@@ -44,7 +44,7 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function showContacts(Contacts $contacts)
+    public function showContacts()
     {
         return view ('plantillas.contacts');
     }

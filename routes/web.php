@@ -83,12 +83,13 @@ Route::get('license/{id}/destroy',[
 ]);
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
 Route::get('license-status','LicenseController@showLicenses');
+Route::get('license-status-company/{license_id}/show','LicenseController@showLicenseCompany')->name('showLicenseCompany');
 
 /****************************CONTACTOS*********************************/
 //RUTA PARA AGREGAR UN CONTACTO
 Route::get('add-contact','ContactsController@createContact');
 //RUTA PARA LISTAR TODOS LOS CONTACTOS
-Route::get('contacts','ContactsController@showContacts');
+Route::get('contacts/{id}','ContactsController@showContacts')->name('showContacts');
 //RUTA PARA EDITAR EL CONTACTO
 Route::get('edit-contact','ContactsController@updateContact');
 

@@ -37,12 +37,20 @@
                             <div class="menu_section">
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
-                                    <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>
-                                    <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
+                                <?php if(\Auth::user()->tipo_usuario=='SUPER'): ?>
+                                    <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>   
                                     <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="<?php echo e(url('/license-status')); ?>"><i class="fa fa-file"></i> License</a></li>      
                                     <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li>     
+                                <?php endif; ?>
+                                <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
+                                <li><a href="<?php echo e(url('/usrad')); ?>"><i class="fa fa-home"></i> Home </a></li>
+                                    <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
+                                    <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i>My company</a></li>
+                                    <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>   
+                                    <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li> 
+                                <?php endif; ?>
                                 </ul>
                             </div>
                         </div>

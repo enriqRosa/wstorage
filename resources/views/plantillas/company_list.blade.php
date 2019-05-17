@@ -34,13 +34,13 @@
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-book purple"></i></span>
-                                                    <a href="{{url('/contacts')}}"><span class="name">View contacts</span></a>
+                                                    <a href="{{ route('showContacts',$companies->contact_id) }}"><span class="name">View contacts</span></a>
                                                 </p>
                                             </li>
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-check green"></i></span>
-                                                    <a href="{{url('/license-status')}}"><span class="name">License status</span></a>
+                                                    <a href="{{ route('showLicenseCompany', $companies->license_id)}}"><span class="name">License status</span></a>
                                                 </p>
                                             </li>
                                             <li>

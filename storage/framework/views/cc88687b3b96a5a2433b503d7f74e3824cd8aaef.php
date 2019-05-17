@@ -45,6 +45,7 @@
                                         </tr>
                                       </thead>
                                       <tbody>
+                                      <?php if(\Auth::user()->tipo_usuario=='SUPER'): ?>
                                         <?php $__currentLoopData = $company_license; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $view): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                           <td><?php echo e($view->nombre); ?></td>
@@ -56,16 +57,16 @@
                                           <td><?php echo e($view->fecha_inicio); ?></td>
                                           <td><?php echo e($view->fecha_fin); ?></td>
                                           <?php if($view->tamano_total==2000): ?>
-                                          <td><h4><span class="label label-success">2 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">2 TB</span></h4></td>
                                           <?php endif; ?>
                                           <?php if($view->tamano_total==4000): ?>
-                                          <td><h4><span class="label label-success">4 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">4 TB</span></h4></td>
                                           <?php endif; ?>
                                           <?php if($view->tamano_total==6000): ?>
-                                          <td><h4><span class="label label-success">6 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">6 TB</span></h4></td>
                                           <?php endif; ?>
                                           <?php if($view->tamano_total==8000): ?>
-                                          <td><h4><span class="label label-success">8 TB</span></h4></td>
+                                            <td><h4><span class="label label-success">8 TB</span></h4></td>
                                           <?php endif; ?>
                                           <td><h4><span class="label label-success"><?php echo e($view->licencia_total); ?></span></h4></td>
                                           <td><h4><span class="label label-danger"><?php echo e($view->tamano_restante); ?></h4></span></td>
@@ -76,6 +77,35 @@
                                           </td>
                                         </tr>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                      <?php endif; ?>
+                                      <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
+                                        <?php $__currentLoopData = $company_status; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $status): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <td><?php echo e($status->nombre); ?></td>
+                                        <td><?php echo e($status->serial); ?></td>
+                                        <td><?php echo e($status->modelo); ?></td>
+                                        <td><?php echo e($status->tipo); ?></td>
+                                        <td><?php echo e($status->tiempo); ?></td>
+                                        <td><?php echo e($status->status); ?></td>
+                                        <td><?php echo e($status->fecha_inicio); ?></td>
+                                        <td><?php echo e($status->fecha_fin); ?></td>
+                                        <?php if($status->tamano_total==2000): ?>
+                                          <td><h4><span class="label label-success">2 TB</span></h4></td>
+                                        <?php endif; ?>
+                                        <?php if($status->tamano_total==4000): ?>
+                                          <td><h4><span class="label label-success">4 TB</span></h4></td>
+                                        <?php endif; ?>
+                                        <?php if($status->tamano_total==6000): ?>
+                                          <td><h4><span class="label label-success">6 TB</span></h4></td>
+                                        <?php endif; ?>
+                                        <?php if($status->tamano_total==8000): ?>
+                                          <td><h4><span class="label label-success">8 TB</span></h4></td>
+                                        <?php endif; ?>
+                                        <td><?php echo e($status->licencia_total); ?></td>
+                                        <td><?php echo e($status->tamano_restante); ?></td>
+                                        <td><?php echo e($status->licencia_restante); ?></td>
+                                        
+                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                      <?php endif; ?>
                                       </tbody>
                                     </table>
                                   </div>

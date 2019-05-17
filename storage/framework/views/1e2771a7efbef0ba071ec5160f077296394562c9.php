@@ -33,13 +33,13 @@
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-book purple"></i></span>
-                                                    <a href="<?php echo e(url('/contacts')); ?>"><span class="name">View contacts</span></a>
+                                                    <a href="<?php echo e(route('showContacts',$companies->contact_id)); ?>"><span class="name">View contacts</span></a>
                                                 </p>
                                             </li>
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-check green"></i></span>
-                                                    <a href="<?php echo e(url('/license-status')); ?>"><span class="name">License status</span></a>
+                                                    <a href="<?php echo e(route('showLicenseCompany', $companies->license_id)); ?>"><span class="name">License status</span></a>
                                                 </p>
                                             </li>
                                             <li>
