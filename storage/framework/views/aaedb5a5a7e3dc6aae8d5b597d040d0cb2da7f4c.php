@@ -2,6 +2,13 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="row">
+              <!-- MENSAJES FLASH -->
+              <?php if(session('contact-destroy')): ?>
+                <div class="alert alert-success">
+                  <?php echo e(session('contact-destroy')); ?>
+
+                </div>
+              <?php endif; ?>
               <div class="col-md-12">
                 <div class="x_panel">
                 <div class="x_title">
@@ -19,7 +26,6 @@
                       <div class="clearfix"></div>      
                       <?php $__currentLoopData = $company_contacts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contacts): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                      
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <div class="left col-xs-7">
@@ -41,9 +47,11 @@
                               <a href="<?php echo e(url('/edit-contact')); ?>"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-pencil"> </i> Edit 
                               </button></a>
-                              <a href="<?php echo e(url('/edit-contact')); ?>"><button type="button" class="btn btn-dark btn-xs">
+                              
+                              <a href="<?php echo e(route('contact-destroy', $contacts->id)); ?>"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-user-times"> </i> Delete
                               </button></a>
+                              
                             </div>
                           </div>
                         </div>

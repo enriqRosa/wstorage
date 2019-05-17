@@ -3,6 +3,12 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="row">
+              <!-- MENSAJES FLASH -->
+              @if (session('contact-destroy'))
+                <div class="alert alert-success">
+                  {{ session('contact-destroy') }}
+                </div>
+              @endif
               <div class="col-md-12">
                 <div class="x_panel">
                 <div class="x_title">
@@ -20,7 +26,6 @@
                       <div class="clearfix"></div>      
                       @foreach ($company_contacts as $contacts)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
                       <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
-                      
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <div class="left col-xs-7">
@@ -42,9 +47,11 @@
                               <a href="{{url('/edit-contact')}}"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-pencil"> </i> Edit 
                               </button></a>
-                              <a href="{{url('/edit-contact')}}"><button type="button" class="btn btn-dark btn-xs">
+                              
+                              <a href="{{ route('contact-destroy', $contacts->id) }}"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-user-times"> </i> Delete
                               </button></a>
+                              
                             </div>
                           </div>
                         </div>

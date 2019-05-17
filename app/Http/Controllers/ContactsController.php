@@ -29,7 +29,7 @@ class ContactsController extends Controller
     //MUESTRA LOS CONTACTOS DE LA BD EN LA VISTA
     public function showContacts($id)
     {
-        $company_contacts=DB::select('SELECT companies.id , contacts.* from contacts
+        $company_contacts=DB::select('SELECT companies.id as company_id, contacts.* from contacts
                                       inner join companies
                                       on companies.id=contacts.company_id
                                       where contacts.company_id=?',[$id]);
@@ -72,7 +72,6 @@ class ContactsController extends Controller
         $contact->ocupacion = $request->ocupation;
         $contact->company_id = $request->company_id;
         $contact->save();
-    
     }
 
     /**
@@ -93,8 +92,11 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacts $contacts)
+    //FUNCIÓN PARA ELIINAR UN CONTACTO EN ESPECIFICO
+    public function destroyContact($id)
     {
-        //
+        $contact = Contacts::find($id);
+        $contact->delete();
+        return back()->with('contact-destroy','Contact deleted Successfully');
     }
 }
