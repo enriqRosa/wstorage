@@ -34,7 +34,7 @@
                                                         <li>
                                                             <p>
                                                                 <span class="icon"><i class="fa fa-book purple"></i></span>
-                                                                <a href="<?php echo e(route('showContacts',$companies->contact_id)); ?>"><span class="name">View contacts</span></a>
+                                                                <a href="<?php echo e(route('showContacts',$companies->id)); ?>"><span class="name">View contacts</span></a>
                                                             </p>
                                                         </li>
                                                         <li>
