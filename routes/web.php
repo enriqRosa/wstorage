@@ -88,9 +88,10 @@ Route::get('license-status-company/{license_id}/show','LicenseController@showLic
 
 /****************************CONTACTOS*********************************/
 //RUTA PARA AGREGAR UN CONTACTO
-Route::get('add-contact','ContactsController@createContact');
+Route::get('add-contact/{company_id}','ContactsController@storeContact')->name('storeContact');
+Route::post('add-contact','ContactsController@storeContactPost')->name('create-contact');
 //RUTA PARA LISTAR TODOS LOS CONTACTOS
-Route::get('contacts/{id}','ContactsController@showContacts')->name('showContacts');
+Route::get('contacts/{company_id}','ContactsController@showContacts')->name('showContacts');
 //RUTA PARA EDITAR EL CONTACTO
 Route::get('edit-contact','ContactsController@updateContact');
 
