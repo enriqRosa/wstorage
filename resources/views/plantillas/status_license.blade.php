@@ -99,9 +99,9 @@
                                         @if ($status->tamano_total==8000)
                                           <td><h4><span class="label label-success">8 TB</span></h4></td>
                                         @endif
-                                        <td>{{ $status->licencia_total }}</td>
-                                        <td>{{ $status->tamano_restante }}</td>
-                                        <td>{{ $status->licencia_restante }}</td>
+                                        <td><h4><span class="label label-success">{{ $status->licencia_total }}</span></h4></td>
+                                        <td><h4><span class="label label-danger">{{ $status->tamano_restante }}</span></h4></td>
+                                        <td><h4><span class="label label-danger">{{ $status->licencia_restante }}</span></h4></td>
                                        @endforeach
                                       @endif
                                       </tbody>

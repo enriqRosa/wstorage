@@ -100,10 +100,9 @@
                                         <?php if($status->tamano_total==8000): ?>
                                           <td><h4><span class="label label-success">8 TB</span></h4></td>
                                         <?php endif; ?>
-                                        <td><?php echo e($status->licencia_total); ?></td>
-                                        <td><?php echo e($status->tamano_restante); ?></td>
-                                        <td><?php echo e($status->licencia_restante); ?></td>
-                                        
+                                        <td><h4><span class="label label-success"><?php echo e($status->licencia_total); ?></span></h4></td>
+                                        <td><h4><span class="label label-danger"><?php echo e($status->tamano_restante); ?></span></h4></td>
+                                        <td><h4><span class="label label-danger"><?php echo e($status->licencia_restante); ?></span></h4></td>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                       <?php endif; ?>
                                       </tbody>

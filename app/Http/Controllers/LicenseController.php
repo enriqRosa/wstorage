@@ -49,17 +49,16 @@ class LicenseController extends Controller
      */
     public function showLicenses(License $license)
     {
-        $company_license=DB::select("SELECT * from company_license");
+        $company_license=DB::select("SELECT * FROM company_license ORDER BY nombre");
         return view('plantillas.status_license')->with('company_license',$company_license);
     }
 
-    public function showLicenseCompany($license_id){
-
+    public function showLicenseCompany($license_id)
+    {
         $company_status=DB::select('SELECT * from company_license where license_id=?',[$license_id]);
         return view('plantillas.status_license')->with('company_status',$company_status);
-        
     }
-            
+       
     public function editLicense($license_id)
     {
         $license_edit=License::find($license_id);

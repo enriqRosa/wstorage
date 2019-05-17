@@ -37,12 +37,14 @@
                                                     <a href="{{ route('showContacts',$companies->contact_id) }}"><span class="name">View contacts</span></a>
                                                 </p>
                                             </li>
+                                            @if(\Auth::user()->tipo_usuario=='ADMIN')
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-check green"></i></span>
-                                                    <a href="{{ route('showLicenseCompany', $companies->license_id)}}"><span class="name">License status</span></a>
+                                                    <a href="{{ route('showLicenseCompany', $companies->license_id)}}"><span class="name">License status</span></a> 
                                                 </p>
                                             </li>
+                                            @endif
                                             <li>
                                                 <p>
                                                     <span class="icon"><i class="fa fa-pencil blue"></i></span>
