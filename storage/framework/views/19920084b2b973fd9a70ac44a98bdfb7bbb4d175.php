@@ -31,6 +31,18 @@
                                     <div class="col-md-3">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <?php if(Session::has('success')): ?>
+                                            <div class="alert alert-danger" aria-label="Close">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong><?php echo e(Session::get('success')); ?></strong>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

@@ -45,14 +45,16 @@ Route::get('companies','CompanyController@showCompanies');
 Route::get('edit-company','CompanyController@updateCompany');
 
 /****************************USUARIOS**********************************/
+//RUTA PARA VER TODOS LOS USUARIOS
+Route::get('users/{id}','UsersController@showUsers')->name('users');
 //RUTA PARA VISTA AGREGAR USUARIO
 Route::get('add-user/{company_id}','UsersController@createUser')->name('createUser');
 Route::post('add-user','UsersController@createUserPost')->name('createUserPost');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user/{id}','UsersController@updateUser')->name('updateUser');
 Route::post('edit-user/{id}','UsersController@updateUserPost')->name('updateUserPost');
-//RUTA PARA VER TODOS LOS USUARIOS
-Route::get('users/{id}','UsersController@showUsers')->name('users');
+//RUTA PARA ELIMINAR USUARIO
+Route::get('delete-user/{id}','UsersController@deleteUser')->name('deleteUser');
 
 /****************************CATALOGO DE USUARIOS**********************/
 //RUTA PARA VISTA AGREGAR USUARIO CATALOGO

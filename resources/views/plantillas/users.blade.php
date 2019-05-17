@@ -11,6 +11,18 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                                @if(Session::has('success'))
+                                    <div class="alert alert-info" aria-label="Close">
+                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                        <strong>{{Session::get('success')}}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                         @foreach($company_name as $name)
                             <div class="x_title">
                                 <h2>"{{ $name->nombre }}" Users</h2>
@@ -33,7 +45,7 @@
                                                     <th>Email</th>
                                                     <th>Space</th>
                                                     <th>Role</th>
-                                                    <th>Actions</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -45,9 +57,12 @@
                                                         <td>{{$users->tamano}} GB</td>
                                                         <td>{{$users->tipo_usuario}}</td>
                                                         <td>
-                                                            <a href="{{ route('updateUser', $users->id) }}" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            <a href="#" class="btn btn-info btn-xs"><i class="fa fa-plus-square"></i> Assign space </a>
+                                                            <center>
+                                                                <a href="{{ route('updateUser', $users->id) }}" class="btn btn-warning btn-xs">
+                                                                    <i class="fa fa-pencil"></i> Edit 
+                                                                </a>                                                      
+                                                                <a href="{{ route('deleteUser', $users->id) }}" onclick="return confirm('Are you sure you want to delete this user?\nAll data will be deleted!')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                                            </center>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -73,9 +88,13 @@
         $(document).ready(function() {
             var table = $('#example').DataTable( {
                 responsive: true
-            } );
-         
+            });
             new $.fn.dataTable.FixedHeader( table );
-        } );
+        });
+        window.setTimeout(function() {
+            $(".alert").fadeTo(300, 0).slideUp(500, function(){
+                $(this).remove(); 
+            });
+        }, 4000);
     </script>
 @stop
