@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     # MOSTRAR USUARIOS #
     public function showUsers($id)
     {
@@ -57,7 +62,7 @@ class UsersController extends Controller
         $available_licenses = $this->available_licenses($request->company_id);
         $alias_company = $this->alias_company($request->company_id);
         if(1 <= $available_licenses and $request->space <= $new_space){
-            $name_folder= $request->name . "_" . $request->lastname . "_" . $alias_company; 
+            $name_folder= $request->name . "_" . $request->lastname; 
             $storage->ruta_local = $name_folder;
             $storage->ruta_servidor = "/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder";
             $user->save();
@@ -81,31 +86,43 @@ class UsersController extends Controller
     public function updateUserPost(Request $request, $id)
     {
         $this->validate($request,[
-            'name' => 'required|max:15|alpha_dash:', 
-            'lastname' => 'required|max:15|alpha',
             'email' => 'required|max:50|email',
             'space' => 'required|numeric',
         ]);
         $free_space = $this->free_space($request->company_id);
         $space_user = $this->space_user($id);
-        $name_folder = $this->name_folder($id);
-        $alias_company = $this->alias_company($request->company_id);
+        $id_license = $this->id_license($id);
         if($space_user === $request->space){
-            $name_folder_new= $request->name . "_" . $request->lastname . "_" . $alias_company;
-            DB::table('storages')->where('user_id', $id)->update(array(
-                'ruta_local' => $name_folder_new, 'ruta_servidor' => "/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder_new"));
             DB::table('users')->where('id', $id)->update(array(
-                'name' => $request->name, 'apellidos' => $request->lastname, 'email' => $request->email, 'tipo_usuario' => $request->rol_usuario));
-            rename ("/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder", "/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder_new");
+                'email' => $request->email, 'tipo_usuario' => $request->rol_usuario));
             return redirect('companies');
         }
         elseif($space_user < $request->space and $request->space <= $free_space){
-            echo "El espacio es mayor";
+            DB::table('storages')->where('user_id', $id)->update(array(
+                'tamano' => $request->space));
+            DB::table('users')->where('id', $id)->update(array(
+                'email' => $request->email, 'tamano' => $request->space, 'tipo_usuario' => $request->rol_usuario));
+            # Resta para asigar nuevo espacio #
+            $new_space = $request->space - $space_user;
+            $new_space_license = $free_space - $new_space;
+            DB::table('licenses')->where('id', $id_license)->update(array(
+                'tamano_restante' => $new_space_license));
+            return redirect('companies');
         }
-        else{
-            echo "El espacio es menor";
+        elseif($space_user > $request->space and $request->space <= $free_space){
+            DB::table('storages')->where('user_id', $id)->update(array(
+                'tamano' => $request->space));
+            DB::table('users')->where('id', $id)->update(array(
+                'email' => $request->email, 'tamano' => $request->space, 'tipo_usuario' => $request->rol_usuario));
+            # suma para asigar nuevo espacio #
+            $new_space =  $space_user - $request->space;
+            $new_space_license = $free_space + $new_space;
+            DB::table('licenses')->where('id', $id_license)->update(array(
+                'tamano_restante' => $new_space_license));
+            return redirect('companies');
         }
-        die();
+        else
+            echo "<script>alert('Does not have enough space.');window.history.go(-1);</script>";
         return redirect('companies');
     }
 
@@ -164,5 +181,20 @@ class UsersController extends Controller
             }
         }
         return $name;
+    }
+    private function id_license($id)
+    {
+        $id_license= DB::select("SELECT l.id AS license_id
+            FROM users AS u, companies AS c, licenses AS l
+            WHERE u.company_id = c.id
+            AND c.license_id = l.id
+            AND u.id = ?", [$id]
+        );
+        foreach ($id_license as $license_id) {
+            foreach ($license_id as $id) {
+                $id;
+            }
+        }
+        return $id;
     }
 }

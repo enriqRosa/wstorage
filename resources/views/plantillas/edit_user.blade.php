@@ -7,7 +7,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Add User</h2>
+                            <h2>Edit User</h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -29,20 +29,6 @@
                                         @endif
                                     </div>
                                     <div class="col-md-3">
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="text" id="name" name="name" value="{{ $user->name }}" required>
-                                        <span class="message"> -The name does not have numbers. Not use a space.</span>
-                                    </div>
-                                </div>
-                                <div class="item form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="text" id="lastname" name="lastname" value="{{ $user->apellidos }}" required>
-                                        <span class="message"> -The lastname does not have numbers.</span>
                                     </div>
                                 </div>
                                 <div class="item form-group">

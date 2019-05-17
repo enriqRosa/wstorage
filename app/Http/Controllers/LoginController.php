@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Login;
 use Illuminate\Http\Request;
-use Storage;
 use App\License;
 use App\Company;
 use App\Contacts;
 use App\User;
+use App\Storage;
 use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
@@ -79,11 +79,18 @@ class LoginController extends Controller
         $user->tamano = "5";
         $user->tipo_usuario = "ADMIN";
         $user->password = bcrypt($request->contrasenia);
+        $storage = new Storage;
+        $storage->tamano = "5";
+        $name_folder= $request->nombre_administrador . "_" . $request->apellidos_administrador; 
+        $storage->ruta_local = $name_folder;
+        $alias = $request->alias;
+        $storage->ruta_servidor = "/var/www/html/wstorage/public/wstorage/$alias/$name_folder";
         # Guardar #
         $license->save();
         $license->company()->save($company);
         $company->contacts()->save($contact);
         $company->users()->save($user);
+        $user->storages()->save($storage);
         # Resta de espacio #
         $resta_espacio = $request->tamanio - 5;
         # Resta de licencia #
@@ -98,12 +105,25 @@ class LoginController extends Controller
                     WHERE id = '$id'"
                 );
             }
-        }        
+        }   
+        mkdir("/var/www/html/wstorage/public/wstorage/$alias/$name_folder", 0777, true);     
         return redirect()->route('index');
     }
 
     #FUNCIÓN PARA DASHBOARD SUPERUASUARIO
-    public function superuser(){
+    public function superuser()
+    {
         return view('plantillas.superuser');
+    }
+
+    private function alias_company($id)
+    {
+        $alias_company = DB::table('companies')->select('alias')->where('id', '=', $id)->get();
+        foreach ($alias_company as $company_alias) {
+            foreach ($company_alias as $alias) {
+                $alias;
+            }
+        }
+        return $alias;
     }
 }
