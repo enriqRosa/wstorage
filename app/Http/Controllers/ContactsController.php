@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contacts;
+use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ContactsController extends Controller
 {
@@ -44,9 +46,10 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function showContacts(Contacts $contacts)
+    public function showContacts($id)
     {
-        return view ('plantillas.contacts');
+        $company_contacts=DB::select('SELECT * FROM contacts WHERE company_id=?',[$id]);
+        return view ('plantillas.contacts')->with('company_contacts',$company_contacts);
     }
 
     /**

@@ -5,6 +5,7 @@
                   <div class="">
                     <div class="clearfix"></div>
                     <div class="row">
+                    <!-- MENSAJES FLASH -->
                     @if (session('dictionary'))
                       <div class="alert alert-success">
                         {{ session('dictionary') }}
@@ -15,6 +16,18 @@
                         {{ session('dictionary_destroy') }}
                       </div>
                     @endif
+                    <!-- /MENSAJES FLASH -->
+                    <!-- MENSAJES DE VALIDACIÓN DE CAMPOS -->
+                    @if(count($errors) > 0)
+                      <div class="alert alert-danger" role="alert">
+                        <ul>
+                          @foreach($errors->all() as $error)
+                            <li> {{$error}} </li>
+                          @endforeach
+                        </ul>
+                      </div>
+                    @endif
+                    <!-- /MENSAJES DE VALIDACIÓN DE CAMPOS -->
                       <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="x_panel">
                           <div class="x_title">
@@ -24,9 +37,9 @@
                           <div class="x_content">
                             {!! Form::open(['route' => 'storeDictionary', 'method' => 'POST', 'class' => 'form-horizontal form-label-left']) !!}
                               <div class="item form-group">
-                                {!! Form::label('nombre','Extension*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
+                                {!! Form::label('extension','Extension*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  {!! Form::text('nombre',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']) !!}
+                                  {!! Form::text('extension',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']) !!}
                                 </div>
                               </div> 
                               <div class="ln_solid"></div>

@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>WarriorsStorage</title>
+        <title>Warriors Lab's</title>
         <link rel="icon" type="image/png" href="<?php echo e(asset('images/icons/favicon.ico')); ?>"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="<?php echo e(asset('css/bootstrap.mi.css')); ?>" rel="stylesheet">
@@ -20,7 +20,10 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="#" class="site_title"><img src="<?php echo e(asset('images/caja.storage.png')); ?>" width="50px"><span>WarriorsStorage</span></a>
+                            <a href="#" class="site_title"><img src="<?php echo e(asset('images/caja.storage.png')); ?>" width="50px"><span> Warriors Lab's</span></a>
+                        </div>
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="#" class="site_title2"><span><center>Storage</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
@@ -37,12 +40,20 @@
                             <div class="menu_section">
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
-                                    <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>
-                                    <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
+                                <?php if(\Auth::user()->tipo_usuario=='SUPER'): ?>
+                                    <li><a href="<?php echo e(url('/spusr')); ?>"><i class="fa fa-home"></i> Home </a></li>   
                                     <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="<?php echo e(url('/license-status')); ?>"><i class="fa fa-file"></i> License</a></li>      
                                     <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li>     
+                                <?php endif; ?>
+                                <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
+                                <li><a href="<?php echo e(url('/usrad')); ?>"><i class="fa fa-home"></i> Home </a></li>
+                                    <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
+                                    <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i>My company</a></li>
+                                    <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>   
+                                    <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li> 
+                                <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -57,7 +68,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt=""><?php echo e(Auth::user()->nombre); ?> <?php echo e(Auth::user()->apellidos); ?>
+                                        <img src="images/img.jpg" alt=""><?php echo e(Auth::user()->name); ?> <?php echo e(Auth::user()->apellidos); ?>
 
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
