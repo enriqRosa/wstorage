@@ -57,7 +57,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt=""><?php echo e(Auth::user()->nombre); ?> <?php echo e(Auth::user()->apellidos); ?>
+                                        <img src="images/img.jpg" alt=""><?php echo e(Auth::user()->name); ?> <?php echo e(Auth::user()->apellidos); ?>
 
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
