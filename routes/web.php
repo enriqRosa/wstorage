@@ -67,15 +67,30 @@ Route::get('user-catalog/{id}/destroy',[
 //RUTA PARA VISTA AGREGAR LICENCIA
 Route::get('add-license','LicenseController@createLicense');
 //RUTA PARA VISTA EDITAR LICENCIA
-Route::get('edit-license','LicenseController@updateLicense');
+Route::get('edit-license/{id}/edit',[
+    'uses' => 'LicenseController@editLicense',
+    'as'   =>  'edit-license'
+]);
+//RUTA PARA ACTULIZAR LICENCIA
+Route::put('update-license/{id}/update',[
+    'uses' => 'LicenseController@updateLicense',
+    'as'   => 'updateLicense'
+]);
+//RUTA PARA ELIMINAR LICENCIA
+Route::get('license/{id}/destroy',[
+    'uses' => 'LicenseController@destroyLicense',
+    'as'   => 'license-destroy'
+]);
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
+
 Route::get('license-status','LicenseController@showLicenses');
+Route::get('license-status-company/{license_id}/show','LicenseController@showLicenseCompany')->name('showLicenseCompany');
 
 /****************************CONTACTOS*********************************/
 //RUTA PARA AGREGAR UN CONTACTO
 Route::get('add-contact','ContactsController@createContact');
 //RUTA PARA LISTAR TODOS LOS CONTACTOS
-Route::get('contacts','ContactsController@showContacts');
+Route::get('contacts/{id}','ContactsController@showContacts')->name('showContacts');
 //RUTA PARA EDITAR EL CONTACTO
 Route::get('edit-contact','ContactsController@updateContact');
 

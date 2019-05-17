@@ -1,6 +1,16 @@
 <!--  <a href="{{ route('createUser',$users->company_id) }}"><button type="submit" class="btn btn-success">Add user</button></a>--->
 
 
-select c.nombre, u.nombre, u.apellidos, u.email, s.tamano
-from companies as c, users as u, storages as s
-where c.id=u.company_id and u.id=s.user_id;
+$company_license=DB::select( "SELECT c.nombre, l.modelo, l.id, l.serial, l.tipo, l.tiempo, l.status, l.fecha_inicio, l.fecha_fin, 
+                                    l.tamano_total, l.licencia_total, l.tamano_restante, l.licencia_restante, u.name, u.apellidos, u.email, s.tamano
+                            from companies as c, users as u, storages as s, licenses as l
+                            where c.id=u.company_id and u.id=s.user_id and l.id=c.license_id");
+
+
+
+create view company_license as
+(select companies.license_id, licenses.id as company_id,companies.nombre,licenses.serial, licenses.modelo, licenses.tipo, licenses.tiempo, 
+       licenses.status, licenses.fecha_inicio, licenses.fecha_fin,licenses.tamano_total,
+       licenses.licencia_total, licenses.tamano_restante, licenses.licencia_restante
+from licenses
+inner join companies using (id));

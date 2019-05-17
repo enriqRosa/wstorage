@@ -4,6 +4,7 @@
           <div class="">
             <div class="clearfix"></div>
             <div class="row">
+            <!-- MENSAJES FLASH -->
             <?php if(session('user_catalog')): ?>
               <div class="alert alert-success">
                 <?php echo e(session('user_catalog')); ?>
@@ -16,6 +17,18 @@
 
               </div>
             <?php endif; ?>
+            <!-- /MENSAJES FLASH -->
+            <!-- MENSAJES DE VALIDACIÓN DE CAMPOS -->
+            <?php if(count($errors) > 0): ?>
+              <div class="alert alert-danger" role="alert">
+                <ul>
+                  <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li> <?php echo e($error); ?> </li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+              </div>
+            <?php endif; ?>
+            <!-- /MENSAJES DE VALIDACIÓN DE CAMPOS -->
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -29,7 +42,7 @@
                         <?php echo Form::label('nombre','Quantity*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']); ?>
 
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <?php echo Form::text('cantidad',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']); ?>
+                          <?php echo Form::text('quantity',null, ['class' => 'form-control col-md-7 col-xs-12', 'required']); ?>
 
                         </div>
                       </div> 

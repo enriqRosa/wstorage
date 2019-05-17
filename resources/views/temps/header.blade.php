@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>WarriorsStorage</title>
+        <title>Warriors Lab's</title>
         <link rel="icon" type="image/png" href="{{ asset('images/icons/favicon.ico') }}"/>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link href="{{ asset('css/bootstrap.mi.css') }}" rel="stylesheet">
@@ -20,7 +20,10 @@
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="#" class="site_title"><img src="{{ asset('images/caja.storage.png') }}" width="50px"><span>WarriorsStorage</span></a>
+                            <a href="#" class="site_title"><img src="{{ asset('images/caja.storage.png') }}" width="50px"><span> Warriors Lab's</span></a>
+                        </div>
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="#" class="site_title2"><span><center>Storage</span></a>
                         </div>
                         <div class="clearfix"></div>
                         <div class="profile clearfix">
@@ -37,12 +40,20 @@
                             <div class="menu_section">
                                 <br><h3>General</h3>
                                 <ul class="nav side-menu">
-                                    <li><a href="{{url('/spusr')}}"><i class="fa fa-home"></i> Home </a></li>
-                                    <li><a href="{{url('/files')}}"><i class="fa fa-folder"></i>My files</a></li>    
+                                @if(\Auth::user()->tipo_usuario=='SUPER')
+                                    <li><a href="{{url('/spusr')}}"><i class="fa fa-home"></i> Home </a></li>   
                                     <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i> Companies</a></li>
                                     <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>
                                     <li><a href="{{url('/license-status')}}"><i class="fa fa-file"></i> License</a></li>      
                                     <li><a href="{{url('/dictionary')}}"><i class="fa fa-book"></i> Dictionary</a></li>     
+                                @endif
+                                @if (\Auth::user()->tipo_usuario=='ADMIN')
+                                <li><a href="{{url('/usrad')}}"><i class="fa fa-home"></i> Home </a></li>
+                                    <li><a href="{{url('/files')}}"><i class="fa fa-folder"></i>My files</a></li>    
+                                    <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i>My company</a></li>
+                                    <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>   
+                                    <li><a href="{{url('/dictionary')}}"><i class="fa fa-book"></i> Dictionary</a></li> 
+                                @endif
                                 </ul>
                             </div>
                         </div>
