@@ -44,14 +44,12 @@
                             <div class="col-xs-12 col-sm-6 emphasis">
                             </div>
                             <div class="col-xs-12 col-sm-6 emphasis">
-                              <a href="<?php echo e(url('/edit-contact')); ?>"><button type="button" class="btn btn-dark btn-xs">
+                              <a href="<?php echo e(route('edit-contact',$contacts->id)); ?>"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-pencil"> </i> Edit 
                               </button></a>
-                              
                               <a href="<?php echo e(route('contact-destroy', $contacts->id)); ?>"><button type="button" class="btn btn-dark btn-xs">
                                 <i class="fa fa-user-times"> </i> Delete
                               </button></a>
-                              
                             </div>
                           </div>
                         </div>

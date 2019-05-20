@@ -30,7 +30,7 @@
                                     <div class="col-md-3">
                                     </div>
                                 </div>
-                                <input type="text" value="<?php echo e($company_id); ?>" name="company_id">
+                                <input type="hidden" value="<?php echo e($company_id); ?>" name="company_id">
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

@@ -81,9 +81,33 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function updateContact(Request $request, Contacts $contacts)
+
+
+    public function updateContact($id)
+    {                                         
+        $contact_info=Contacts::find($id);
+       
+        return view('plantillas.edit_contact',compact('contact_info'));
+    }
+
+    public function updateContactPost(Request $request,$id)
     {
-        return view('plantillas.edit_contact');
+        $this->validate($request,[
+            'name' => 'max:15|alpha_dash', 
+            'last_name' => 'max:15|alpha',
+            'email' => 'max:50|email|unique:contacts',
+            'telephone' => 'numeric|max:10'
+        ]);
+        $contact=Contacts::find($id);
+        $contact->nombre = strtoupper($request->name);
+        $contact->apellidos = strtoupper($request->last_name);
+        $contact->email = $request->email;
+        $contact->telefono = $request->telephone;
+        $contact->ocupacion = $request->ocupation;
+        
+        $contact->save();
+
+        return back()->with('contact_updated' ,'Data updated Successfully');   
     }
 
     /**

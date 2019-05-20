@@ -93,7 +93,8 @@ Route::post('add-contact','ContactsController@storeContactPost')->name('create-c
 //RUTA PARA LISTAR TODOS LOS CONTACTOS
 Route::get('contacts/{company_id}','ContactsController@showContacts')->name('showContacts');
 //RUTA PARA EDITAR EL CONTACTO
-Route::get('edit-contact','ContactsController@updateContact');
+Route::get('contact-edit/{id}','ContactsController@updateContact')->name('edit-contact');
+Route::put('update-contact/{id}/update','ContactsController@updateContactPost')->name('contactUpdate');
 //RUTA PARA ELIMINAR UN CONTACTO
 ROute::get('contact/{id}/destroy','ContactsController@destroyContact')->name('contact-destroy');
 /****************************DICCIONARIO*******************************/

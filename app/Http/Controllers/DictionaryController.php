@@ -26,7 +26,9 @@ class DictionaryController extends Controller
     public function Dictionary()
     {
         $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
-        return view('plantillas.dictionary')->with('dictionary',$dictionary);
+
+        $id_company= \Auth::user()->company_id;
+        return view('plantillas.dictionary',compact('id_company'))->with('dictionary',$dictionary);
     }
 
     /**
@@ -41,6 +43,7 @@ class DictionaryController extends Controller
         //save() guarda el registro
         $dictionary = new Dictionary;
         $dictionary->nombre = $request->extension;
+        $dictionary->company_id = $request->company_id;
         $dictionary->save();
         return back()->with('dictionary' ,'Data inserted Successfully');
     }

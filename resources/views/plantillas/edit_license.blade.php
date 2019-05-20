@@ -64,7 +64,7 @@
                         {!! Form::submit('Add', ['class' => 'btn btn-success']) !!}
                       </div>
                     </div>
-                    {!! Form::close() !!}
+                    
                   </div>
                 </div>
               </div>
