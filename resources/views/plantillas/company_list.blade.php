@@ -72,16 +72,17 @@
                       <div class="animated flipInY col-lg-12 col-md-12 col-sm-6 col-xs-12">
                         <div class="tile-stats">
                           <div class="icon"></div>
-                            <center><br><h3><img src="{{ Storage::url($company[5]->logo) }}" height="100px"></h3><br>
-                            <div class="count"><h2> {{ $company[1]->nombre }}</h2></div>
-                            <div class="count"><h2> {{ $company[4]->direccion }}</h2></div>
-                            <div class="count"><h2> {{ $company[3]->rfc }}</h2></div>
+                          @foreach($company as $company)
+                            <center><br><h3><img src="{{ Storage::url($company->logo) }}" height="100px"></h3><br>
+                            <div class="count"><h2> {{ $company->nombre }}</h2></div>
+                            <div class="count"><h2> {{ $company->direccion }}</h2></div>
+                            <div class="count"><h2> {{ $company->rfc }}</h2></div>
                             <p></p>
                         </div>
                       </div>
                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <a href="{{ route('users',$company[0]->id) }}">
+                            <a href="{{ route('users',$company->id) }}">
                               <div class="icon"><i class="fa fa-users dark"></i></div>
                               <div class="count">Users</div>
                               <h3>See users active</h3>
@@ -91,7 +92,7 @@
                       </div>
                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <a href="{{ route('showContacts',$company[0]->id) }}">
+                            <a href="{{ route('showContacts',$company->id) }}">
                                 <div class="icon"><i class="fa fa-book dark"></i></div>
                                 <div class="count">Contacts</div>
                                 <h3>See all contacts</h3>
@@ -101,7 +102,7 @@
                       </div>
                       <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="tile-stats">
-                            <a href="{{ route('showLicenseCompany', $company[0]->license_id)}}">
+                            <a href="{{ route('showLicenseCompany', $company->license_id)}}">
                                 <div class="icon"><i class="fa fa-check-square-o dark"></i></div>
                                 <div class="count">License</div>
                                 <h3>Check license status</h3>
@@ -109,6 +110,7 @@
                             </a>
                         </div>
                       </div>
+                      @endforeach
                 </div>
             </div>
         </div>
