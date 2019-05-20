@@ -39,6 +39,9 @@
                               <div class="item form-group">
                                 {!! Form::label('extension','Extension*', ['class' => 'control-label col-md-3 col-sm-3 col-xs-12']) !!}
                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                               
+                                <input type="hidden" value="{{ $id_company }}" name="company_id">
+                              
                                   {!! Form::text('extension',null, ['class' => 'form-control col-md-7 col-xs-12', 'required', 'placeholder' => '.png']) !!}
                                 </div>
                               </div> 
@@ -62,16 +65,16 @@
                                   <th>Actions</th>
                                 </tr>
                               </thead>
+                              @foreach($dictionaries as $dict)
                               <tbody>
-                                @foreach($dictionary as $extension)
                                   <tr>
-                                    <td>{{ $extension->nombre }}</td>
+                                    <td>{{ $dict->nombre }}</td>
                                     <td>
-                                      <a href="{{ route('dictionary-destroy', $extension->id) }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                      <a href="{{ route('dictionary-destroy', $dict->id) }}" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                     </td>
                                   </tr>
-                                @endforeach
                               </tbody>
+                              @endforeach
                             </table>
                             {!! $dictionary->render() !!}
                           </div>

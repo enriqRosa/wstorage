@@ -27,4 +27,10 @@ class Company extends Model
     {
         return $this->hasMany('App\Users');
     }
+
+    //relación de 1:N
+    public function dictionaries()
+    {
+        return $this->hasMany('App\Dictionary');
+    }
 }

@@ -19,14 +19,27 @@ class ContactsController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *@param  \App\Contacts  $contacts
+        
+     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function createContact()
+    //MUESTRA LOS CONTACTOS DE LA BD EN LA VISTA
+    public function showContacts($id)
     {
-        return view('plantillas.add_contact');
+        $company_contacts=DB::select('SELECT companies.id as company_id, contacts.* from contacts
+                                      inner join companies
+                                      on companies.id=contacts.company_id
+                                      where contacts.company_id=?',[$id]);
+
+        $company_id=DB::select('SELECT companies.id as company_id from companies
+        inner join contacts
+        on companies.id=contacts.company_id
+        where contacts.company_id=?',[$id]);
+       
+        return view ('plantillas.contacts',compact('company_contacts','company_id'));
     }
 
     /**
@@ -35,21 +48,30 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    //FORMULARIO CON ID DE LA EMPRESA
+    public function storeContact($company_id)
     {
-        //
+        return view('plantillas.add_contact',compact('company_id'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Contacts  $contacts
-     * @return \Illuminate\Http\Response
-     */
-    public function showContacts($id)
+    //AGREGAR UN NUEVO CONTACTO A LA BD
+    public function storeContactPost(Request $request)
     {
-        $company_contacts=DB::select('SELECT * FROM contacts WHERE company_id=?',[$id]);
-        return view ('plantillas.contacts')->with('company_contacts',$company_contacts);
+        $this->validate($request,[
+            'name' => 'max:15|alpha_dash', 
+            'last_name' => 'max:15|alpha',
+            'email' => 'max:50|email|unique:contacts',
+            'telephone' => 'numeric'
+        ]);
+
+        $contact=new Contacts;
+        $contact->nombre = strtoupper($request->name);
+        $contact->apellidos = strtoupper($request->last_name);
+        $contact->email = $request->email;
+        $contact->telefono = $request->telephone;
+        $contact->ocupacion = $request->ocupation;
+        $contact->company_id = $request->company_id;
+        $contact->save();
     }
 
     /**
@@ -59,9 +81,33 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function updateContact(Request $request, Contacts $contacts)
+
+
+    public function updateContact($id)
+    {                                         
+        $contact_info=Contacts::find($id);
+       
+        return view('plantillas.edit_contact',compact('contact_info'));
+    }
+
+    public function updateContactPost(Request $request,$id)
     {
-        return view('plantillas.edit_contact');
+        $this->validate($request,[
+            'name' => 'max:15|alpha_dash', 
+            'last_name' => 'max:15|alpha',
+            'email' => 'max:50|email|unique:contacts',
+            'telephone' => 'numeric|max:10'
+        ]);
+        $contact=Contacts::find($id);
+        $contact->nombre = strtoupper($request->name);
+        $contact->apellidos = strtoupper($request->last_name);
+        $contact->email = $request->email;
+        $contact->telefono = $request->telephone;
+        $contact->ocupacion = $request->ocupation;
+        
+        $contact->save();
+
+        return back()->with('contact_updated' ,'Data updated Successfully');   
     }
 
     /**
@@ -70,8 +116,11 @@ class ContactsController extends Controller
      * @param  \App\Contacts  $contacts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contacts $contacts)
+    //FUNCIÓN PARA ELIINAR UN CONTACTO EN ESPECIFICO
+    public function destroyContact($id)
     {
-        //
+        $contact = Contacts::find($id);
+        $contact->delete();
+        return back()->with('contact-destroy','Contact deleted Successfully');
     }
 }

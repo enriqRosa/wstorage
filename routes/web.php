@@ -45,14 +45,16 @@ Route::get('companies','CompanyController@showCompanies');
 Route::get('edit-company','CompanyController@updateCompany');
 
 /****************************USUARIOS**********************************/
+//RUTA PARA VER TODOS LOS USUARIOS
+Route::get('users/{id}','UsersController@showUsers')->name('users');
 //RUTA PARA VISTA AGREGAR USUARIO
 Route::get('add-user/{company_id}','UsersController@createUser')->name('createUser');
 Route::post('add-user','UsersController@createUserPost')->name('createUserPost');
 //RUTA PARA VISTA EDITAR USUARIO
 Route::get('edit-user/{id}','UsersController@updateUser')->name('updateUser');
 Route::post('edit-user/{id}','UsersController@updateUserPost')->name('updateUserPost');
-//RUTA PARA VER TODOS LOS USUARIOS
-Route::get('users/{id}','UsersController@showUsers')->name('users');
+//RUTA PARA ELIMINAR USUARIO
+Route::get('delete-user/{id}','UsersController@deleteUser')->name('deleteUser');
 
 /****************************CATALOGO DE USUARIOS**********************/
 //RUTA PARA VISTA AGREGAR USUARIO CATALOGO
@@ -88,12 +90,15 @@ Route::get('license-status-company/{license_id}/show','LicenseController@showLic
 
 /****************************CONTACTOS*********************************/
 //RUTA PARA AGREGAR UN CONTACTO
-Route::get('add-contact','ContactsController@createContact');
+Route::get('add-contact/{company_id}','ContactsController@storeContact')->name('storeContact');
+Route::post('add-contact','ContactsController@storeContactPost')->name('create-contact');
 //RUTA PARA LISTAR TODOS LOS CONTACTOS
-Route::get('contacts/{id}','ContactsController@showContacts')->name('showContacts');
+Route::get('contacts/{company_id}','ContactsController@showContacts')->name('showContacts');
 //RUTA PARA EDITAR EL CONTACTO
-Route::get('edit-contact','ContactsController@updateContact');
-
+Route::get('contact-edit/{id}','ContactsController@updateContact')->name('edit-contact');
+Route::put('update-contact/{id}/update','ContactsController@updateContactPost')->name('contactUpdate');
+//RUTA PARA ELIMINAR UN CONTACTO
+ROute::get('contact/{id}/destroy','ContactsController@destroyContact')->name('contact-destroy');
 /****************************DICCIONARIO*******************************/
 //RUTA PARA AGREGAR UNA EXTENSIÓN
 Route::get('dictionary','DictionaryController@Dictionary');
@@ -107,8 +112,16 @@ Route::get('dictionary/{id}/destroy',[
 /****************************ARCHIVOS*******************************/
 //RUTA PARA CARGAR ARCHIVOS
 Route::get('files','FileController@showFiles')->name('showFiles');
-Route::get('files/{company_id}','FileController@showFilesFolder')->name('showFilesFolder');
+Route::get('files/{ruta_local}','FileController@showFilesFolder')->name('showFilesFolder');
+Route::get('files/{ruta_local}/{carpeta}','FileController@showFilesSubFolder')->name('showFilesSubFolder');
 //Route::get('archivos','FileController@showFiles');
 #Route::post('archivos','FileController@uploadFiles')->name('uploadFiles');
 Route::resource('archivos', 'FileController');
 //Route::post('archivos', 'FileController@cargar')->name('cargar');
+Route::post('deleteFile', 'FileController@deleteFile')->name('deleteFile');
+Route::post('store', 'File@store')->name('store');
+Route::post('downloadFile', 'FileController@downloadFile')->name('downloadFile');
+Route::post('downloadFolder', 'FileController@downloadFolder')->name('downloadFolder');
+Route::post('files','FileController@storeSubFolder')->name('storeSubFolder');
+Route::post('deleteFileSubFolder', 'FileController@deleteFileSubFolder')->name('deleteFileSubFolder');
+Route::post('downloadFileSubFolder', 'FileController@downloadFileSubFolder')->name('downloadFileSubFolder');

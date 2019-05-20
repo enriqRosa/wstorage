@@ -17,6 +17,8 @@ class AddDictionaryTable extends Migration
             $table->increments('id');
             $table->string('nombre');
             $table->timestamps();
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('Cascade');
         });
     }
 

@@ -5,6 +5,7 @@ use App\Users;
 use App\User;
 use App\Company;
 use App\Storage;
+use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -26,7 +27,7 @@ class UsersController extends Controller
         $user= DB::select("SELECT c.nombre AS nombre_company, u.id, u.name, u.apellidos, u.email, u.tamano, u.tipo_usuario
             FROM companies AS c, users AS u
             WHERE c.id=u.company_id
-            AND c.id = ?", [$id]
+            AND c.id = ? ORDER BY u.id", [$id]
         );
         return view('plantillas.users',compact('user','company_name'));
     }
@@ -69,10 +70,10 @@ class UsersController extends Controller
             $user->storages()->save($storage);
             mkdir("/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder", 0777, true);
             $update_license = $this->update_license($request->company_id, $new_space, $available_licenses);
-            return redirect('companies');
+            return redirect()->route('users', ['id' => $request->company_id])->with('success','Registry created successfully.');
         }
         else
-           echo "<script>alert('Does not have enough space or licenses.');window.history.go(-1);</script>";
+            return Redirect::back()->with('success','Does not have enough space or licenses.');
     }
 
     # FORMULARIO PARA ACTUALIZAR UN USUARIO #
@@ -95,7 +96,7 @@ class UsersController extends Controller
         if($space_user === $request->space){
             DB::table('users')->where('id', $id)->update(array(
                 'email' => $request->email, 'tipo_usuario' => $request->rol_usuario));
-            return redirect('companies');
+            return redirect()->route('users', ['id' => $request->company_id])->with('success','Registry updated successfully.');
         }
         elseif($space_user < $request->space and $request->space <= $free_space){
             DB::table('storages')->where('user_id', $id)->update(array(
@@ -107,7 +108,7 @@ class UsersController extends Controller
             $new_space_license = $free_space - $new_space;
             DB::table('licenses')->where('id', $id_license)->update(array(
                 'tamano_restante' => $new_space_license));
-            return redirect('companies');
+            return redirect()->route('users', ['id' => $request->company_id])->with('success','Registry updated successfully.');
         }
         elseif($space_user > $request->space and $request->space <= $free_space){
             DB::table('storages')->where('user_id', $id)->update(array(
@@ -119,11 +120,29 @@ class UsersController extends Controller
             $new_space_license = $free_space + $new_space;
             DB::table('licenses')->where('id', $id_license)->update(array(
                 'tamano_restante' => $new_space_license));
-            return redirect('companies');
+            return redirect()->route('users', ['id' => $request->company_id])->with('success','Registry updated successfully.');
         }
         else
-            echo "<script>alert('Does not have enough space.');window.history.go(-1);</script>";
-        return redirect('companies');
+            return Redirect::back()->with('success','Does not have enough space.');
+    }
+
+    public function deleteUser($id)
+    {
+        $company_id = $this->company_id($id);
+        $alias_company = $this->alias_company($company_id);
+        $free_space = $this->free_space($company_id);
+        $id_license = $this->id_license($id);
+        $space_user = $this->space_user($id);
+        $local_route = $this->local_route($id);
+        $license_available = $this->license_available($id);
+        $new_space_available = $free_space + $space_user;
+        $new_license_available = $license_available + 1;
+        $folder = "/var/www/html/wstorage/public/wstorage/$alias_company/$local_route";
+        $delete_folder = exec("rm -rf $folder");
+        $user = User::find($id)->delete();
+        DB::table('licenses')->where('id', $id_license)->update(array(
+            'tamano_restante' => $new_space_available, 'licencia_restante' => $new_license_available));
+        return Redirect::back()->with('success','Registry successfully deleted.');
     }
 
     # FUNCIONES CONSULTAS BASE DE DATOS #
@@ -196,5 +215,40 @@ class UsersController extends Controller
             }
         }
         return $id;
+    }
+    private function license_available($id)
+    {
+        $license_available= DB::select("SELECT l.licencia_restante AS licencia_restante
+            FROM users AS u, companies AS c, licenses AS l
+            WHERE u.company_id = c.id
+            AND c.license_id = l.id
+            AND u.id = ?", [$id]
+        );
+        foreach ($license_available as $available_license) {
+            foreach ($available_license as $available) {
+                $available;
+            }
+        }
+        return $available;
+    }
+    private function company_id($id)
+    {
+        $company_id = DB::table('users')->select('company_id')->where('id', '=', $id)->get();
+        foreach ($company_id as $id_company) {
+            foreach ($id_company as $id) {
+                $id;
+            }
+        }
+        return $id;
+    }
+    private function local_route($id)
+    {
+        $local_route = DB::table('storages')->select('ruta_local')->where('user_id', '=', $id)->get();
+        foreach ($local_route as $route_local) {
+            foreach ($route_local as $route) {
+                $route;
+            }
+        }
+        return $route;
     }
 }
