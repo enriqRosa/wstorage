@@ -24,8 +24,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'numeric',
-            'extension'   => 'alpha' 
+            'quantity'    => 'numeric',
+            'extension'   => 'alpha',
+            'name'        => 'alpha',
+            'last_name'   => 'max:15|alpha',
+            'telephone'   => 'numeric',
+            
         ];
     }
 }

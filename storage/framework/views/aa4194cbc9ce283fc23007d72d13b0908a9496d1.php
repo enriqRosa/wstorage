@@ -66,8 +66,7 @@
 
                       </div>
                     </div>
-                    <?php echo Form::close(); ?>
-
+                    
                   </div>
                 </div>
               </div>
