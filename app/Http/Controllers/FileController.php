@@ -37,7 +37,7 @@ class FileController extends Controller
 
     public function showFilesFolder($ruta_local)
     {
-        $dictionary = ".pdf, .png";
+        $dictionary = ".png";
         $company_id= \Auth::user()->company_id;
         $alias_company = $this->alias_company($company_id);
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
@@ -89,7 +89,8 @@ class FileController extends Controller
         $folder = $request->ruta_local;
         $archivo = $request->archivo;
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$folder/$archivo";
-        $delete_folder = exec("rm -rf $path");
+        //$delete_folder = exec("rm -rf $path");
+        unlink($path);
         return Redirect::back()->with('success','File successfully deleted.');
     }
 
@@ -252,7 +253,8 @@ class FileController extends Controller
         $sub_folder = $request->sub_folder;
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$folder/$sub_folder/$archivo";
         //echo $path;die();
-        $delete_folder = exec("rm -rf $path");
+        //$delete_folder = exec("rm -rf $path");
+        unlink($path);
         return Redirect::back()->with('success','File successfully deleted.');
     }
 }

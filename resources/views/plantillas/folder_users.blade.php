@@ -12,9 +12,9 @@
             </div>
             <div class="clearfix"></div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="col-md-3 col-sm-12 col-xs-12">
                                 <p class="lead">Space information</p>
                                 <div class="table-responsive">
@@ -67,30 +67,36 @@
                         <h2>Folders Users</h2>
                         <div class="clearfix"></div>
                     </div>
-                    @foreach($folder as $folders)
-                        <div class="col-md-2 col-sm-2 col-xs-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h4>{{ $folders->ruta_local }}</h4>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <div class="media event col-md-12">
-                                        <a class="pull-left border-aero profile_thumb" href="{{ route('showFilesFolder',$folders->ruta_local) }}">
-                                            <i class="fa fa-folder aero"></i>
-                                        </a>
-                                        <p>
-                                            <form class="form-horizontal form-label-left" action="{{ route('downloadFolder') }}" method="post">
-                                                {{csrf_field()}}
-                                                <input type="hidden" value="{{ $folders->ruta_local }}" name="ruta_local">
-                                                <button type="submit" class="btn btn-primary btn-xs">Download</button>
-                                            </form>
-                                        </p>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @foreach($folder as $folders)
+                            <div class="col-md-2 col-sm-4 col-xs-12">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h4>{{ $folders->ruta_local }}</h4>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="media event col-md-12 col-sm-12 col-xs-12">
+                                                <a class="pull-left border-aero" href="{{ route('showFilesFolder',$folders->ruta_local) }}">
+                                                     <div class="image view view-first">
+                                                        <img src="{{ asset('images/folder.png') }}" width="60px">
+                                                    </div>
+                                                </a>
+                                                <p>
+                                                    <form class="form-horizontal form-label-left" action="{{ route('downloadFolder') }}" method="post">
+                                                        {{csrf_field()}}
+                                                        <input type="hidden" value="{{ $folders->ruta_local }}" name="ruta_local">
+                                                        <button type="submit" class="btn btn-primary btn-xs">Download</button>
+                                                    </form>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
