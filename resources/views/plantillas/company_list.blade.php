@@ -1,6 +1,6 @@
 @extends ('temps.header')
-@section ('content')
-@if(\Auth::user()->tipo_usuario=='SUPER')
+    @section ('content')
+        @if(\Auth::user()->tipo_usuario=='SUPER')
                 <div class="right_col" role="main">
                     <div class="">
                         <div class="row">

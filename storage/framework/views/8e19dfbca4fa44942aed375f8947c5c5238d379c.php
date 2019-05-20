@@ -30,6 +30,18 @@
                                     <div class="col-md-3">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-3">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <?php if(Session::has('success')): ?>
+                                            <div class="alert alert-danger" aria-label="Close">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong><?php echo e(Session::get('success')); ?></strong>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
                                 <input type="hidden" value="<?php echo e($company_id); ?>" name="company_id">
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Name</label>
@@ -55,7 +67,7 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Assign Space</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="number" id="space" name="space" value="<?php echo e(old('space')); ?>" required>
+                                        <input class="form-control col-md-7 col-xs-12" type="number" min="1" id="space" name="space" value="<?php echo e(old('space')); ?>" required>
                                         <span class="message"> -The storage space is assigned in GB.</span>
                                     </div>
                                 </div>
@@ -83,7 +95,7 @@
                                 </div>    
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <a href="<?php echo e(url('/users')); ?>"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+                                        <a href="<?php echo e(route('users',$company_id)); ?>"><input type="button" value="Cancelar" class="btn btn-danger"></a>
                                         <button id="send" type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </div>

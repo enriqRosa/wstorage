@@ -409,6 +409,7 @@ class ComposerStaticInitb54a341a985b4989d6b77c0eb8f06ec2
 
     public static $classMap = array (
         'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
+        'App\\CompanyLicense' => __DIR__ . '/../..' . '/app/CompanyLicense.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Contacts' => __DIR__ . '/../..' . '/app/Contacts.php',
         'App\\Dictionary' => __DIR__ . '/../..' . '/app/Dictionary.php',
@@ -433,6 +434,7 @@ class ComposerStaticInitb54a341a985b4989d6b77c0eb8f06ec2
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\License' => __DIR__ . '/../..' . '/app/License.php',
         'App\\Login' => __DIR__ . '/../..' . '/app/Login.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
