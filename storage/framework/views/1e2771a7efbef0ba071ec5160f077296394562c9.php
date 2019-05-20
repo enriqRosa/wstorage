@@ -1,5 +1,5 @@
-<?php $__env->startSection('content'); ?>
-<?php if(\Auth::user()->tipo_usuario=='SUPER'): ?>
+    <?php $__env->startSection('content'); ?>
+        <?php if(\Auth::user()->tipo_usuario=='SUPER'): ?>
                 <div class="right_col" role="main">
                     <div class="">
                         <div class="row">

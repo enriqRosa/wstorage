@@ -40,7 +40,7 @@ class DictionaryController extends Controller
         //$request->all llama a todos los campos del formulario para ser insertados
         //save() guarda el registro
         $dictionary = new Dictionary;
-        $dictionary->nombre = $request->extension;
+        $dictionary->nombre = ".".$request->extension;
         $dictionary->save();
         return back()->with('dictionary' ,'Data inserted Successfully');
     }

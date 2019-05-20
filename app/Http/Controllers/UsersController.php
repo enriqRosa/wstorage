@@ -27,7 +27,7 @@ class UsersController extends Controller
         $user= DB::select("SELECT c.nombre AS nombre_company, u.id, u.name, u.apellidos, u.email, u.tamano, u.tipo_usuario
             FROM companies AS c, users AS u
             WHERE c.id=u.company_id
-            AND c.id = ?", [$id]
+            AND c.id = ? ORDER BY u.id", [$id]
         );
         return view('plantillas.users',compact('user','company_name'));
     }

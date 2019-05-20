@@ -68,7 +68,7 @@
                                 </div>   
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <a href="<?php echo e(url('/users')); ?>"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+                                        <a href="<?php echo e(route('users',$user->company_id)); ?>"><input type="button" value="Cancelar" class="btn btn-danger"></a>
                                         <button id="send" type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </div>

@@ -53,7 +53,7 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Assign Space</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="number" id="space" name="space" value="{{ $user->tamano }}" required>
+                                        <input class="form-control col-md-7 col-xs-12" type="number" min="1" id="space" name="space" value="{{ $user->tamano }}" required>
                                         <span class="message"> -The storage space is assigned in GB.</span>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                 </div>   
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <a href="{{url('/users')}}"><input type="button" value="Cancelar" class="btn btn-danger"></a>
+                                        <a href="{{ route('users',$user->company_id) }}"><input type="button" value="Cancelar" class="btn btn-danger"></a>
                                         <button id="send" type="submit" class="btn btn-success">Save</button>
                                     </div>
                                 </div>
