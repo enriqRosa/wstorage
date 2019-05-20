@@ -71,16 +71,16 @@
                                   <th>Actions</th>
                                 </tr>
                               </thead>
+                              <?php $__currentLoopData = $dictionaries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dict): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <tbody>
-                                <?php $__currentLoopData = $dictionary; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extension): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                   <tr>
-                                    <td><?php echo e($extension->nombre); ?></td>
+                                    <td><?php echo e($dict->nombre); ?></td>
                                     <td>
-                                      <a href="<?php echo e(route('dictionary-destroy', $extension->id)); ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                                      <a href="<?php echo e(route('dictionary-destroy', $dict->id)); ?>" onclick="return confirm('Are you sure you want to delete this item?')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                     </td>
                                   </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                               </tbody>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </table>
                             <?php echo $dictionary->render(); ?>
 

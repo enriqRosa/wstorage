@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dictionary;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\DB;
 
 class DictionaryController extends Controller
 {
@@ -25,10 +26,10 @@ class DictionaryController extends Controller
      */
     public function Dictionary()
     {
-        $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
-
         $id_company= \Auth::user()->company_id;
-        return view('plantillas.dictionary',compact('id_company'))->with('dictionary',$dictionary);
+        $dictionaries = DB::select("SELECT * FROM dictionary WHERE company_id=?",[$id_company]);
+        $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
+        return view('plantillas.dictionary',compact('id_company','dictionaries'))->with('dictionary',$dictionary);
     }
 
     /**

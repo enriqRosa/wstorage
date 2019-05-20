@@ -23,6 +23,9 @@
                                   <h2>License Status</h2>
                                 <div class="clearfix"></div>
                               </div>
+                              <div class="title_left">
+                                <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a>  
+                              </div>
                               <div class="x_content">
                               <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                 <div class="row">
