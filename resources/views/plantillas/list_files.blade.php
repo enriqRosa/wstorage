@@ -34,20 +34,18 @@
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tbody>
-                                            {{--@foreach($license as $licenses)--}}
-                                                <tr>
-                                                    <th style="width:50%">Free Space:</th>
-                                                    <td><h5><span class="label label-success">{{-- $licenses->tamano_restante --}} GB</span></h5></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Use Space:</th>
-                                                    <td><h5><span class="label label-danger">{{-- $licenses->tamano_total - $licenses->tamano_restante --}} GB</span></h5></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Total Space:</th>
-                                                    <td><h5><span class="label label-primary">{{-- $licenses->tamano_total --}} GB</span></h5></td>
-                                                </tr>
-                                            {{--@endforeach--}}
+                                            <tr>
+                                                <th style="width:50%">Free Space:</th>
+                                                <td><h5><span class="label label-success">{{ $new_total }} GB</span></h5></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Use Space:</th>
+                                                <td><h5><span class="label label-danger">{{ $space }}B</span></h5></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total Space:</th>
+                                                <td><h5><span class="label label-primary">{{ $space_user }} GB</span></h5></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -60,39 +58,46 @@
                         <h2>Folders and files</h2>
                         <div class="clearfix"></div>
                     </div>
-                    <?php 
-                        while (($archivo = readdir($gestor)) !== false) {
-                            $ruta_completa = $path . "/" . $archivo;
-                            if ($archivo != "." && $archivo != ".."){
-                                if (is_dir($ruta_completa)) {
-                                    $carpeta = $archivo; ?>
-                                    <div class="col-md-2 col-sm-12 col-xs-12">
-                                        <div class="x_panel">
-                                            <div class="x_title">
-                                                <h4><?php echo substr($carpeta, 0, 19) ?>...</h4>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="x_content">
-                                                <div class="media event col-md-12">
-                                                    <a class="pull-left border-aero profile_thumb" href="{{ route('showFilesSubFolder', array($ruta_local, $carpeta)) }}">
-                                                        <i class="fa fa-folder aero"></i>
-                                                    </a>
-                                                    <p>
-                                                        <form class="form-horizontal form-label-left" action="{{ route('downloadFolder') }}" method="post">
-                                                            {{csrf_field()}}
-                                                            <input type="hidden" value="{{ $carpeta }}" name="folder">
-                                                            <button type="submit" class="btn btn-primary btn-xs">Download</button>
-                                                        </form>
-                                                    </p>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <?php 
+                            while (($archivo = readdir($gestor)) !== false) {
+                                $ruta_completa = $path . "/" . $archivo;
+                                if ($archivo != "." && $archivo != ".."){
+                                    if (is_dir($ruta_completa)) {
+                                        $carpeta = $archivo; ?>
+                                        <div class="col-md-2 col-sm-4 col-xs-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h4><?php echo substr($carpeta, 0, 19) ?>...</h4>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="media event col-md-12 col-sm-12 col-xs-12">
+                                                            <a class="pull-left border-aero" href="{{ route('showFilesSubFolder', array($ruta_local, $carpeta)) }}">
+                                                                <div class="image view view-first">
+                                                                    <img src="{{ asset('images/folder.png') }}" width="60px">
+                                                                </div>
+                                                            </a>
+                                                            <p>
+                                                                <form class="form-horizontal form-label-left" action="{{ route('downloadSubFolder') }}" method="post">
+                                                                    {{csrf_field()}}
+                                                                    <input type="hidden" value="{{ $ruta_local }}" name="ruta_local">
+                                                                    <input type="hidden" value="{{ $carpeta }}" name="carpeta">
+                                                                    <button type="submit" class="btn btn-primary btn-xs">Download</button>
+                                                                </form>
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php
+                                    <?php
+                                    }
                                 }
                             }
-                        }
-                    ?>
+                        ?>
+                    </div>
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_title">
@@ -176,7 +181,7 @@
         Dropzone.options.FormUploadFile = {
             maxFilesize: 50,
             //addRemoveLinks: true,
-            //acceptedFiles: "{{ $dictionary }}",
+            acceptedFiles: "@foreach($dictionary as $dic) {{ $dic->nombre }}, @endforeach",
         }
         $(document).ready(function() {
             var table = $('#example').DataTable( {

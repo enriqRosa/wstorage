@@ -31,6 +31,7 @@
                             <div class="title_left">
                                 <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>
                                 <a href="{{ route('createUser',$name->company_id) }}"><button type="submit" class="btn btn-success">New User</button></a> 
+                                <a href="{{ route('addUserPlus') }}"><button type="submit" class="btn btn-primary">Add 100 users</button></a> 
                             </div>
                         @endforeach
                         <div class="x_content">

@@ -30,6 +30,7 @@
                             <div class="title_left">
                                 <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a>
                                 <a href="<?php echo e(route('createUser',$name->company_id)); ?>"><button type="submit" class="btn btn-success">New User</button></a> 
+                                <a href="<?php echo e(route('addUserPlus')); ?>"><button type="submit" class="btn btn-primary">Add 100 users</button></a> 
                             </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         <div class="x_content">
