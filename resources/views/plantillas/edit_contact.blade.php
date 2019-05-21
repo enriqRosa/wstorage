@@ -29,6 +29,7 @@
                   </div>
                   <div class="x_content">
                   {!! Form::open(['route' => ['contactUpdate',$contact_info],'method' => 'PUT', 'class' => 'form-horizontal form-label-left']) !!}
+                    {!! csrf_field() !!}
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Name *</span>
                         </label>

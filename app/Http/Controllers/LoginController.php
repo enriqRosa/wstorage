@@ -116,6 +116,12 @@ class LoginController extends Controller
         return view('plantillas.superuser');
     }
 
+    #FUNCIÓN PARA DASHBOARD ADMIN
+    public function admin()
+    {
+        return view('plantillas.admin');
+    }
+
     private function alias_company($id)
     {
         $alias_company = DB::table('companies')->select('alias')->where('id', '=', $id)->get();
