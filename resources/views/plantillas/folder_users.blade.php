@@ -79,7 +79,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <div class="media event col-md-12 col-sm-12 col-xs-12">
                                                 <a class="pull-left border-aero" href="{{ route('showFilesFolder',$folders->ruta_local) }}">
-                                                     <div class="image view view-first">
+                                                    <div class="image view view-first">
                                                         <img src="{{ asset('images/folder.png') }}" width="60px">
                                                     </div>
                                                 </a>

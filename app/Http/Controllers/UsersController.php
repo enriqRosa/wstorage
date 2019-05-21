@@ -251,4 +251,51 @@ class UsersController extends Controller
         }
         return $route;
     }
+
+    public function addUserPlus()
+    {
+        for ($i=0; $i < 100; $i++) 
+        { 
+            $nombre = $this->sa(10);
+            $apellidos = $this->sa(10);
+            $email = $this->sa(15).'@'.'pisos.com';
+            $company_id = 2;
+            $user = new User;
+            $user->name = $nombre;
+            $user->apellidos = $apellidos;
+            $user->email = $email;
+            $user->tamano = "5";
+            $user->tipo_usuario = "USER";
+            $user->password = bcrypt("1234");
+            $user->company_id = $company_id;
+            $storage = new Storage;
+            $storage->tamano = 5;
+            $free_space = $this->free_space($company_id);
+            $new_space = $free_space - 5;
+            $available_licenses = $this->available_licenses($company_id);
+            $alias_company = $this->alias_company($company_id);
+            if(1 <= $available_licenses and 5 <= $new_space){
+                $name_folder= $nombre . "_" . $apellidos; 
+                $storage->ruta_local = $name_folder;
+                $storage->ruta_servidor = "/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder";
+                $user->save();
+                $user->storages()->save($storage);
+                mkdir("/var/www/html/wstorage/public/wstorage/$alias_company/$name_folder", 0777, true);
+                $update_license = $this->update_license($company_id, $new_space, $available_licenses);
+            }
+
+        }
+        return redirect()->route('users')->with('success','Registry created successfully.');
+    }
+    private function sa($long)
+    {
+        $caracteres = 'asdfghjklqwertyuiopzxcvbnm1234567890ASDFGHJKLQWERTYUIOPZXCVBNM';
+        $num_caracteres = strlen($caracteres);
+        $string_aletorio = '';
+        for ($i=0; $i < $long; $i++) 
+        { 
+            $string_aletorio .=$caracteres[rand(0, $num_caracteres - 1)];
+        }
+        return $string_aletorio;
+    }
 }
