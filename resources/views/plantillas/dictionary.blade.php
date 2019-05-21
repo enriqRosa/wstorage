@@ -76,7 +76,7 @@
                               </tbody>
                               @endforeach
                             </table>
-                            {!! $dictionary->render() !!}
+                            {!! $dictionaries->render() !!}
                           </div>
                         </div>
                       </div>

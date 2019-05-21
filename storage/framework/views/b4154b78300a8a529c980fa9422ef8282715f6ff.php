@@ -82,7 +82,7 @@
                               </tbody>
                               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </table>
-                            <?php echo $dictionary->render(); ?>
+                            <?php echo $dictionaries->render(); ?>
 
                           </div>
                         </div>

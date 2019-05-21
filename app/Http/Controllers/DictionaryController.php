@@ -28,8 +28,8 @@ class DictionaryController extends Controller
     {
         $id_company= \Auth::user()->company_id;
         $dictionaries = DB::select("SELECT * FROM dictionary WHERE company_id=?",[$id_company]);
-        $dictionary = Dictionary::orderBy('nombre','Asc')->paginate(5);
-        return view('plantillas.dictionary',compact('id_company','dictionaries'))->with('dictionary',$dictionary);
+        $dictionaries = Dictionary::orderBy('nombre','Asc')->paginate(5);
+        return view('plantillas.dictionary',compact('id_company','dictionaries'));
     }
 
     /**
@@ -44,6 +44,7 @@ class DictionaryController extends Controller
         //save() guarda el registro
         $dictionary = new Dictionary;
         $dictionary->nombre = ".".$request->extension;
+        $dictionary->company_id = $request->company_id;
         $dictionary->save();
         return back()->with('dictionary' ,'Data inserted Successfully');
     }
