@@ -95,9 +95,7 @@
                 </div>
                 <?php echo $__env->yieldContent('content'); ?>
                 <footer>
-                    
-                        <center>Warriors Lab's S.A de C.V
-                    
+                    <center>Warriors Lab's S.A de C.V
                     <div class="clearfix"></div>
                 </footer>
             </div>
