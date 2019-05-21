@@ -53,7 +53,7 @@
                                 <div class="item form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Assign Space</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12" type="number" id="space" name="space" value="<?php echo e($user->tamano); ?>" required>
+                                        <input class="form-control col-md-7 col-xs-12" type="number" min="1" id="space" name="space" value="<?php echo e($user->tamano); ?>" required>
                                         <span class="message"> -The storage space is assigned in GB.</span>
                                     </div>
                                 </div>

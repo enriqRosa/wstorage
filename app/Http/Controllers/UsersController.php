@@ -54,7 +54,7 @@ class UsersController extends Controller
         $user->email = $request->email;
         $user->tamano = $request->space;
         $user->tipo_usuario = $request->rol_usuario;
-        $user->password = bcrypt($request->pass_usuario);
+        $user->password = bcrypt($request->password);
         $user->company_id = $request->company_id;
         $storage = new Storage;
         $storage->tamano = $request->space;

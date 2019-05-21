@@ -36,6 +36,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 //RUTA PARA VISTA SUPERUSER.BLADE.PHP
 Route::get('spusr','LoginController@superuser');
 
+//RUTA PARA VISTA ADMIN.BLADE.PHP
+Route::get('usrad','LoginController@admin');
+
 /****************************EMPRESA***********************************/
 //RUTA PARA VISTA AGREGAR EMPRESA
 Route::get('add-company','CompanyController@createCompany');

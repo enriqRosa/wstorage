@@ -54,6 +54,9 @@
                                     <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>   
                                     <li><a href="{{url('/dictionary')}}"><i class="fa fa-book"></i> Dictionary</a></li> 
                                 @endif
+                                @if (\Auth::user()->tipo_usuario=='USER')
+                                    <li><a href="{{url('/files')}}"><i class="fa fa-folder"></i>My files</a></li>    
+                                @endif
                                 </ul>
                             </div>
                         </div>
@@ -90,14 +93,7 @@
                 </div>
                 @yield('content')
                 <footer>
-                
-                    <div class="product_social pull-right">
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/WarriorsLabs"><i class="fa fa-facebook-square"></i></a></li>
-                            <li><a href="https://twitter.com/warriorsfim?lang=es"><i class="fa fa-twitter-square"></i></a></li>
-                        </ul>
-                        Warriors Lab's S.A de C.V
-                    </div> 
+                    <center>Warriors Lab's S.A de C.V
                     <div class="clearfix"></div>
                 </footer>
             </div>

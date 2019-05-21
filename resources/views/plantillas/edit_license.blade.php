@@ -13,6 +13,7 @@
                   </div>
                   <div class="x_content">
                     {!! Form::open(['route' => ['updateLicense',$license_edit],'method' => 'PUT', 'class' => 'form-horizontal form-label-left']) !!}
+                      {!! csrf_field() !!}
                       <div class="item form-group">
                       </div> 
                       <div class="form-group">

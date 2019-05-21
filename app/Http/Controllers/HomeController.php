@@ -23,7 +23,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('plantillas.superuser');
-        #return view('home');
+        if(\Auth::user()->tipo_usuario=='SUPER')
+        {
+            return view('plantillas.superuser');
+            #return view('home');
+        }
+        if(\Auth::user()->tipo_usuario=='ADMIN')
+        {
+            return view('plantillas.admin');
+        }
+        if(\Auth::user()->tipo_usuario=='USER')
+        {
+            return view('plantillas.files');
+        }
     }
 }
