@@ -15,7 +15,7 @@ class AddDictionaryTable extends Migration
     {
         Schema::create('dictionary', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->timestamps();
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('Cascade');

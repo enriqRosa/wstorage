@@ -30,24 +30,68 @@ class FileController extends Controller
             FROM companies AS c, storages AS s, users AS u
             WHERE u.company_id = c.id
             AND s.user_id = u.id
-            AND c.id = ?;", [$company_id]
+            AND c.id = ? ORDER BY s.id", [$company_id]
         );
         return view('plantillas.folder_users', compact('license','folder'));
     }
 
     public function showFilesFolder($ruta_local)
     {
-        $dictionary = ".png";
         $company_id= \Auth::user()->company_id;
         $alias_company = $this->alias_company($company_id);
+        $space_user = $this->space_user($ruta_local);
+        $dictionary= DB::select("SELECT nombre FROM dictionary WHERE company_id = ?", [$company_id]);
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
         $path2 = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
+        echo $this->Fsize($path);
+        die();
+        $space = exec("du -ch $path|cut -b 1-5");
+        $space2= exec("du -ch $path|cut -b 1-5");
+        $space3= exec("du -ch $path|cut -b 1-3");
+        $type=substr($space2,-1);
+        if($type == "K"){
+            $type_mb = $space3 * 0.00097656;
+            $type_gb = $type_mb * 0.00097656;
+            $total = $space_user - $type_gb;
+            $new_total = substr($total,0,-9);
+        }
+        if($type == "M"){
+            $type_gb = $space3 * 0.00097656;
+            $total = $space_user - $type_gb;
+            $new_total = substr($total,0,-7);
+        }
+        if($type == "G"){
+            $new_total = $space_user - $space3;
+        }
         if (is_dir($path)){
             $gestor = opendir($path);
             $gestor2 = opendir($path2);
-            return view('plantillas.list_files',compact('ruta_local','gestor','path','gestor2','path2','dictionary'));
+            return view('plantillas.list_files',compact('ruta_local','gestor','path','gestor2','path2','dictionary','space','new_total','space_user'));
         }
     }
+
+    public function Fsize($dir)
+    {
+        if (is_dir($dir)) {
+            if ($gd = opendir($dir)){
+                $cont = 0;
+                while (($archivo = readdir($gd)) !== false) {
+                    if ($archivo != "." && $archivo != ".." ){
+                        if (is_dir($archivo)){
+                            $cont += Fsize($dir."/".$archivo); 
+                        }
+                        else{
+                            $cont += filesize($dir."/".$archivo);
+                            echo  "archivo : " . $dir."/".$archivo . "&nbsp;&nbsp;" . filesize($dir."/".$archivo)."<br />";
+                        }
+                    }
+                }
+            closedir($gd);
+        }
+    }
+    return $cont;
+ }
+
 
     public function store(Request $request)
     {
@@ -195,6 +239,62 @@ class FileController extends Controller
         }
     }
 
+    public function downloadSubFolder(Request $request)
+    {
+        $company_id= \Auth::user()->company_id;
+        $alias_company = $this->alias_company($company_id);
+        $ruta_local = $request->ruta_local;
+        $carpeta = $request->carpeta;
+        $file ="wstorage/$alias_company/$ruta_local/$carpeta/";
+        //creamos una instancia de ZipArchive
+        $zip = new \ZipArchive();
+        /*directorio a comprimir
+         * la barra inclinada al final es importante
+         * la ruta debe ser relativa no absoluta
+        */
+        //$dir = 'fuente/';
+        //ruta donde guardar los archivos zip, ya debe existir
+        $rutaFinal = "/var/www/html/wstorage/public/wstorage/archivos_zip";
+        if(!file_exists($rutaFinal)){
+            mkdir($rutaFinal);
+        }
+        $archivoZip = "$carpeta.zip";
+        if ($zip->open($archivoZip, \ZIPARCHIVE::CREATE) === true) {
+            $this->agregar_zip($file, $zip);
+            $zip->close();
+            //Muevo el archivo a una ruta
+            //donde no se mezcle los zip con los demas archivos
+            rename($archivoZip, "$rutaFinal/$archivoZip");
+            //Hasta aqui el archivo zip ya esta creado
+            //Verifico si el archivo ha sido creado
+            if (file_exists($rutaFinal. "/" . $archivoZip)) {
+                //echo "Proceso Finalizado!! <br/><br/>
+                //Descargar: <a href='$rutaFinal/$archivoZip'>$archivoZip</a>";
+                //set_time_limit(18000);
+                $file_zip ="$rutaFinal/$archivoZip";
+                $filename = $archivoZip; // el nombre con el que se descargara, puede ser diferente al original 
+                header('Content-Description: File Transfer');
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment; filename=' . $filename);
+                header('Content-Transfer-Encoding: binary');
+                header('Expires: 0');
+                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                header('Pragma: public');
+                header('Content-Length: ' . filesize($file_zip));
+                ob_clean();
+                flush();
+                readfile($file_zip);
+                $delete_folder = exec("rm -rf $file_zip");
+                die();
+            } 
+            else {
+                echo "Error, archivo zip no ha sido creado!!";
+                die();
+            }
+        }
+        die();
+    }
+
     public function showFilesSubFolder($ruta_local, $carpeta )
     {
         $dictionary = ".pdf, .png";
@@ -256,5 +356,29 @@ class FileController extends Controller
         //$delete_folder = exec("rm -rf $path");
         unlink($path);
         return Redirect::back()->with('success','File successfully deleted.');
+    }
+
+    private function space_user($ruta_local)
+    {
+        $space_user= DB::select("SELECT tamano FROM storages WHERE ruta_local = ?", [$ruta_local]
+        );
+        foreach ($space_user as $user_space) {
+            foreach ($user_space as $available) {
+                $available;
+            }
+        }
+        return $available;
+    }
+
+    private function dictionary($company_id)
+    {
+        $dictionary= DB::select("SELECT nombre FROM dictionary WHERE company_id = ?", [$company_id]
+        );
+        foreach ($dictionary as $dictionary_company) {
+            foreach ($dictionary_company as $dic) {
+                $dic;
+            }
+        }
+        return $dic;
     }
 }
