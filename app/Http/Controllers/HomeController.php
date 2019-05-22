@@ -23,7 +23,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('plantillas.superuser');
-        #return view('home');
+        if(\Auth::user()->tipo_usuario=='SUPER')
+        {
+            return view('plantillas.superuser');
+            #return view('home');
+        }
+        if(\Auth::user()->tipo_usuario=='ADMIN')
+        {
+            return view('plantillas.admin');
+            #return view('home');
+        }
+        if(\Auth::user()->tipo_usuario=='USER')
+        {
+            $name=\Auth::user()->name;
+            $lastname=\Auth::user()->apellidos;
+            $ruta_local = $name . "_" . $lastname;
+            return redirect()->route('showFilesFolder',$ruta_local);
+            #return view('home');
+        }   
     }
 }
