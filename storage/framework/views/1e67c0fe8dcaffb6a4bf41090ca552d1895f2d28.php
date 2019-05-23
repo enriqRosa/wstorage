@@ -116,6 +116,16 @@
                           </div>
                         </div>
                       </div>
+                      <div class="product-sales-area mg-tb-30">
+                        <div class="container-fluid">
+                          <div class="row"></div>
+                        </div>
+                      </div>
+                      <div class="product-sales-area mg-tb-30">
+                          <div class="container-fluid">
+                              <div class="row"></div>
+                          </div>
+                      </div>
                       <!-- /page content -->
                       <?php $__env->stopSection(); ?>
 <?php echo $__env->make('temps.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

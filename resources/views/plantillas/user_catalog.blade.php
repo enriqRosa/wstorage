@@ -111,5 +111,15 @@
                           </div>
                         </div>
                       </div>
+                      <div class="product-sales-area mg-tb-30">
+                        <div class="container-fluid">
+                          <div class="row"></div>
+                        </div>
+                      </div>
+                      <div class="product-sales-area mg-tb-30">
+                          <div class="container-fluid">
+                              <div class="row"></div>
+                          </div>
+                      </div>
                       <!-- /page content -->
                       @stop

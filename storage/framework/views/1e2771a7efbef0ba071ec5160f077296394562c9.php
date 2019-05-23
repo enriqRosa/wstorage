@@ -67,7 +67,27 @@
                             </div>
                         </div>
                     </div>
-                </div>       
+                </div>  
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>  
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
                 <?php endif; ?>
                 <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
                 <div class="section-admin container-fluid res-mg-t-15">
@@ -185,6 +205,35 @@
                 </div>
             </div>
         </div>
+        <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div><div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
+                <div class="product-sales-area mg-tb-30">
+                    <div class="container-fluid">
+                        <div class="row"></div>
+                    </div>
+                </div>
         
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
