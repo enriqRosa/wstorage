@@ -185,6 +185,7 @@
                 </div>
             </div>
         </div>
+        
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
 

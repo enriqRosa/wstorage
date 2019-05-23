@@ -186,5 +186,6 @@
                 </div>
             </div>
         </div>
+        
 @endif
 @stop

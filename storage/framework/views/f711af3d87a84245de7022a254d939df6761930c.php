@@ -55,6 +55,10 @@
         <!-- modernizr JS
 	    ============================================ -->
         <script src="<?php echo e(asset('js/principal/modernizr-2.8.3.min.js')); ?>"></script>
+         <!-- datable
+	    ============================================ -->
+        <script src="<?php echo e(asset('js/principal/bootstrap-table.css')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/bootstrap-editable.css')); ?>"></script>
     <?php echo $__env->yieldContent('file_css'); ?>
     </head>
 <body>
@@ -66,11 +70,9 @@
         <nav id="sidebar" class="">
             <div class="sidebar-header">
                 <a href="index.html"><img class="main-logo" src="images/STORAGE.png" alt="" width="210px" /></a>
-                <strong><img src="img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="sidebar-header">
                 <a href="index.html"><img src="images/caja.storage.png" alt=""/></a>
-                <strong><img src="img/logo/logosn.png" alt="" /></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -341,6 +343,16 @@
         <!-- main JS
 	    	============================================ -->
         <script src="<?php echo e(asset('js/principal/main.js')); ?>"></script>
+        <!-- datatable JS
+	    	============================================ -->
+        <script src="<?php echo e(asset('js/principal/bootstrap-table.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/tableExport.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/data-table-active.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/bootstrap-table-editable.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/bootstrap-editable.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/bootstrap-table-resizable.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/colResizable-1.5.source.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/principal/bootstrap-table-export.js')); ?>"></script>
     <?php echo $__env->yieldContent('file_js'); ?>
     </body>
 </html>
