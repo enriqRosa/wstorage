@@ -256,28 +256,7 @@
                 </div>
             </div>
         </div>
-        @yield('content')
-        <div class="product-sales-area mg-tb-30">
-            <div class="container-fluid">
-                <div class="row">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="product-sales-area mg-tb-30">
-            <div class="container-fluid">
-                <div class="row">
-                    
-                </div>
-            </div>
-        </div>
-        <div class="product-sales-area mg-tb-30">
-            <div class="container-fluid">
-                <div class="row">
-                    
-                </div>
-            </div>
-        </div>
+        @yield('content')        
         <div class="footer-copyright-area">
             <div class="container-fluid">
                 <div class="row">

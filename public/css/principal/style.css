@@ -53,19 +53,21 @@ padding: 0
 body {}
 
 .mg-tb-30{
-	margin:14px 0px;
+	margin:41px 0px;
 }
 .mg-b-30{
-	margin-bottom:30px;
+    margin-top:86px;
+    margin-bottom:80px;
 }
 .mg-tb-15{
-	margin:15px 0px;
+	margin:56px 0px;
 }
 .mg-t-30{
 	margin-top:30px;
 }
 .mg-b-10{
-	margin-bottom:16px;
+	margin-top:102px;
+    margin-bottom: 100px;
 }
 .mg-t-15{
 	margin-top:15px;
@@ -2728,7 +2730,7 @@ ul.mailbox-list li:hover a, ul.h-list li:hover a {
 }
 .panel-body a {
     font-size: 14px;
-    color: #444;
+    color: #fff;
     margin-top: 15px;
 }
 .project-value h2 {
