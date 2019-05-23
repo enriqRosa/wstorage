@@ -67,29 +67,39 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <p class="buscador">
+                                <label>Search:</label>
+                                <input id="buscador" class="form-control" type="input" value="">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         <?php $__currentLoopData = $folder; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $folders): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="col-md-2 col-sm-4 col-xs-12">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h4><?php echo e($folders->ruta_local); ?></h4>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="media event col-md-12 col-sm-12 col-xs-12">
-                                                <a class="pull-left border-aero" href="<?php echo e(route('showFilesFolder',$folders->ruta_local)); ?>">
-                                                    <div class="image view view-first">
-                                                        <img src="<?php echo e(asset('images/folder.png')); ?>" width="60px">
-                                                    </div>
-                                                </a>
-                                                <p>
-                                                    <form class="form-horizontal form-label-left" action="<?php echo e(route('downloadFolder')); ?>" method="post">
-                                                        <?php echo e(csrf_field()); ?>
+                            <div class="item">
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h4><label class="nombres"><?php echo e($folders->ruta_local); ?></label></h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="media event col-md-12 col-sm-12 col-xs-12">
+                                                    <a class="pull-left border-aero" href="<?php echo e(route('showFilesFolder',$folders->ruta_local)); ?>">
+                                                        <div class="image view view-first">
+                                                            <img src="<?php echo e(asset('images/folder.png')); ?>" width="60px">
+                                                        </div>
+                                                    </a>
+                                                    <p>
+                                                        <form class="form-horizontal form-label-left" action="<?php echo e(route('downloadFolder')); ?>" method="post">
+                                                            <?php echo e(csrf_field()); ?>
 
-                                                        <input type="hidden" value="<?php echo e($folders->ruta_local); ?>" name="ruta_local">
-                                                        <button type="submit" class="btn btn-primary btn-xs">Download</button>
-                                                    </form>
-                                                </p>
+                                                            <input type="hidden" value="<?php echo e($folders->ruta_local); ?>" name="ruta_local">
+                                                            <button type="submit" class="btn btn-primary btn-xs">Download</button>
+                                                        </form>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -103,16 +113,25 @@
     </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('file_js'); ?>
-    <script src="<?php echo e(asset('dropzone/dropzone.js')); ?>"></script>
     <script>
-        Dropzone.options.FormUploadFile = {
-            maxFilesize: 50,
-            addRemoveLinks: true,
-            headers: {
-      'X-CSRF-TOKEN': "<?php echo e(csrf_token()); ?>"
-    },
-            //acceptedFiles: ".pdf",
-        }
+        $(document).ready(function(){
+            $('#buscador').keyup(function(){
+                var nombres = $('.nombres');
+                var buscando = $(this).val();
+                var item='';
+                for( var i = 0; i < nombres.length; i++ ){
+                    item = $(nombres[i]).html().toLowerCase();
+                    for(var x = 0; x < item.length; x++ ){
+                        if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+                            $(nombres[i]).parents('.item').show(); 
+                        }
+                        else{
+                            $(nombres[i]).parents('.item').hide();
+                        }
+                    }
+                }
+            });
+        });
     </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('temps.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
