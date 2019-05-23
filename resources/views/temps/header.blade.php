@@ -50,8 +50,7 @@
                                 @if (\Auth::user()->tipo_usuario=='ADMIN')
                                 <li><a href="{{url('/usrad')}}"><i class="fa fa-home"></i> Home </a></li>
                                     <li><a href="{{url('/files')}}"><i class="fa fa-folder"></i>My files</a></li>    
-                                    <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i>My company</a></li>
-                                    <li><a href="{{url('/user-catalog')}}"><i class="fa fa-user"></i> User catalog</a></li>   
+                                    <li><a href="{{url('/companies')}}"><i class="fa fa-building"></i>My company</a></li>  
                                     <li><a href="{{url('/dictionary')}}"><i class="fa fa-book"></i> Dictionary</a></li> 
                                 @endif
                                 @if (\Auth::user()->tipo_usuario=='USER')

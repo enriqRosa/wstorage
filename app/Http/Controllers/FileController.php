@@ -18,21 +18,30 @@ class FileController extends Controller
 
     public function showFiles()
     {
+        $rol= \Auth::user()->tipo_usuario;
         $company_id= \Auth::user()->company_id;
-        $alias_company = $this->alias_company($company_id);
-        $license= DB::select("SELECT l.tamano_total, l.tamano_restante, l.licencia_total, l.licencia_restante
-            FROM users AS u, licenses AS l, companies AS c
-            WHERE u.company_id = c.id
-            AND c.license_id = l.id
-            AND u.company_id = ? GROUP BY l.id;", [$company_id]
-        );
-        $folder= DB::select("SELECT s.* 
-            FROM companies AS c, storages AS s, users AS u
-            WHERE u.company_id = c.id
-            AND s.user_id = u.id
-            AND c.id = ? ORDER BY s.id", [$company_id]
-        );
-        return view('plantillas.folder_users', compact('license','folder'));
+        if($rol === 'ADMIN'){
+            $alias_company = $this->alias_company($company_id);
+            $license= DB::select("SELECT l.tamano_total, l.tamano_restante, l.licencia_total, l.licencia_restante
+                FROM users AS u, licenses AS l, companies AS c
+                WHERE u.company_id = c.id
+                AND c.license_id = l.id
+                AND u.company_id = ? GROUP BY l.id;", [$company_id]
+            );
+            $folder= DB::select("SELECT s.* 
+                FROM companies AS c, storages AS s, users AS u
+                WHERE u.company_id = c.id
+                AND s.user_id = u.id
+                AND c.id = ? ORDER BY s.id", [$company_id]
+            );
+            return view('plantillas.folder_users', compact('license','folder'));
+        }
+        if($rol === 'USER'){
+            $name= \Auth::user()->name;
+            $lastname= \Auth::user()->apellidos;
+            $ruta_local = $name . "_" . $lastname;
+            return redirect()->route('showFilesFolder',$ruta_local);
+        }
     }
 
     public function showFilesFolder($ruta_local)
@@ -43,63 +52,50 @@ class FileController extends Controller
         $dictionary= DB::select("SELECT nombre FROM dictionary WHERE company_id = ?", [$company_id]);
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
         $path2 = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
-        echo $this->Fsize($path);
-        die();
-        $space = exec("du -ch $path|cut -b 1-5");
-        $space2= exec("du -ch $path|cut -b 1-5");
-        $space3= exec("du -ch $path|cut -b 1-3");
-        $type=substr($space2,-1);
-        if($type == "K"){
-            $type_mb = $space3 * 0.00097656;
-            $type_gb = $type_mb * 0.00097656;
-            $total = $space_user - $type_gb;
-            $new_total = substr($total,0,-9);
-        }
-        if($type == "M"){
-            $type_gb = $space3 * 0.00097656;
-            $total = $space_user - $type_gb;
-            $new_total = substr($total,0,-7);
-        }
-        if($type == "G"){
-            $new_total = $space_user - $space3;
-        }
+        $path3 = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local";
+        $space_folder = $this->MeDir($path);
+        $type_kb = $space_folder * 0.001;
+        $type_mb = $type_kb / 1000;
+        $type_gb = $type_mb / 1000;
+        $total = $space_user - $type_gb;
+        //die();
+        $new_total = round($total,2);
+        $res = $new_total * 1073741824;
+        $type_gb = round($type_gb,2);
+        $space = exec("du -ch $path|cut -b 1-4");
         if (is_dir($path)){
             $gestor = opendir($path);
             $gestor2 = opendir($path2);
-            return view('plantillas.list_files',compact('ruta_local','gestor','path','gestor2','path2','dictionary','space','new_total','space_user'));
+            $gestor3 = opendir($path3);
+            return view('plantillas.list_files',compact('res','ruta_local','gestor','path','gestor2','path2','gestor3','path3','dictionary','space','new_total','space_user','type_gb','space_folder'));
         }
     }
 
-    public function Fsize($dir)
+    public function MeDir($dir=".",$subdirs=1) 
     {
-        if (is_dir($dir)) {
-            if ($gd = opendir($dir)){
-                $cont = 0;
-                while (($archivo = readdir($gd)) !== false) {
-                    if ($archivo != "." && $archivo != ".." ){
-                        if (is_dir($archivo)){
-                            $cont += Fsize($dir."/".$archivo); 
-                        }
-                        else{
-                            $cont += filesize($dir."/".$archivo);
-                            echo  "archivo : " . $dir."/".$archivo . "&nbsp;&nbsp;" . filesize($dir."/".$archivo)."<br />";
-                        }
-                    }
-                }
-            closedir($gd);
+        $arr = scandir($dir);
+        $sizedir = 0;
+        for ($i=0; $i<count($arr); $i++){
+            if ($arr[$i]!="." && $arr[$i]!=".."){
+                if (is_dir($dir ."/". $arr[$i])) { 
+                        if ($subdirs==1) 
+                            $sizedir += $this->MeDir($dir . "/" . $arr[$i]); 
+                    } 
+                else{ 
+                    $sizedir += filesize($dir ."/". $arr[$i]); 
+                } 
+            }
         }
-    }
-    return $cont;
- }
-
+        return $sizedir; 
+    } 
 
     public function store(Request $request)
     {
         $name = $request->ruta_local;
         $company_id= \Auth::user()->company_id;
         $alias_company = $this->alias_company($company_id);
-        if($_FILES){
-        	$upload_directory = "wstorage/$alias_company/$name/";
+        if($_FILES){ 
+            $upload_directory = "wstorage/$alias_company/$name/";
         	$upload_file_copy = $upload_directory . basename($_FILES['file']['name']);
         	if(move_uploaded_file($_FILES['file']['tmp_name'], $upload_file_copy)){
         		echo "El archivo fue subido correctamente";
@@ -297,15 +293,26 @@ class FileController extends Controller
 
     public function showFilesSubFolder($ruta_local, $carpeta )
     {
-        $dictionary = ".pdf, .png";
         $company_id= \Auth::user()->company_id;
+        $dictionary= DB::select("SELECT nombre FROM dictionary WHERE company_id = ?", [$company_id]);
+        $space_user = $this->space_user($ruta_local);
         $alias_company = $this->alias_company($company_id);
         $path = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local/$carpeta";
         $path2 = "/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local/$carpeta";
+        $path3 = "/var/www/html/wstorage/public/wstorage/$alias_company";
+        $space_folder = $this->MeDir($path3);
+        $type_kb = $space_folder * 0.001;
+        $type_mb = $type_kb / 1000;
+        $type_gb = $type_mb / 1000;
+        $total = $space_user - $type_gb;
+        $new_total = round($total,2);
+        $res = $new_total * 1073741824;
+        $type_gb = round($type_gb,2);
+        $space = exec("du -ch $path|cut -b 1-4");
         if (is_dir($path)){
             $gestor = opendir($path);
             $gestor2 = opendir($path2);
-            return view('plantillas.list_files_subfolder',compact('ruta_local','gestor','path','gestor2','path2','dictionary','carpeta'));
+            return view('plantillas.list_files_subfolder',compact('ruta_local','gestor','path','gestor2','path2','dictionary','carpeta','dictionary','space_user','type_gb','res'));
         }
     }
 
@@ -380,5 +387,15 @@ class FileController extends Controller
             }
         }
         return $dic;
+    }
+
+    public function newFolder(Request $request)
+    {
+        $name_folder=$request->name;
+        $ruta_local=$request->ruta_local;
+        $company_id= \Auth::user()->company_id;
+        $alias_company = $this->alias_company($company_id);
+        mkdir("/var/www/html/wstorage/public/wstorage/$alias_company/$ruta_local/$name_folder", 0777, true);
+        return Redirect::back()->with('success','Folder created successfully.');
     }
 }

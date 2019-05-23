@@ -50,8 +50,7 @@
                                 <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
                                 <li><a href="<?php echo e(url('/usrad')); ?>"><i class="fa fa-home"></i> Home </a></li>
                                     <li><a href="<?php echo e(url('/files')); ?>"><i class="fa fa-folder"></i>My files</a></li>    
-                                    <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i>My company</a></li>
-                                    <li><a href="<?php echo e(url('/user-catalog')); ?>"><i class="fa fa-user"></i> User catalog</a></li>   
+                                    <li><a href="<?php echo e(url('/companies')); ?>"><i class="fa fa-building"></i>My company</a></li>  
                                     <li><a href="<?php echo e(url('/dictionary')); ?>"><i class="fa fa-book"></i> Dictionary</a></li> 
                                 <?php endif; ?>
                                 <?php if(\Auth::user()->tipo_usuario=='USER'): ?>

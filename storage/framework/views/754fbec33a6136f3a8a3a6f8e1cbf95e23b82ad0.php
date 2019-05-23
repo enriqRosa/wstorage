@@ -39,7 +39,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Use Space:</th>
-                                                <td><h5><span class="label label-danger"><?php echo e($space); ?>B</span></h5></td>
+                                                <td><h5><span class="label label-danger"><?php echo e($type_gb); ?> GB</span></h5></td>
                                             </tr>
                                             <tr>
                                                 <th>Total Space:</th>
@@ -58,6 +58,30 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">New Folder</button>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Add New Folder</h4>
+                                    </div>
+                                    <form method="post" action="<?php echo e(route('newFolder')); ?>">
+                                        <?php echo e(csrf_field()); ?>
+
+                                        <div class="modal-body">
+                                            <label>Name:</label>
+                                            <input type="text" name="name" class="form-control">
+                                            <input type="hidden" value="<?php echo e($ruta_local); ?>" name="ruta_local">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Create</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <?php 
                             while (($archivo = readdir($gestor)) !== false) {
                                 $ruta_completa = $path . "/" . $archivo;
@@ -163,7 +187,7 @@
                                     <span class="note">There are no files</span>
                                 </div>
                                 <div class="fallback">
-                                    <input type="file" name="file" multiple>
+                                    <input type="file" name="file" id="file" multiple>
                                 </div>
                             <?php echo Form::close(); ?>
 
@@ -184,9 +208,19 @@
     <script>
         Dropzone.options.FormUploadFile = {
             maxFilesize: 50,
+            //paramName: "file",
             //addRemoveLinks: true,
             acceptedFiles: "<?php $__currentLoopData = $dictionary; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dic): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($dic->nombre); ?>, <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>",
-        }
+            accept: function(file, done) {
+                if (<?php echo e($space_user); ?> <= <?php echo e($type_gb); ?> || file.size >= <?php echo e($res); ?>) {
+                    alert("Ya no tienes espacio.");
+                }
+                else{
+                    done();
+                }
+            }
+        } 
+
         $(document).ready(function() {
             var table = $('#example').DataTable( {
                 responsive: true

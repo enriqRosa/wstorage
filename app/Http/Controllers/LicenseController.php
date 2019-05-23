@@ -63,7 +63,7 @@ class LicenseController extends Controller
     {
         $license_edit=License::find($license_id);
         $user_catalog=DB::select('SELECT * FROM users_catalog');
-        return view('plantillas.edit_license',compact('user_catalog','company_name'))->with('license_edit',$license_edit);
+        return view('plantillas.edit_license',compact('user_catalog','license_edit'));
     }
 
     public function updateLicense(Request $request,$id)

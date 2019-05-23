@@ -129,5 +129,6 @@ Route::post('files','FileController@storeSubFolder')->name('storeSubFolder');
 Route::post('deleteFileSubFolder', 'FileController@deleteFileSubFolder')->name('deleteFileSubFolder');
 Route::post('downloadFileSubFolder', 'FileController@downloadFileSubFolder')->name('downloadFileSubFolder');
 Route::post('downloadSubFolder', 'FileController@downloadSubFolder')->name('downloadSubFolder');
+Route::post('newFolder', 'FileController@newFolder')->name('newFolder');
 # AGREGAR 100 USERS #
 Route::get('add-users-plus','UsersController@addUserPlus')->name('addUserPlus');
