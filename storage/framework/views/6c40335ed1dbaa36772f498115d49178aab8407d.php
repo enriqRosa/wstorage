@@ -4,38 +4,33 @@
     <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css" rel="stylesheet">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="right_col" role="main">
-        <div class="">
-            <div class="clearfix"></div><!--SALTO DE LÍNEA-->
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="col-md-12">
-                            <div class="col-md-3">
-                            </div>
-                            <div class="col-md-6">
-                                <?php if(Session::has('success')): ?>
-                                    <div class="alert alert-info" aria-label="Close">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong><?php echo e(Session::get('success')); ?></strong>
+            <div class="section-admin container-fluid res-mg-t-15">
+                <div class="row admin text-center">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="admin-content analysis-progrebar-ctn">
+                                <?php $__currentLoopData = $company_name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $name): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <h4 class="text-left text-uppercase"><b><?php echo e($name->nombre); ?> Users</b></h4><br>
+                                    <div class="row vertical-center-box vertical-center-box-tablet">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a>
+                                            <a href="<?php echo e(route('createUser',$name->company_id)); ?>"><button type="submit" class="btn btn-success">New User</button></a> 
+                                        </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
-                                <?php endif; ?>
+                                </div>
                             </div>
                         </div>
-                        <?php $__currentLoopData = $company_name; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $name): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="x_title">
-                                <h2>"<?php echo e($name->nombre); ?>" Users</h2>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="title_left">
-                                <a href="<?php echo e(url('/companies')); ?>"><button type="submit" class="btn btn-danger">Back</button></a>
-                                <a href="<?php echo e(route('createUser',$name->company_id)); ?>"><button type="submit" class="btn btn-success">New User</button></a> 
-                                <a href="<?php echo e(route('addUserPlus')); ?>"><button type="submit" class="btn btn-primary">Add 100 users</button></a> 
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <div class="x_content">
-                            <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                <div class="row">
+                    </div>
+                </div>
+            </div>
+            <div class="widgets-programs-area mg-t-15">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-3 col-sm-3 col-xs-12">                   
+                            <div class="hpanel responsive-mg-b-30">
+                                <div class="panel-body">
                                     <div class="col-sm-12">
                                         <table id="example" class="table table-striped table-bordered">
                                             <thead>
@@ -57,25 +52,29 @@
                                                         <td><?php echo e($users->tamano); ?> GB</td>
                                                         <td><?php echo e($users->tipo_usuario); ?></td>
                                                         <td>
-                                                            <center>
-                                                                <a href="<?php echo e(route('updateUser', $users->id)); ?>" class="btn btn-warning btn-xs">
+                                                                <a href="<?php echo e(route('updateUser', $users->id)); ?>" class="btn btn-custon-rounded-four btn-warning">
                                                                     <i class="fa fa-pencil"></i> Edit 
                                                                 </a>                                                      
-                                                                <a href="<?php echo e(route('deleteUser', $users->id)); ?>" onclick="return confirm('Are you sure you want to delete this user?\nAll data will be deleted!')" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </center>
+                                                                <a href="<?php echo e(route('deleteUser', $users->id)); ?>" onclick="return confirm('Are you sure you want to delete this user?\nAll data will be deleted!')" class="btn btn-custon-rounded-four btn-danger"><i class="fa fa-trash-o"></i> Delete </a>
+                                                            
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                         </table>			
-                                    </div>
-                                </div>
+                                    </div>                                    
+                                </div>    
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>    
+                </div>    
             </div>
         </div>
+    </div>
+    <div class="product-sales-area mg-b-10">
+      <div class="container-fluid">
+        <div class="row"></div>
+      </div>
     </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('file_js'); ?>
