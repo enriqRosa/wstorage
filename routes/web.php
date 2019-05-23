@@ -35,6 +35,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //RUTA PARA VISTA SUPERUSER.BLADE.PHP
 Route::get('spusr','LoginController@superuser');
+//RUTA PARA VISTA ADMIN.BLADE.PHP
+Route::get('usrad','LoginController@admin');
 
 //RUTA PARA VISTA ADMIN.BLADE.PHP
 Route::get('usrad','LoginController@admin');
@@ -88,7 +90,7 @@ Route::get('license/{id}/destroy',[
 ]);
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
 
-Route::get('license-status','LicenseController@showLicenses');
+Route::get('license-status','LicenseController@showLicenses')->name('showLicenses');
 Route::get('license-status-company/{license_id}/show','LicenseController@showLicenseCompany')->name('showLicenseCompany');
 
 /****************************CONTACTOS*********************************/
@@ -129,5 +131,6 @@ Route::post('files','FileController@storeSubFolder')->name('storeSubFolder');
 Route::post('deleteFileSubFolder', 'FileController@deleteFileSubFolder')->name('deleteFileSubFolder');
 Route::post('downloadFileSubFolder', 'FileController@downloadFileSubFolder')->name('downloadFileSubFolder');
 Route::post('downloadSubFolder', 'FileController@downloadSubFolder')->name('downloadSubFolder');
+Route::post('newFolder', 'FileController@newFolder')->name('newFolder');
 # AGREGAR 100 USERS #
 Route::get('add-users-plus','UsersController@addUserPlus')->name('addUserPlus');

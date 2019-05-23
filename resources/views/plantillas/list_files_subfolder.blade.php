@@ -106,9 +106,18 @@
     <script>
         Dropzone.options.FormUploadFile = {
             maxFilesize: 50,
+            //paramName: "file",
             //addRemoveLinks: true,
-            //acceptedFiles: "{{ $dictionary }}",
-        }
+            acceptedFiles: "@foreach($dictionary as $dic) {{ $dic->nombre }}, @endforeach",
+            accept: function(file, done) {
+                if ({{ $space_user }} <= {{ $type_gb }} || file.size >= {{ $res }}) {
+                    alert("Ya no tienes espacio.");
+                }
+                else{
+                    done();
+                }
+            }
+        } 
         $(document).ready(function() {
             var table = $('#example').DataTable( {
                 responsive: true

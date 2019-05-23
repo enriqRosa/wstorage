@@ -116,7 +116,6 @@ class LoginController extends Controller
         return view('plantillas.superuser');
     }
 
-    #FUNCIÓN PARA DASHBOARD ADMIN
     public function admin()
     {
         return view('plantillas.admin');

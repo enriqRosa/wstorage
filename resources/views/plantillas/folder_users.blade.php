@@ -68,28 +68,38 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-4 col-sm-12 col-xs-12">
+                            <p class="buscador">
+                                <label>Search:</label>
+                                <input id="buscador" class="form-control" type="input" value="">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                         @foreach($folder as $folders)
-                            <div class="col-md-2 col-sm-4 col-xs-12">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h4>{{ $folders->ruta_local }}</h4>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="media event col-md-12 col-sm-12 col-xs-12">
-                                                <a class="pull-left border-aero" href="{{ route('showFilesFolder',$folders->ruta_local) }}">
-                                                    <div class="image view view-first">
-                                                        <img src="{{ asset('images/folder.png') }}" width="60px">
-                                                    </div>
-                                                </a>
-                                                <p>
-                                                    <form class="form-horizontal form-label-left" action="{{ route('downloadFolder') }}" method="post">
-                                                        {{csrf_field()}}
-                                                        <input type="hidden" value="{{ $folders->ruta_local }}" name="ruta_local">
-                                                        <button type="submit" class="btn btn-primary btn-xs">Download</button>
-                                                    </form>
-                                                </p>
+                            <div class="item">
+                                <div class="col-md-2 col-sm-4 col-xs-12">
+                                    <div class="x_panel">
+                                        <div class="x_title">
+                                            <h4><label class="nombres">{{ $folders->ruta_local }}</label></h4>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="x_content">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="media event col-md-12 col-sm-12 col-xs-12">
+                                                    <a class="pull-left border-aero" href="{{ route('showFilesFolder',$folders->ruta_local) }}">
+                                                        <div class="image view view-first">
+                                                            <img src="{{ asset('images/folder.png') }}" width="60px">
+                                                        </div>
+                                                    </a>
+                                                    <p>
+                                                        <form class="form-horizontal form-label-left" action="{{ route('downloadFolder') }}" method="post">
+                                                            {{csrf_field()}}
+                                                            <input type="hidden" value="{{ $folders->ruta_local }}" name="ruta_local">
+                                                            <button type="submit" class="btn btn-primary btn-xs">Download</button>
+                                                        </form>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -103,15 +113,24 @@
     </div>
 @stop
 @section ('file_js')
-    <script src="{{ asset('dropzone/dropzone.js') }}"></script>
     <script>
-        Dropzone.options.FormUploadFile = {
-            maxFilesize: 50,
-            addRemoveLinks: true,
-            headers: {
-      'X-CSRF-TOKEN': "{{ csrf_token() }}"
-    },
-            //acceptedFiles: ".pdf",
-        }
+        $(document).ready(function(){
+            $('#buscador').keyup(function(){
+                var nombres = $('.nombres');
+                var buscando = $(this).val();
+                var item='';
+                for( var i = 0; i < nombres.length; i++ ){
+                    item = $(nombres[i]).html().toLowerCase();
+                    for(var x = 0; x < item.length; x++ ){
+                        if( buscando.length == 0 || item.indexOf( buscando ) > -1 ){
+                            $(nombres[i]).parents('.item').show(); 
+                        }
+                        else{
+                            $(nombres[i]).parents('.item').hide();
+                        }
+                    }
+                }
+            });
+        });
     </script>
 @stop

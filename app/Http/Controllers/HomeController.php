@@ -31,10 +31,15 @@ class HomeController extends Controller
         if(\Auth::user()->tipo_usuario=='ADMIN')
         {
             return view('plantillas.admin');
+            #return view('home');
         }
         if(\Auth::user()->tipo_usuario=='USER')
         {
-            return view('plantillas.files');
-        }
+            $name=\Auth::user()->name;
+            $lastname=\Auth::user()->apellidos;
+            $ruta_local = $name . "_" . $lastname;
+            return redirect()->route('showFilesFolder',$ruta_local);
+            #return view('home');
+        }   
     }
 }
