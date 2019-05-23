@@ -88,7 +88,7 @@ Route::get('license/{id}/destroy',[
 ]);
 //RUTA PARA VER EL ESTATUS DE LA LICENCIA O LICENCIAS
 
-Route::get('license-status','LicenseController@showLicenses');
+Route::get('license-status','LicenseController@showLicenses')->name('showLicenses');
 Route::get('license-status-company/{license_id}/show','LicenseController@showLicenseCompany')->name('showLicenseCompany');
 
 /****************************CONTACTOS*********************************/

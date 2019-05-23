@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\License;
 use App\Company;
 use App\UserCatalog;
+use Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -68,12 +69,28 @@ class LicenseController extends Controller
 
     public function updateLicense(Request $request,$id)
     {
-        $license=License::find($id);
-        $license->tamano_total=$request->tamano_total;
-        $license->licencia_total=$request->licencia_total;
-        $license->save();
-        
-        return redirect('license-status')->with('license_update' ,'Data updated Successfully');   
+        $space_license = $this->space_license($id);
+        $total_license = $this->total_license($id);
+        $space_license_use = $this->space_license_use($id);
+        $total_license_use = $this->total_license_use($id);
+        $new_total_license = $request->tamano_total;
+        $new_space = $request->licencia_total;
+        if($space_license > $request->licencia_total and $total_license > $new_total_license){
+            return Redirect::back()->with('success',"You can not allocate less space than you have. You can not assign fewer licenses than you have");
+        }
+        elseif($space_license == $request->licencia_total and $total_license == $new_total_license){
+            return redirect()->route('showLicenses')->with('success',"Successfully updated data.");;
+        }
+        else{
+            $new_space_license = $space_license + $new_space;
+            $new_license_total = $total_license + $new_total_license;
+            $update_license = $total_license_use + $new_total_license;
+            $update_space = $space_license_use + $new_space;
+            $update_license = DB::table('licenses')->where('id', $id)->update(array(
+                'tamano_total' => $new_space_license, 'licencia_total' => $new_license_total,'tamano_restante' => $update_space, 'licencia_restante' => $update_license
+            ));
+            return redirect('license-status')->with('license_update' ,'Data updated Successfully');
+        } 
     }
 
     /**
@@ -88,5 +105,45 @@ class LicenseController extends Controller
         $license->delete();
 
         return back()->with('license_destroy' ,'Data deleted Successfully');
+    }
+    private function space_license($id)
+    {
+        $company_id = DB::table('licenses')->select('tamano_total')->where('id', '=', $id)->get();
+        foreach ($company_id as $id_company) {
+            foreach ($id_company as $id) {
+                $id;
+            }
+        }
+        return $id;
+    }
+    private function space_license_use($id)
+    {
+        $company_id = DB::table('licenses')->select('tamano_restante')->where('id', '=', $id)->get();
+        foreach ($company_id as $id_company) {
+            foreach ($id_company as $id) {
+                $id;
+            }
+        }
+        return $id;
+    }
+    private function total_license($id)
+    {
+        $company_id = DB::table('licenses')->select('licencia_total')->where('id', '=', $id)->get();
+        foreach ($company_id as $id_company) {
+            foreach ($id_company as $id) {
+                $id;
+            }
+        }
+        return $id;
+    }
+    private function total_license_use($id)
+    {
+        $company_id = DB::table('licenses')->select('licencia_restante')->where('id', '=', $id)->get();
+        foreach ($company_id as $id_company) {
+            foreach ($id_company as $id) {
+                $id;
+            }
+        }
+        return $id;
     }
 }
