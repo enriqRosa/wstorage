@@ -88,7 +88,7 @@
                             <li><a href="{{url('/dictionary')}}" aria-expanded="false"><i class="fa big-icon fa-book icon-wrap"></i><span class="mini-click-non">Dictionary</span></a></li>
                         @endif
                         @if(\Auth::user()->tipo_usuario=='ADMIN')
-                            <li><a href="{{url('/ursad')}}"><i class="fa big-icon fa-home icon-wrap"></i><span class="mini-click-non">Home</span></a></li>
+                            <li><a href="{{url('/usrad')}}"><i class="fa big-icon fa-home icon-wrap"></i><span class="mini-click-non">Home</span></a></li>
                             <li><a href="{{url('/files')}}" aria-expanded="false"><i class="fa big-icon fa-folder-open icon-wrap"></i><span class="mini-click-non">My Files</span></a></li>
                             <li><a href="{{url('/companies')}}" aria-expanded="false"><i class="fa big-icon fa-building icon-wrap"></i><span class="mini-click-non">My Company</span></a></li>
                             <li><a href="{{url('/dictionary')}}" aria-expanded="false"><i class="fa big-icon fa-book icon-wrap"></i><span class="mini-click-non">Dictionary</span></a></li>
@@ -225,7 +225,7 @@
                                         <li><a data-toggle="collapse" data-target="#demo" href="{{url('/dictionary')}}">Dictionary<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                     @endif
                                     @if(\Auth::user()->tipo_usuario=='ADMIN')
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="{{url('/ursad')}}">Home<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="{{url('/usrad')}}">Home<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="{{url('/files')}}">My Files<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="{{url('/companies')}}">My Company<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="{url('/dictionary')}}">Dictionary<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
@@ -255,6 +255,20 @@
             </div>
         </div>
         @yield('content')
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
         <div class="product-sales-area mg-tb-30">
             <div class="container-fluid">
                 <div class="row">

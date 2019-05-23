@@ -88,7 +88,7 @@
                             <li><a href="<?php echo e(url('/dictionary')); ?>" aria-expanded="false"><i class="fa big-icon fa-book icon-wrap"></i><span class="mini-click-non">Dictionary</span></a></li>
                         <?php endif; ?>
                         <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
-                            <li><a href="<?php echo e(url('/ursad')); ?>"><i class="fa big-icon fa-home icon-wrap"></i><span class="mini-click-non">Home</span></a></li>
+                            <li><a href="<?php echo e(url('/usrad')); ?>"><i class="fa big-icon fa-home icon-wrap"></i><span class="mini-click-non">Home</span></a></li>
                             <li><a href="<?php echo e(url('/files')); ?>" aria-expanded="false"><i class="fa big-icon fa-folder-open icon-wrap"></i><span class="mini-click-non">My Files</span></a></li>
                             <li><a href="<?php echo e(url('/companies')); ?>" aria-expanded="false"><i class="fa big-icon fa-building icon-wrap"></i><span class="mini-click-non">My Company</span></a></li>
                             <li><a href="<?php echo e(url('/dictionary')); ?>" aria-expanded="false"><i class="fa big-icon fa-book icon-wrap"></i><span class="mini-click-non">Dictionary</span></a></li>
@@ -226,7 +226,7 @@
                                         <li><a data-toggle="collapse" data-target="#demo" href="<?php echo e(url('/dictionary')); ?>">Dictionary<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                     <?php endif; ?>
                                     <?php if(\Auth::user()->tipo_usuario=='ADMIN'): ?>
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="<?php echo e(url('/ursad')); ?>">Home<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="<?php echo e(url('/usrad')); ?>">Home<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="<?php echo e(url('/files')); ?>">My Files<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="<?php echo e(url('/companies')); ?>">My Company<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
                                         <li><a data-toggle="collapse" data-target="#demo" href="{url('/dictionary')}}">Dictionary<span class="admin-project-icon adminpro-icon adminpro-down-arrow"></span></a></li>
@@ -256,6 +256,20 @@
             </div>
         </div>
         <?php echo $__env->yieldContent('content'); ?>
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="product-sales-area mg-tb-30">
+            <div class="container-fluid">
+                <div class="row">
+                    
+                </div>
+            </div>
+        </div>
         <div class="product-sales-area mg-tb-30">
             <div class="container-fluid">
                 <div class="row">

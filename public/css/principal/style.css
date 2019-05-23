@@ -1528,8 +1528,8 @@ ul.tab-custon-design li.active a, ul.tab-review-design li.active a{
     background: #3498db;
     color: #fff;
 }
-.hpanel.hbgyellow .panel-body {
-    background: #ffb606;
+.hpanel.hbgrey .panel-body {
+    background: #c5c3be;
     color: #fff;
 }
 .hpanel.hbgred .panel-body {

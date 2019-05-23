@@ -1,65 +1,79 @@
 @extends ('temps.header')
     @section ('content')
         @if(\Auth::user()->tipo_usuario=='SUPER')
-                <div class="right_col" role="main">
-                    <div class="">
-                        <div class="row">
-                            <div class="x_content">
-                                <div class="x_title">
-                                    <h2>Companies</h2>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="title_left">
-                                    <a href="{{url('/companies')}}"><button type="submit" class="btn btn-danger">Back</button></a>  
-                                </div>                      
-                                <div class="row">
-                                    @foreach($company as $companies)
-                                    <div class="col-md-3 col-xs-12 widget widget_tally_box">
-                                        <div class="x_panel fixed_height_390">
-                                            <div class="x_title">
-                                                <h2> {{ $companies->nombre  }}</h2>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="x_content">
-                                                <div style="text-align: center; margin-bottom: 17px">
-                                                    <img src="{{ Storage::url($companies->logo) }}" height="100px">
-                                                </div>
-                                                <div class="divider"></div>
-                                                    <ul class="legend list-unstyled">
-                                                        <li>
-                                                            <p>
-                                                                <span class="icon"><i class="fa fa-eye dark"></i></span>
-                                                                <a href="{{ route('users',$companies->id) }}"><span class="name">View users</span></a>
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <span class="icon"><i class="fa fa-book purple"></i></span>
-                                                                <a href="{{ route('showContacts',$companies->id) }}"><span class="name">View contacts</span></a>
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <span class="icon"><i class="fa fa-pencil blue"></i></span>
-                                                                <a href="{{url('/edit-license')}}"><span class="name">Edit</span></a>
-                                                            </p>
-                                                        </li>
-                                                        <li>
-                                                            <p>
-                                                                <span class="icon"><i class="fa fa-close red"></i></span>
-                                                                <a href=""><span class="name">Delete</span></a>
-                                                            </p>
-                                                        </li>
-                                                    </ul>
+        <div class="section-admin container-fluid res-mg-t-15">
+            <div class="row admin text-center">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="admin-content analysis-progrebar-ctn">
+                                <h4 class="text-left text-uppercase"><b>Companies</b></h4><br>
+                                <div class="widget-program-bg">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                        @foreach($company as $companies)
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="hpanel hbgrey responsive-mg-b-30">
+                                                    <div class="panel-body">
+                                                        <div class="text-center content-bg-pro">
+                                                            <h3>{{ $companies->nombre }}</h3>
+                                                            <img src="{{ Storage::url($companies->logo) }}" height="100px">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>                                                      
-                                        @endforeach
+                                            @endforeach  
+                                        </div>
                                     </div>
-                            </div>    
+                                </div>
+                                <div class="program-widget-bc mt-t-30 mg-b-15">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                        @foreach($company as $companies)
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                                <div class="hpanel responsive-mg-b-30">
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                    <tr><th>{{ $companies->nombre }}</th></tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr><td><a href="{{ route('users',$companies->id) }}"><span class="text-danger font-bold">View Users</span></a></td>
+                                                                        <td><i class="fa fa-eye"></i></td>
+                                                                    </tr>
+                                                                    <tr><td><a href="{{ route('showContacts',$companies->id) }}"><span class="text-danger font-bold">View Contacts</span></a></td>
+                                                                        <td><i class="fa fa-book"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><a href=""><span class="text-danger font-bold">Edit</span></a></td>
+                                                                        <td><i class="fa fa-pencil"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><a href=""><span class="text-danger font-bold">Delete</span></a></td>
+                                                                        <td><i class="fa fa-close"></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         @endforeach   
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  	                            	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+
+
+
+        
                 @endif
                 @if(\Auth::user()->tipo_usuario=='ADMIN')
                 <div class="right_col" role="main">
